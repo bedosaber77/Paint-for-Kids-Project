@@ -15,10 +15,16 @@ enum GUI_MODE	//Graphical user interface mode
 
 enum DrawMenuItem //The items of the Draw menu (you should add more items)
 {
-	//Note: Items are **(ordered)** here as they appear in menu
-	//If you want to change the menu items order, change the order here
+	ITM_COLORPICK,
+	ITM_PLAYMODE,
+	ITM_BORDER,
+	ITM_FILL,//Note: Items are **(ordered)** here as they appear in menu
+	ITM_SHAPES,
 	ITM_RECT,		//Recangle item in menu
-	
+	ITM_CIRC,
+	ITM_HEX,
+	ITM_TRI,
+	ITM_SQU,
 	//TODO: Add more items names here
 
 	ITM_EXIT,		//Exit item
