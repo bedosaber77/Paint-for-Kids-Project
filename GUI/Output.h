@@ -12,10 +12,12 @@ public:
 	window* CreateWind(int, int, int , int) const; //creates the application window
 	void CreateDrawToolBar() const;	//creates Draw mode toolbar & menu
 	void CreatePlayToolBar() const;	//creates Play mode toolbar & menu
+	void CreateShapesToolBar() const;
 	void CreateStatusBar() const;	//create the status bar
 
 	Input* CreateInput() const; //creates a pointer to the Input object	
 	void ClearStatusBar() const;	//Clears the status bar
+	void ClearToolBar() const;      //Clears the Tool Bar
 	void ClearDrawArea() const;	//Clears the drawing area
 	
 	// -- Figures Drawing functions

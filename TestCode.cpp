@@ -188,7 +188,22 @@ int main()
 
 
 		///TODO: Add more cases for the other action types
-
+		case SHAPES_PICK:
+			pOut->PrintMessage("Action: Pick Shape To Draw");
+			pOut->CreateShapesToolBar();
+			break;
+		case DRAW_CIRC:
+			pOut->PrintMessage("Action: Draw a Circle , Click anywhere");
+			break;
+		case DRAW_SQU:
+			pOut->PrintMessage("Action: Draw a Square , Click anywhere");
+			break;
+		case DRAW_TRI:
+			pOut->PrintMessage("Action: Draw a Triangle , Click anywhere");
+			break;
+		case DRAW_HEX:
+			pOut->PrintMessage("Action: Draw a Hexagon , Click anywhere");
+			break;
 
 		case EXIT:				
 				break;
