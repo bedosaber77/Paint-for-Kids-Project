@@ -20,6 +20,11 @@ enum ActionType //The actions supported (you can add more if needed)
 	DRAW_SQU,		//Draw Square
 	DRAW_TRI,		//Draw Triangle
 	DRAW_HEX,		//Draw Hexagaon
+
+	RESTART_PLAY,
+	SHAPE_PLAY_PICK,
+	COLORED_SHAPE_PLAY_PICK,
+	COLOR_PLAY_PICK,
 };
 
 struct Point	//To be used for figures points

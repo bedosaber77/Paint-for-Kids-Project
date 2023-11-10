@@ -14,8 +14,8 @@ Output::Output()
 
 	
 	UI.StatusBarHeight = 40;
-	UI.ToolBarHeight = 55;
-	UI.MenuItemWidth = 55;
+	UI.ToolBarHeight = 60;
+	UI.MenuItemWidth = 60;
 	
 	UI.DrawColor = BLUE;	//Drawing color
 	UI.FillColor = GREEN;	//Filling color
@@ -91,10 +91,29 @@ void Output::CreateDrawToolBar() const
 	string MenuItemImages[DRAW_ITM_COUNT];
 	MenuItemImages[ITM_SHAPES] = "images\\MenuItems\\Menu_Shapes.jpg";
 	MenuItemImages[ITM_PLAYMODE] = "images\\MenuItems\\Menu_Playmode.jpg";
-	MenuItemImages[ITM_COLORPICK] = "images\\MenuItems\\Menu_Color.jpg";
 	MenuItemImages[ITM_BORDER] = "images\\MenuItems\\Menu_Border.jpg";
+	MenuItemImages[ITM_UNDO] = "images\\MenuItems\\Menu_Undo.jpg";
+	MenuItemImages[ITM_REDO] = "images\\MenuItems\\Menu_Redo.jpg";
+	MenuItemImages[ITM_PLAYREC] = "images\\MenuItems\\Menu_PlayRecord.jpg";
+	MenuItemImages[ITM_STOPREC] = "images\\MenuItems\\Menu_StopRecord.jpg";
+	MenuItemImages[ITM_STARTREC] = "images\\MenuItems\\Menu_StartRecord.jpg";
 	MenuItemImages[ITM_FILL] = "images\\MenuItems\\Menu_Fill.jpg";
+	MenuItemImages[ITM_DELETE] = "images\\MenuItems\\Menu_Delete.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
+
+	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
+	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
+
+
+	MenuItemImages[CLR_BLACK] = "images\\Colors\\Color_Black.jpg";
+	MenuItemImages[CLR_BLUE] = "images\\Colors\\Color_Blue.jpg";
+	MenuItemImages[CLR_GREEN] = "images\\Colors\\Color_Green.jpg";
+	MenuItemImages[CLR_RED] = "images\\Colors\\Color_Red.jpg";
+	MenuItemImages[CLR_YELLOW] = "images\\Colors\\Color_Yellow.jpg";
+	MenuItemImages[CLR_ORANGE] = "images\\Colors\\Color_Orange.jpg";
+
+
+
 
 
 	//TODO: Prepare images for each menu item and add it to the list
@@ -115,6 +134,32 @@ void Output::CreateDrawToolBar() const
 void Output::CreatePlayToolBar() const
 {
 	UI.InterfaceMode = MODE_PLAY;
+	ClearToolBar();
+
+	string ShapePlayModeImages[PLAY_ITM_COUNT];
+	ShapePlayModeImages[ITM_COLORPICK] = "images\\PlayMode\\PickColor.jpg";
+	ShapePlayModeImages[ITM_SHAPEPICK] = "images\\PlayMode\\PickShape.jpg";
+	ShapePlayModeImages[ITM_COLOREDSHAPEPICK] = "images\\PlayMode\\PickColoredShape.jpg";
+	ShapePlayModeImages[ITM_RESTART] = "images\\PlayMode\\Restart.jpg";
+	ShapePlayModeImages[ITM_BACK2] = "images\\PlayMode\\Menu_Back.jpg";
+
+
+
+
+	for (int i = 0; i < PLAY_ITM_COUNT; i++)
+		pWind->DrawImage(ShapePlayModeImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+
+
+
+	//Draw a line under the toolbar
+	pWind->SetPen(PURPLE, 3);
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+
+
+
+
+
+
 	///TODO: write code to create Play mode menu
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -130,12 +175,12 @@ void Output::CreateShapesToolBar() const
 	//To control the order of these images in the menu, 
 	//reoder them in UI_Info.h ==> enum DrawMenuItem
 	string ShapeMenuItemImages[SHAPES_ITM_COUNT];
-	ShapeMenuItemImages[ITM_RECT] = "images\\MenuItems\\Menu_Rect.jpg";
-	ShapeMenuItemImages[ITM_CIRC] = "images\\MenuItems\\Menu_Circ.jpg";
-	ShapeMenuItemImages[ITM_SQU] = "images\\MenuItems\\Menu_Squ.jpg";
-	ShapeMenuItemImages[ITM_TRI] = "images\\MenuItems\\Menu_Tri.jpg";
-	ShapeMenuItemImages[ITM_HEX] = "images\\MenuItems\\Menu_Hex.jpg";
-	ShapeMenuItemImages[ITM_BACK] = "images\\MenuItems\\Menu_Back.jpg";
+	ShapeMenuItemImages[ITM_RECT] = "images\\Shapes\\Menu_Rect.jpg";
+	ShapeMenuItemImages[ITM_CIRC] = "images\\Shapes\\Menu_Circ.jpg";
+	ShapeMenuItemImages[ITM_SQU] = "images\\Shapes\\Menu_Squ.jpg";
+	ShapeMenuItemImages[ITM_TRI] = "images\\Shapes\\Menu_Tri.jpg";
+	ShapeMenuItemImages[ITM_HEX] = "images\\Shapes\\Menu_Hex.jpg";
+	ShapeMenuItemImages[ITM_BACK] = "images\\Shapes\\Menu_Back.jpg";
 
 
 	//TODO: Prepare images for each menu item and add it to the list

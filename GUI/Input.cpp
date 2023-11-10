@@ -52,6 +52,7 @@ ActionType Input::GetUserAction() const
 			switch (ClickedItemOrder)
 			{
 			case ITM_SHAPES: return SHAPES_PICK;
+			case ITM_PLAYMODE: return TO_PLAY;
 			case ITM_EXIT: return EXIT;	
 			
 			default: return EMPTY;	//A click on empty place in desgin toolbar
@@ -86,6 +87,42 @@ ActionType Input::GetUserAction() const
 			case ITM_TRI: return DRAW_TRI;
 			case ITM_HEX: return DRAW_HEX;
 			case ITM_BACK:return TO_DRAW;
+			default: return EMPTY;	//A click on empty place in desgin toolbar
+			}
+		}
+
+		//[2] User clicks on the drawing area
+		if (y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight)
+		{
+			return DRAWING_AREA;
+		}
+
+		//[3] User clicks on the status bar
+		return STATUS;
+
+	}
+
+
+	else if (UI.InterfaceMode == MODE_PLAY) //Gui is in Adding Figure Phase
+	{
+		//[1] If user clicks on the Toolbar
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			//Check whick Menu item was clicked
+			//==> This assumes that menu items are lined up horizontally <==
+			int ClickedItemOrder = (x / UI.MenuItemWidth);
+			//Divide x coord of the point clicked by the menu item width (int division)
+			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
+
+			switch (ClickedItemOrder)
+			{
+			case ITM_SHAPEPICK: return SHAPE_PLAY_PICK;
+			case ITM_COLOREDSHAPEPICK: return COLORED_SHAPE_PLAY_PICK;
+			case ITM_COLORPICK: return COLOR_PLAY_PICK;
+			case ITM_BACK2:return TO_DRAW;
+			case ITM_RESTART:return RESTART_PLAY;
+
+
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
 		}

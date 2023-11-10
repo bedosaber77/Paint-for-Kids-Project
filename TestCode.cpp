@@ -26,15 +26,15 @@ int main()
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
 
-	//TEST FOR HEXAGON
-	GfxInfo gfxInfo1;
-	Point P;
-	pOut->PrintMessage("TEST FOR HEXAGON, Click one point");
-	pIn->GetPointClicked(P.x, P.y);
-	gfxInfo1.BorderWdth = 5;
-	gfxInfo1.DrawClr = RED;	//any color for border
-	gfxInfo1.isFilled = false;	//Figure is NOT filled
-	pOut->DrawHex(P, gfxInfo1, false);
+	////////TEST FOR HEXAGON   NON USED TEST >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	//////GfxInfo gfxInfo1;
+	//////Point P;
+	//////pOut->PrintMessage("TEST FOR HEXAGON, Click one point");
+	//////pIn->GetPointClicked(P.x, P.y);
+	//////gfxInfo1.BorderWdth = 5;
+	//////gfxInfo1.DrawClr = RED;	//any color for border
+	//////gfxInfo1.isFilled = false;	//Figure is NOT filled
+	//////pOut->DrawHex(P, gfxInfo1, false);
 
 	
 	///////////////////////////////////////////////////////////////////////////////////
@@ -120,10 +120,39 @@ int main()
 	pOut->PrintMessage("Drawing a Hexagon, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
-	///TODO: Add code to draw Hexagon in all possible states
+	///TODO: Add code to draw Hexagon in all possible states //done
+
+	// 2.4.1 - Drawing non-filled Hexagon
+	pOut->PrintMessage("Drawing a Hexagon ==> non-filled,  Click one point");
+	pIn->GetPointClicked(P1.x, P1.y);
+	gfxInfo.BorderWdth = 5;
+	gfxInfo.DrawClr = BLACK;	//any color for border
+	gfxInfo.isFilled = false;	//Figure is NOT filled
+	pOut->DrawHex(P1, gfxInfo, false);
+
+	// 2.4.2 - Drawing highlighted non-filled Hexagon
+	pOut->PrintMessage("Drawing a Hexagon ==> Highlighted non-filled, Click to Highlight");
+	pIn->GetPointClicked(x, y);	//Wait for any click
+	pOut->DrawHex(P1, gfxInfo, true);
+
+	// 2.4.3 - Drawing a filled Hexagon
+	pOut->PrintMessage("Drawing a Hexagon ==> filled,  Click one point");
+	pIn->GetPointClicked(P1.x, P1.y);
+	gfxInfo.BorderWdth = 6;
+	gfxInfo.DrawClr = BLUE;	//any color for border
+	gfxInfo.FillClr = GREEN;//any color for filling
+	gfxInfo.isFilled = true;//Figure is filled
+	pOut->DrawHex(P1, gfxInfo, false);
+
+
+	// 2.4.4 - Drawing a highlighted filled Hexagon
+	pOut->PrintMessage("Drawing a Hexagon ==> Highlighted filled, Click to Highlight");
+	pIn->GetPointClicked(x, y);	//Wait for any click
+	pOut->DrawHex(P1, gfxInfo, true);
+
 
 	pOut->PrintMessage("Drawing a Hexagon Test ==> OK,  Click anywhere to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->ClearDrawArea();
 	
 	/// 2.5- Circle Test ///
@@ -171,9 +200,7 @@ int main()
 
 		switch (ActType)
 		{
-		case DRAW_RECT:
-				pOut->PrintMessage("Action: Draw a Rectangle , Click anywhere");
-				break;
+
 
 		case STATUS:
 				pOut->PrintMessage("Action: a click on the Status Bar, Click anywhere");
@@ -191,11 +218,28 @@ int main()
 				pOut->PrintMessage("Action: Switch to Draw Mode, creating simualtion tool bar");
 				pOut->CreateDrawToolBar();
 				break;
-
+        //PLAY MODE ACTIONS TEST
 		case TO_PLAY:
 				pOut->PrintMessage("Action: Switch to Play Mode, creating Design tool bar");
 				pOut->CreatePlayToolBar();
 				break;
+
+		case RESTART_PLAY:
+			pOut->PrintMessage("Action: Restart Playing , Click anywhere");
+			break;
+
+		case COLOR_PLAY_PICK:
+			pOut->PrintMessage("Action: PICK COLOR GAME PLAY, Click anywhere");
+			break;
+
+		case SHAPE_PLAY_PICK:
+			pOut->PrintMessage("Action: PICK SHAPES GAME PLAY, Click anywhere");
+			break;
+
+		case COLORED_SHAPE_PLAY_PICK:
+			pOut->PrintMessage("Action: PICK COLORED SHAPES GAME PLAY, Click anywhere");
+			break;
+       
 
 
 		///TODO: Add more cases for the other action types
@@ -203,6 +247,11 @@ int main()
 			pOut->PrintMessage("Action: Pick Shape To Draw");
 			pOut->CreateShapesToolBar();
 			break;
+
+		case DRAW_RECT:
+			pOut->PrintMessage("Action: Draw a Rectangle , Click anywhere");
+			break;
+
 		case DRAW_CIRC:
 			pOut->PrintMessage("Action: Draw a Circle , Click anywhere");
 			break;
