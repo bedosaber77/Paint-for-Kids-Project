@@ -1,4 +1,5 @@
 #include "Output.h"
+#include <cmath>
 
 
 Output::Output()
@@ -211,6 +212,35 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	
 }
 
+//Drawing Hexagon:
+void Output::DrawHex(Point P, GfxInfo HexaGfxInfo, bool selected) const 
+{
+	color DrawingClr;
+	if (selected)
+		DrawingClr = UI.HighlightColor;  //Figure should be drawn highlighted
+	else
+		DrawingClr = HexaGfxInfo.DrawClr;
+
+	pWind->SetPen(DrawingClr, 1);
+	drawstyle style;
+	if (HexaGfxInfo.isFilled)
+	{
+		style = FILLED;
+		pWind->SetBrush(HexaGfxInfo.FillClr);
+	}
+	else
+		style = FRAME;
+	const int NumVertices = 6;
+	const double angle = 60 * 3.14159265 / 180; //60 degree and convert it to radian
+	int L = 150; //set Length for the Figure
+	int arrX[NumVertices]; //array of x-coordinates for each vertix
+	int arrY[NumVertices]; //array of y-coordinates for each vertix
+	for (int i = 0; i < NumVertices; i++) {
+		arrX[i] = P.x + (L * sin( angle * i));
+		arrY[i] = P.y - (L * cos( angle * i));
+	}
+	pWind->DrawPolygon(arrX, arrY, NumVertices, style);
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////
 Output::~Output()
