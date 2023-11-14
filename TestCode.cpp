@@ -63,13 +63,13 @@ int main()
 	gfxInfo.DrawClr = BLACK;	//any color for border
 	gfxInfo.isFilled = false;	//Figure is NOT filled
 	pOut->DrawRect(P1, P2, gfxInfo, false);
-	pOut->CreateDrawToolBar();
+	
 
 	// 2.1.2 - Drawing highlighted non-filled rectangle
 	pOut->PrintMessage("Drawing a Rectangle ==> Highlighted non-filled, Click to Highlight");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	pOut->DrawRect(P1, P2, gfxInfo, true);
-	pOut->CreateDrawToolBar();
+	
 
 
 	// 2.1.3 - Drawing a filled rectangle
@@ -82,14 +82,14 @@ int main()
 	gfxInfo.FillClr = GREEN;//any color for filling
 	gfxInfo.isFilled = true;//Figure is filled
 	pOut->DrawRect(P1, P2, gfxInfo, false);
-	pOut->CreateDrawToolBar();
+	
 
 
 	// 2.1.4 - Drawing a highlighted filled rectangle
 	pOut->PrintMessage("Drawing a Rectangle ==> Highlighted filled, Click to Highlight");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	pOut->DrawRect(P1, P2, gfxInfo, true);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -114,15 +114,15 @@ int main()
 	gfxInfo.DrawClr = BLACK;	//any color for border
 	gfxInfo.isFilled = false;	//Figure is NOT filled
 	pOut->DrawSquare(P1, gfxInfo, false);
-	pOut->CreateDrawToolBar();
+	
 
 
 
 	//2.2.2 - Drawing a highlighted non-filled square
-	pOut->PrintMessage("Drawing a Rectangle ==> Highlighted non-filled, Click to Highlight");
+	pOut->PrintMessage("Drawing a Square ==> Highlighted non-filled, Click to Highlight");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->DrawSquare(P1, gfxInfo, true);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -135,15 +135,15 @@ int main()
 	gfxInfo.FillClr = GREEN;//any color for filling
 	gfxInfo.isFilled = true;//Figure is filled
 	pOut->DrawSquare(P1, gfxInfo, false);
-	pOut->CreateDrawToolBar();
+	
 
 
 
 	// 2.2.4 - Drawing a highlighted filled Square
-	pOut->PrintMessage("Drawing a Rectangle ==> Highlighted filled, Click to Highlight");
+	pOut->PrintMessage("Drawing a Square ==> Highlighted filled, Click to Highlight");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->DrawSquare(P1, gfxInfo, true);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -176,7 +176,7 @@ int main()
 	gfxInfo.DrawClr = BLACK;	//any color for border
 	gfxInfo.isFilled = false;	//Figure is NOT filled
 	pOut->DrawTriangle(P1, P2, P3, gfxInfo, false);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -184,7 +184,7 @@ int main()
 	pOut->PrintMessage("Drawing a Triangle ==> Highlighted non-filled, Click to Highlight");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->DrawTriangle(P1, P2, P3, gfxInfo, true);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -199,7 +199,7 @@ int main()
 	gfxInfo.FillClr = GREEN;//any color for filling
 	gfxInfo.isFilled = true;//Figure is filled
 	pOut->DrawTriangle(P1, P2, P3, gfxInfo, false);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -207,7 +207,7 @@ int main()
 	pOut->PrintMessage("Drawing a Triangle ==> Highlighted filled, Click to Highlight");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->DrawTriangle(P1, P2, P3, gfxInfo, true);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -232,7 +232,7 @@ int main()
 	gfxInfo.DrawClr = BLACK;	//any color for border
 	gfxInfo.isFilled = false;	//Figure is NOT filled
 	pOut->DrawHex(P1, gfxInfo, false);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -240,7 +240,7 @@ int main()
 	pOut->PrintMessage("Drawing a Hexagon ==> Highlighted non-filled, Click to Highlight");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->DrawHex(P1, gfxInfo, true);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -252,7 +252,7 @@ int main()
 	gfxInfo.FillClr = GREEN;//any color for filling
 	gfxInfo.isFilled = true;//Figure is filled
 	pOut->DrawHex(P1, gfxInfo, false);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -260,7 +260,7 @@ int main()
 	pOut->PrintMessage("Drawing a Hexagon ==> Highlighted filled, Click to Highlight");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->DrawHex(P1, gfxInfo, true);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -285,7 +285,7 @@ int main()
 	gfxInfo.DrawClr = BLACK;	//any color for border
 	gfxInfo.isFilled = false;	//Figure is NOT filled
 	pOut->DrawCircle(P1, gfxInfo, false);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -293,7 +293,7 @@ int main()
 	pOut->PrintMessage("Drawing a Circle ==> Highlighted non-filled, Click to Highlight");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->DrawCircle(P1, gfxInfo, true);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -306,7 +306,7 @@ int main()
 	gfxInfo.FillClr = GREEN;//any color for filling
 	gfxInfo.isFilled = true;//Figure is filled
 	pOut->DrawCircle(P1, gfxInfo, false);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -314,7 +314,7 @@ int main()
 	pOut->PrintMessage("Drawing a Circle ==> Highlighted filled, Click to Highlight");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->DrawCircle(P1, gfxInfo, true);
-	pOut->CreateDrawToolBar();
+	
 
 
 
@@ -427,6 +427,64 @@ int main()
 			pOut->PrintMessage("Action: Draw a Hexagon , Click anywhere");
 			break;
 
+			///////////////////////////////
+		case BORDER_COLOR_PICK:
+			pOut->PrintMessage("Action: Pick Color To Draw");
+			pOut->CreateColorToolBar();
+			break;
+		case FILL_COLOR_PICK:
+			pOut->PrintMessage("Action: Pick Color To Fill");
+			pOut->CreateColorToolBar();
+			break;
+		case PICK_BLACK:
+			pOut->PrintMessage("Action: Black is Selected");
+			pOut->CreateDrawToolBar();
+			break;
+		case PICK_BLUE:	
+			pOut->PrintMessage("Action: Blue is Selected");
+			pOut->CreateDrawToolBar();
+			break;
+		case PICK_GREEN:
+			pOut->PrintMessage("Action: Green is Selected");
+			pOut->CreateDrawToolBar();
+			break;
+		case PICK_ORANGE:
+			pOut->PrintMessage("Action: Orange is Selected");
+			pOut->CreateDrawToolBar();
+			break;
+		case PICK_YELLOW:
+			pOut->PrintMessage("Action: Yellow is Selected");
+			pOut->CreateDrawToolBar();
+			break;
+		case PICK_RED:
+			pOut->PrintMessage("Action: Red is Selected");
+			pOut->CreateDrawToolBar();
+			break;
+			/////////////////////////////////////////
+		case SAVE_GRAPH:
+			pOut->PrintMessage("Action: Save is Selected");
+			break;
+		case LOAD:
+			pOut->PrintMessage("Action: Load is Selected");
+			break;
+		case UNDO:
+			pOut->PrintMessage("Action: Undo is Selected");
+			break;
+		case REDO:
+			pOut->PrintMessage("Action: Redo is Selected");
+			break;
+		case START_REC:
+			pOut->PrintMessage("Action: Start Recording is Selected");
+			break;
+		case STOP_REC:
+			pOut->PrintMessage("Action: Stop Recording is Selected");
+			break;
+		case PLAY_REC:
+			pOut->PrintMessage("Action: Play Recording is Selected");
+			break;
+		case ERASE:
+			pOut->PrintMessage("Action: Delete is Selected");
+			break;
 		case EXIT:				
 				break;
 		}

@@ -10,9 +10,11 @@
 enum GUI_MODE	//Graphical user interface mode
 {
 	MODE_DRAW,	//Drawing mode (startup mode)
+	MODE_PLAY,	//Playing mode
+	
 	MODE_SHAPES,//Pick SHAPE mode
 	MODE_COLORS,//Pick Color mode
-	MODE_PLAY	//Playing mode
+	test
 };
 
 enum DrawMenuItem //The items of the Draw menu (you should add more items)
@@ -22,16 +24,6 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_PLAYMODE,
 	ITM_BORDER,
 	ITM_FILL,//Note: Items are **(ordered)** here as they appear in menu
-
-
-
-	CLR_BLACK,
-	CLR_BLUE,
-	CLR_GREEN,
-	CLR_ORANGE,
-	CLR_YELLOW,
-	CLR_RED,
-
 
 	ITM_SAVE,
 	ITM_LOAD,
@@ -58,7 +50,17 @@ enum ShapeMenuItem //The items of Shape menu
 
     SHAPES_ITM_COUNT  //no. of Shape menu items ==> This should be the last line in this enum
 };
+enum ColorMenuItem
+{
+	COLOR_BLACK,    //Color Black in color menu
+	COLOR_BLUE,		//Color Blue in color menu
+	COLOR_GREEN,	//Color Green in color menu
+	COLOR_ORANGE,	//Color Orange in color menu
+	COLOR_YELLOW,	//Color Yellow in color menu
+	COLOR_RED,	    //Color Red in color menu
 
+	COLOR_ITM_COUNT		//no. of Color menu items ==>> This should be the last line in this enum
+};
 enum PlayMenuItem //The items of the Play menu (you should add more items)
 {
 	//Note: Items are **(ordered)** here as they appear in menu

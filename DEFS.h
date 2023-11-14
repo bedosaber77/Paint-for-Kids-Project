@@ -20,11 +20,37 @@ enum ActionType //The actions supported (you can add more if needed)
 	DRAW_SQU,		//Draw Square
 	DRAW_TRI,		//Draw Triangle
 	DRAW_HEX,		//Draw Hexagaon
+	
+	BORDER_COLOR_PICK,   //Color Pick Menu
+	FILL_COLOR_PICK,
+
+
+	/////////////////////////////
+	
+	
+	PICK_BLACK,		//Pick Black in Color Menu Items
+	PICK_BLUE,		//Pick Blue in Color Menu Items
+	PICK_GREEN,		//Pick Green in Color Menu Items
+	PICK_ORANGE,	//Pick Orange in Color Menu Items
+	PICK_YELLOW,	//Pick Yellow in Color Menu Items
+	PICK_RED,		//Pick Red in Color Menu Items
 
 	RESTART_PLAY,
 	SHAPE_PLAY_PICK,
 	COLORED_SHAPE_PLAY_PICK,
 	COLOR_PLAY_PICK,
+
+	SAVE_GRAPH,
+	LOAD,
+	UNDO,
+	REDO,
+	START_REC,
+	STOP_REC,
+	PLAY_REC,
+	ERASE,
+
+
+
 };
 
 struct Point	//To be used for figures points
