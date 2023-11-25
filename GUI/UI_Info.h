@@ -24,7 +24,9 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_PLAYMODE,
 	ITM_BORDER,
 	ITM_FILL,//Note: Items are **(ordered)** here as they appear in menu
-
+	ITM_SELECT,
+	ITM_MOVE,
+	ITM_RESIZE,
 	ITM_SAVE,
 	ITM_LOAD,
 	ITM_UNDO,
@@ -32,6 +34,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_STARTREC,
 	ITM_STOPREC,
 	ITM_PLAYREC,
+	ITM_CLEARALL,
 	ITM_DELETE,
 	ITM_EXIT,		//Exit item
 	

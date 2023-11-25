@@ -464,6 +464,18 @@ int main()
 		case SAVE_GRAPH:
 			pOut->PrintMessage("Action: Save is Selected");
 			break;
+		case RESIZE:
+			pOut->PrintMessage("Action: Resizing is Selected");
+			break;
+		case MOVE:
+			pOut->PrintMessage("Action: Moving is Selected");
+			break;
+		case CLEARALL:
+			pOut->PrintMessage("Action: Clear All is Selected");
+			break;
+		case SELECT:
+			pOut->PrintMessage("Action: Selecting Figure is Selected");
+			break;
 		case LOAD:
 			pOut->PrintMessage("Action: Load is Selected");
 			break;

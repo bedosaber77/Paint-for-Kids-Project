@@ -59,6 +59,10 @@ ActionType Input::GetUserAction() const
 			case ITM_LOAD:return LOAD;
 			case ITM_UNDO:return UNDO;
 			case ITM_REDO:return REDO;
+			case ITM_SELECT:return SELECT;
+			case ITM_MOVE:return MOVE;
+			case ITM_CLEARALL:return CLEARALL;
+			case ITM_RESIZE:return RESIZE;
 			case ITM_STARTREC:return START_REC;
 			case ITM_STOPREC:return STOP_REC;
 			case ITM_PLAYREC:return PLAY_REC;

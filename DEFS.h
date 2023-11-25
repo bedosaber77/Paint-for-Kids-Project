@@ -13,21 +13,21 @@ enum ActionType //The actions supported (you can add more if needed)
 	EMPTY,			//A click on empty place in the toolbar
 	DRAWING_AREA,	//A click on the drawing area
 	STATUS,			//A click on the status bar
-	
+
 	///TODO: Add the other action types of the two modes
 	SHAPES_PICK,
 	DRAW_CIRC,      //DRAW Circle
 	DRAW_SQU,		//Draw Square
 	DRAW_TRI,		//Draw Triangle
 	DRAW_HEX,		//Draw Hexagaon
-	
+
 	BORDER_COLOR_PICK,   //Color Pick Menu
 	FILL_COLOR_PICK,
 
 
 	/////////////////////////////
-	
-	
+
+
 	PICK_BLACK,		//Pick Black in Color Menu Items
 	PICK_BLUE,		//Pick Blue in Color Menu Items
 	PICK_GREEN,		//Pick Green in Color Menu Items
@@ -42,6 +42,10 @@ enum ActionType //The actions supported (you can add more if needed)
 
 	SAVE_GRAPH,
 	LOAD,
+	RESIZE,
+	MOVE,
+	CLEARALL,
+	SELECT,
 	UNDO,
 	REDO,
 	START_REC,
