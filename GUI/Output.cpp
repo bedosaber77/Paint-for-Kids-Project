@@ -276,9 +276,12 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 
 	
 	pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
-	ClearToolBar();
-	CreateDrawToolBar();
-	
+
+	if ((P1.y >= 0 && P1.y <= UI.ToolBarHeight)||(P2.y >= 0 && P2.y <= UI.ToolBarHeight)) //ReDraw ToolBar Condtion
+	{
+		ClearToolBar();
+		CreateDrawToolBar();
+	}
 }
 
 //2.Draw Square:
@@ -308,9 +311,11 @@ void Output::DrawSquare(Point P1, GfxInfo RectGfxInfo, bool selected) const
 	
 
 	pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
-	ClearToolBar();
-	CreateDrawToolBar();
-
+	if ((P1.y >= 0 && P1.y <= UI.ToolBarHeight) || (P2.y >= 0 && P2.y <= UI.ToolBarHeight)) //ReDraw ToolBar Condtion
+	{
+		ClearToolBar();
+		CreateDrawToolBar();
+	}
 }
 
 //3.Draw Triangle:
@@ -334,8 +339,11 @@ void Output::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo RectGfxInfo, boo
 		style = FRAME;
 
 	pWind->DrawTriangle(P1.x, P1.y, P2.x, P2.y, P3.x, P3.y, style);
-	ClearToolBar();
-	CreateDrawToolBar();
+	if ((P1.y >= 0 && P1.y <= UI.ToolBarHeight) || (P2.y >= 0 && P2.y <= UI.ToolBarHeight)|| (P3.y >= 0 && P3.y <= UI.ToolBarHeight)) //ReDraw ToolBar Condtion
+	{
+		ClearToolBar();
+		CreateDrawToolBar();
+	}
 }
 
 //4.Draw Circle:
@@ -359,8 +367,11 @@ void Output::DrawCircle(Point P1, GfxInfo RectGfxInfo, bool selected) const
 		style = FRAME;
 
 	pWind->DrawCircle(P1.x, P1.y, 150, style);
-	ClearToolBar();
-	CreateDrawToolBar();
+	if (P1.y-150 <= UI.ToolBarHeight) //ReDraw ToolBar Condition
+	{
+		ClearToolBar();
+		CreateDrawToolBar();
+	}
 }
 
 //5.Drawing Hexagon:
@@ -392,8 +403,11 @@ void Output::DrawHex(Point P, GfxInfo HexaGfxInfo, bool selected) const
 		arrY[i] = P.y - (L * cos( angle * i));
 	}
 	pWind->DrawPolygon(arrX, arrY, NumVertices, style);
-	ClearToolBar();
-	CreateDrawToolBar();
+	if (arrY[0]<= UI.ToolBarHeight) //ReDraw ToolBar Condition
+	{
+		ClearToolBar();
+		CreateDrawToolBar();
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////

@@ -26,17 +26,8 @@ int main()
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
 
-	////////TEST FOR HEXAGON   NON USED TEST >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-	//////GfxInfo gfxInfo1;
-	//////Point P;
-	//////pOut->PrintMessage("TEST FOR HEXAGON, Click one point");
-	//////pIn->GetPointClicked(P.x, P.y);
-	//////gfxInfo1.BorderWdth = 5;
-	//////gfxInfo1.DrawClr = RED;	//any color for border
-	//////gfxInfo1.isFilled = false;	//Figure is NOT filled
-	//////pOut->DrawHex(P, gfxInfo1, false);
 
-	
+
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 2:	
 	//			Drawing all the Figures with all possible states: 
