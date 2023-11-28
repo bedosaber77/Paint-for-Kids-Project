@@ -88,7 +88,7 @@ void Output::CreateDrawToolBar() const
 	//First prepare List of images for each menu item
 	//To control the order of these images in the menu, 
 	//reoder them in UI_Info.h ==> enum DrawMenuItem
-	string MenuItemImages[DRAW_ITM_COUNT];
+	string MenuItemImages[DRAW_ITM_COUNT]; //Icons of Draw Main Menu from its Folder
 	MenuItemImages[ITM_SHAPES] = "images\\MenuItems\\Menu_Shapes.jpg";
 	MenuItemImages[ITM_PLAYMODE] = "images\\MenuItems\\Menu_Playmode.jpg";
 	MenuItemImages[ITM_BORDER] = "images\\MenuItems\\Menu_Border.jpg";
@@ -125,10 +125,11 @@ void Output::CreateDrawToolBar() const
 
 void Output::CreatePlayToolBar() const
 {
-	UI.InterfaceMode = MODE_PLAY;
+	UI.InterfaceMode = MODE_PLAY; //Creating Tool bar For Play Mode
 	ClearToolBar();
+	// You Can reoder them in UI_Info.h ==> enum PlayMenuItem
 
-	string ShapePlayModeImages[PLAY_ITM_COUNT];
+	string ShapePlayModeImages[PLAY_ITM_COUNT]; //Icons of PlayMode objects from its Folder
 	ShapePlayModeImages[ITM_COLORPICK] = "images\\PlayMode\\PickColor.jpg";
 	ShapePlayModeImages[ITM_SHAPEPICK] = "images\\PlayMode\\PickShape.jpg";
 	ShapePlayModeImages[ITM_COLOREDSHAPEPICK] = "images\\PlayMode\\PickColoredShape.jpg";
@@ -158,15 +159,11 @@ void Output::CreatePlayToolBar() const
 
 void Output::CreateShapesToolBar() const
 {
-	UI.InterfaceMode = MODE_SHAPES;
-
-	//You can draw the tool bar icons in any way you want.
-	//Below is one possible way
+	UI.InterfaceMode = MODE_SHAPES; //Creating Tool bar For Shapes
 	ClearToolBar();
-	//First prepare List of images for each menu item
-	//To control the order of these images in the menu, 
-	//reoder them in UI_Info.h ==> enum ShapesMenuItem
-	string ShapeMenuItemImages[SHAPES_ITM_COUNT];
+	// You Can reoder them in UI_Info.h ==> enum ShapeMenuItem
+
+	string ShapeMenuItemImages[SHAPES_ITM_COUNT]; //Icons of Shapes from its Folder
 	ShapeMenuItemImages[ITM_RECT] = "images\\Shapes\\Menu_Rect.jpg";
 	ShapeMenuItemImages[ITM_CIRC] = "images\\Shapes\\Menu_Circ.jpg";
 	ShapeMenuItemImages[ITM_SQU] = "images\\Shapes\\Menu_Squ.jpg";
@@ -175,7 +172,6 @@ void Output::CreateShapesToolBar() const
 	ShapeMenuItemImages[ITM_BACK] = "images\\Shapes\\Menu_Back.jpg";
 
 
-	//TODO: Prepare images for each menu item and add it to the list
 
 	//Draw menu item one image at a time
 	for (int i = 0; i < SHAPES_ITM_COUNT; i++)
@@ -191,15 +187,11 @@ void Output::CreateShapesToolBar() const
 
 void Output::CreateColorToolBar() const
 {
-	UI.InterfaceMode = MODE_COLORS;
-
-	//You can draw the tool bar icons in any way you want.
-	//Below is one possible way
+	UI.InterfaceMode = MODE_COLORS;//Creating Tool bar For Colors
 	ClearToolBar();
-	//First prepare List of images for each menu item
-	//To control the order of these images in the menu, 
-	//reoder them in UI_Info.h ==> enum ColorMenuItem
-	string ColorMenuItemImages[COLOR_ITM_COUNT];
+
+	// You Can reoder them in UI_Info.h ==> enum ColorMenuItem
+	string ColorMenuItemImages[COLOR_ITM_COUNT]; //Icons of Colors from its Folder
 	ColorMenuItemImages[COLOR_BLACK] = "images\\Colors\\Color_Black.jpg";
 	ColorMenuItemImages[COLOR_BLUE] = "images\\Colors\\Color_Blue.jpg";
 	ColorMenuItemImages[COLOR_GREEN] = "images\\Colors\\Color_Green.jpg";
@@ -286,6 +278,7 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 
 //2.Draw Square:
 
+//Draw Square Function Specail Case Of Draw Rect
 void Output::DrawSquare(Point P1, GfxInfo RectGfxInfo, bool selected) const
 {
 	color DrawingClr;
@@ -380,13 +373,13 @@ void Output::DrawHex(Point P, GfxInfo HexaGfxInfo, bool selected) const
 {
 	color DrawingClr;
 	if (selected)
-		DrawingClr = UI.HighlightColor;  //Figure should be drawn highlighted
+		DrawingClr = UI.HighlightColor;  //Figure should be drawn highlighted or not
 	else
 		DrawingClr = HexaGfxInfo.DrawClr;
 
 	pWind->SetPen(DrawingClr, 1);
 	drawstyle style;
-	if (HexaGfxInfo.isFilled)
+	if (HexaGfxInfo.isFilled) //Figure should be drawn Filled Or not
 	{
 		style = FILLED;
 		pWind->SetBrush(HexaGfxInfo.FillClr);
@@ -413,6 +406,7 @@ void Output::DrawHex(Point P, GfxInfo HexaGfxInfo, bool selected) const
 //////////////////////////////////////////////////////////////////////////////////////////
 Output::~Output()
 {
+	//Destrucor Delete Allocated Memory
 	delete pWind;
 }
 

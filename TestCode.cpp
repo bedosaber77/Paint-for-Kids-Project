@@ -38,7 +38,7 @@ int main()
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
 	GfxInfo gfxInfo;//to be used with draw function of the class Ouput
-	Point P1, P2, P3;
+	Point P1, P2, P3; //Creating 3 Points
 
 	/// 2.1- Rectangle Test ///
 	/// =================== 
@@ -215,6 +215,9 @@ int main()
 
 	///TODO: Add code to draw Hexagon in all possible states //done
 
+
+
+	// Done DrawHex Function (Takes 1 point to draw Hexagon)
 	// 2.4.1 - Drawing non-filled Hexagon
 	pOut->PrintMessage("Drawing a Hexagon ==> non-filled,  Click one point");
 	pIn->GetPointClicked(P1.x, P1.y);
@@ -266,7 +269,8 @@ int main()
 	pOut->PrintMessage("Drawing an Circle, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
-	///TODO: Add code to draw Circle in all possible states//done
+	///TODO: Add code to draw Circle in all possible states 
+	//done
 
 	// 2.5.1 - Drawing non-filled circle
 	pOut->PrintMessage("Drawing a Circle ==> non-filled,  Click one point");
@@ -330,7 +334,7 @@ int main()
 	// 3- print on the status bar "You Entered" then print the string
 	//done
 
-	string msg = pIn->GetSrting(pOut);
+	string msg = pIn->GetSrting(pOut); // Get String Edited To prevent Wrong Input
 	pOut->ClearStatusBar();
 	pOut->PrintMessage("You Entered : " + msg);
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -346,7 +350,8 @@ int main()
 	
 	///TODO:  
 	//You must add a case for each action (both Draw mode and Play mode actions)
-	//Add cases for the missing actions below
+	//Add cases for the missing actions below  
+	//DONE
 	do
 	{
 		ActType = pIn->GetUserAction();
@@ -395,7 +400,7 @@ int main()
        
 
 
-		///TODO: Add more cases for the other action types
+		/// Rest of Action type Test Messages
 		case SHAPES_PICK:
 			pOut->PrintMessage("Action: Pick Shape To Draw");
 			pOut->CreateShapesToolBar();
@@ -498,7 +503,7 @@ int main()
 	pOut->PrintMessage("Action: EXIT, test is finished, click anywhere to exit");
 	pIn->GetPointClicked(x,y);
 
-
+	//Deleting Allocated Memory
 	delete pIn;
 	delete pOut;	
 	return 0;

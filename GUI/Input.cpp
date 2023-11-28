@@ -13,15 +13,17 @@ void Input::GetPointClicked(int &x, int &y) const
 }
 
 string Input::GetSrting(Output *pO) const 
-{
+{   
 	string Label;
 	char Key;
+	pWind->FlushKeyQueue(); //Clear Queue Of Key input to Prevent Wrong Text From Previous Key Input
 	while(1)
 	{
+		pWind->FlushMouseQueue(); //Clear Queue Of input to Prevent Wrong Action
 		pWind->WaitKeyPress(Key);
 		if(Key == 27 )	//ESCAPE key is pressed
 			return "";	//returns nothing as user has cancelled label
-		if(Key == 13 )	//ENTER key is pressed
+		if(Key == 13 )  //ENTER key is pressed
 			return Label;
 		if((Key == 8) && (Label.size() >= 1))	//BackSpace is pressed
 			Label.resize(Label.size() -1 );			
@@ -49,7 +51,7 @@ ActionType Input::GetUserAction() const
 			//Divide x coord of the point clicked by the menu item width (int division)
 			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
 
-			switch (ClickedItemOrder)
+			switch (ClickedItemOrder) // Return All Possible Actions In Draw Mode
 			{
 			case ITM_SHAPES: return SHAPES_PICK;
 			case ITM_PLAYMODE: return TO_PLAY;
@@ -93,7 +95,7 @@ ActionType Input::GetUserAction() const
 			//Divide x coord of the point clicked by the menu item width (int division)
 			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
 
-			switch (ClickedItemOrder)
+			switch (ClickedItemOrder) // Return All Possible Actions In Play Mode
 			{
 			case ITM_SHAPEPICK: return SHAPE_PLAY_PICK;
 			case ITM_COLOREDSHAPEPICK: return COLORED_SHAPE_PLAY_PICK;
@@ -128,7 +130,7 @@ ActionType Input::GetUserAction() const
 			//Divide x coord of the point clicked by the menu item width (int division)
 			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
 
-			switch (ClickedItemOrder)
+			switch (ClickedItemOrder) // Return All Possible Actions In Draw Mode (Shapes Tool Bar)
 			{
 			case ITM_RECT: return DRAW_RECT;
 			case ITM_CIRC: return DRAW_CIRC;
@@ -161,7 +163,7 @@ ActionType Input::GetUserAction() const
 			//Divide x coord of the point clicked by the menu item width (int division)
 			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
 
-			switch (ClickedItemOrder)
+			switch (ClickedItemOrder) // Return All Possible Actions In Draw Mode (Color Pick Bar)
 			{
 			case COLOR_BLACK: return PICK_BLACK;
 			case COLOR_BLUE: return PICK_BLUE;
@@ -191,11 +193,12 @@ ActionType Input::GetUserAction() const
 	//	//perform checks similar to Draw mode checks above
 	//	//and return the correspoding action
 	//	return TO_PLAY;	//just for now. This should be updated
-	//}	
+	//}	done
 
 }
 /////////////////////////////////
 	
 Input::~Input()
 {
+
 }
