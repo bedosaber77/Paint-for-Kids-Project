@@ -5,6 +5,7 @@
 
 int main()
 {
+
 	int x,y;
 
 	//Create Input and Output objects to test
