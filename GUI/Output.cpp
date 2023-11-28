@@ -298,10 +298,10 @@ void Output::DrawSquare(Point P1, GfxInfo RectGfxInfo, bool selected) const
 	else
 		style = FRAME;
 	Point P2;
-	P2.x = P1.x + 150;
-	P2.y = P1.y + 150;
-	P1.x = P1.x - 75;
-	P1.y = P1.y - 75;
+	P2.x = P1.x + 100;
+	P2.y = P1.y + 100;
+	P1.x = P1.x - 100;
+	P1.y = P1.y - 100;
 
 	if (P1.y < 0) P1.y = 0; //limit it inside the window to ensure The /ReDraw ToolBar Condition To prevent Drawing Above ToolBar
 
@@ -345,7 +345,8 @@ void Output::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo RectGfxInfo, boo
 
 //4.Draw Circle:
 
-void Output::DrawCircle(Point P1, GfxInfo RectGfxInfo, bool selected) const
+
+void Output::DrawCircle(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const
 {
 	color DrawingClr;
 	if (selected)
@@ -363,8 +364,8 @@ void Output::DrawCircle(Point P1, GfxInfo RectGfxInfo, bool selected) const
 	else
 		style = FRAME;
 
-	pWind->DrawCircle(P1.x, P1.y, 150, style);
-	if (P1.y-150 <= UI.ToolBarHeight) //ReDraw ToolBar Condition To prevent Drawing Above ToolBar
+	pWind->DrawCircle(P1.x, P1.y, sqrt(pow(P2.x - P1.x, 2) + pow(P2.y - P1.y, 2)), style);
+	if (P1.y - P2.y <= UI.ToolBarHeight) //ReDraw ToolBar Condition To prevent Drawing Above ToolBar
 	{
 		ClearToolBar();
 		CreateDrawToolBar();

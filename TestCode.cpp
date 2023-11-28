@@ -264,54 +264,56 @@ int main()
 	pOut->ClearDrawArea();
 	
 	//=================================================================================================================
-	
+	//////////////////////////////////////////////////////////////////////////////////
+
 	/// 2.5- Circle Test ///
 	/// =================== 
-	pOut->PrintMessage("Drawing an Circle, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pOut->PrintMessage("Drawing a Circle, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
-	///TODO: Add code to draw Circle in all possible states 
-	//done
 
 	// 2.5.1 - Drawing non-filled circle
-	pOut->PrintMessage("Drawing a Circle ==> non-filled,  Click one point");
+	pOut->PrintMessage("Drawing a Circle ==> non-filled,  Click two points");
 	pIn->GetPointClicked(P1.x, P1.y);
+	pIn->GetPointClicked(P2.x, P2.y);
 
 	gfxInfo.BorderWdth = 5;
 	gfxInfo.DrawClr = BLACK;	//any color for border
 	gfxInfo.isFilled = false;	//Figure is NOT filled
-	pOut->DrawCircle(P1, gfxInfo, false);
-	
-
+	pOut->DrawCircle(P1, P2, gfxInfo, false);
 
 
 	// 2.5.2 - Drawing highlighted non-filled circle
 	pOut->PrintMessage("Drawing a Circle ==> Highlighted non-filled, Click to Highlight");
 	pIn->GetPointClicked(x, y);	//Wait for any click
-	pOut->DrawCircle(P1, gfxInfo, true);
-	
-
+	pOut->DrawCircle(P1, P2, gfxInfo, true);
 
 
 	// 2.5.3 - Drawing a filled circle
-	pOut->PrintMessage("Drawing a Circle ==> filled,  Click one point");
+	pOut->PrintMessage("Drawing a Circle ==> filled,  Click two points");
 	pIn->GetPointClicked(P1.x, P1.y);
+	pIn->GetPointClicked(P2.x, P2.y);
 
 	gfxInfo.BorderWdth = 6;
 	gfxInfo.DrawClr = BLUE;	//any color for border
 	gfxInfo.FillClr = GREEN;//any color for filling
 	gfxInfo.isFilled = true;//Figure is filled
-	pOut->DrawCircle(P1, gfxInfo, false);
-	
-
+	pOut->DrawCircle(P1, P2, gfxInfo, false);
 
 
 	// 2.5.4 - Drawing a highlighted filled circle
 	pOut->PrintMessage("Drawing a Circle ==> Highlighted filled, Click to Highlight");
 	pIn->GetPointClicked(x, y);	//Wait for any click
-	pOut->DrawCircle(P1, gfxInfo, true);
-	
+	pOut->DrawCircle(P1, P2, gfxInfo, true);
 
+
+	pOut->PrintMessage("Drawing a Circle Test ==> OK,  Click anywhere to continue");
+	pIn->GetPointClicked(x, y);	//Wait for any click
+
+
+	pOut->ClearDrawArea();
+
+	//=================================================================================================================
 
 
 	pOut->PrintMessage("Drawing a Circle Test ==> OK,  Click anywhere to continue");
