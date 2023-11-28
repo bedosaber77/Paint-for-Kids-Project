@@ -365,7 +365,7 @@ void Output::DrawCircle(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) 
 		style = FRAME;
 
 	pWind->DrawCircle(P1.x, P1.y, sqrt(pow(P2.x - P1.x, 2) + pow(P2.y - P1.y, 2)), style);
-	if (P1.y - P2.y <= UI.ToolBarHeight) //ReDraw ToolBar Condition To prevent Drawing Above ToolBar
+	if ( (P1.y - sqrt(pow(P2.x - P1.x, 2) + pow(P2.y - P1.y, 2))) <= UI.ToolBarHeight) //ReDraw ToolBar Condition To prevent Drawing Above ToolBar
 	{
 		ClearToolBar();
 		CreateDrawToolBar();
