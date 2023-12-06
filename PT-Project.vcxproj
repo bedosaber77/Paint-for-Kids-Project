@@ -52,6 +52,7 @@
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <TargetName>$(ProjectName)</TargetName>
+    <AllProjectIncludesArePublic>false</AllProjectIncludesArePublic>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
@@ -108,6 +109,7 @@
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>Actions;Figures;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -128,6 +130,12 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AddCircAction.cpp" />
+    <ClCompile Include="AddHexAction.cpp" />
+    <ClCompile Include="AddSquAction.cpp" />
+    <ClCompile Include="AddTriAction.cpp" />
+    <ClCompile Include="CCircle.cpp" />
+    <ClCompile Include="CHexagon.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\colors.cpp" />
@@ -164,11 +172,24 @@
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant1.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant2.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jutils.c" />
+    <ClCompile Include="CSquare.cpp" />
+    <ClCompile Include="CTriangle.cpp" />
+    <ClCompile Include="Figures\CFigure.cpp" />
+    <ClCompile Include="Figures\CRectangle.cpp" />
+    <ClCompile Include="Actions\AddRectAction.cpp" />
     <ClCompile Include="GUI\Input.cpp" />
     <ClCompile Include="GUI\Output.cpp" />
-    <ClCompile Include="TestCode.cpp" />
+    <ClCompile Include="ApplicationManager.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SelectFigureAction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddCircAction.h" />
+    <ClInclude Include="AddHexAction.h" />
+    <ClInclude Include="AddSquAction.h" />
+    <ClInclude Include="AddTriAction.h" />
+    <ClInclude Include="CCircle.h" />
+    <ClInclude Include="CHexagon.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />
@@ -189,10 +210,21 @@
     <ClInclude Include="CMUgraphicsLib\jpeg\jpegint.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jpeglib.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jversion.h" />
+    <ClInclude Include="CSquare.h" />
+    <ClInclude Include="CTriangle.h" />
+    <ClInclude Include="Figures\CFigure.h" />
+    <ClInclude Include="Figures\CRectangle.h" />
+    <ClInclude Include="Actions\Action.h" />
+    <ClInclude Include="Actions\AddRectAction.h" />
     <ClInclude Include="GUI\Input.h" />
     <ClInclude Include="GUI\Output.h" />
     <ClInclude Include="GUI\UI_Info.h" />
+    <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
+    <ClInclude Include="SelectFigureAction.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
