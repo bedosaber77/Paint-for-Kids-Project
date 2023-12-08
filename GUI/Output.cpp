@@ -17,16 +17,15 @@ Output::Output()
 	UI.ToolBarHeight = 60;
 	UI.MenuItemWidth = 60;
 	
-	UI.DrawColor = BLUE;	//Drawing color
+	UI.DrawColor = BLACK;	//Drawing color
 	UI.FillColor = GREEN;	//Filling color
 	UI.MsgColor = WHITE;		//Messages color
-	UI.BkGrndColor = LIGHTGOLDENRODYELLOW;	//Background color
+	UI.BkGrndColor = WHITESMOKE;	//Background color
 	UI.HighlightColor = MAGENTA;	//This color should NOT be used to draw figures. use if for highlight only
 	UI.StatusBarColor = PURPLE;
 	UI.ToolBarColor = WHITE;
 	UI.PenWidth = 3;	//width of the figures frames
 
-	
 	//Create the output window
 	pWind = CreateWind(UI.width, UI.height, UI.wx, UI.wy);
 	//Change the title
@@ -279,7 +278,7 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 
 //2.Draw Square:
 
-//Draw Square Function Specail Case Of Draw Rect
+//Draw Square Function Special Case Of Draw Rect
 void Output::DrawSquare(Point P1, GfxInfo RectGfxInfo, bool selected) const
 {
 	color DrawingClr;

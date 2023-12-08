@@ -1,10 +1,20 @@
 #include "ApplicationManager.h"
 #include "Actions\AddRectAction.h"
+#include "AddCircAction.h"
+#include "AddSquAction.h"
+#include "AddTriAction.h"
+#include "AddHexAction.h"
+#include "SelectFigureAction.h"
+
+
+
 
 
 //Constructor
 ApplicationManager::ApplicationManager()
 {
+	SelectedFig = NULL; ////////////////// ANAS IBRAHEM WANT TO ASK
+
 	//Create Input and output
 	pOut = new Output;
 	pIn = pOut->CreateInput();
@@ -33,8 +43,45 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
+
+		// ########################## Add Figure ##########################
 		case DRAW_RECT:
 			pAct = new AddRectAction(this);
+			break;
+
+		case DRAW_HEX:
+			pAct = new AddHexAction(this);
+			break;
+
+		case DRAW_SQU:
+			pAct = new AddSquAction(this);
+			break;
+
+		case DRAW_TRI:
+			pAct = new AddTriAction(this);
+			break;
+
+		case DRAW_CIRC:
+			pAct = new AddCircAction(this);
+			break;
+
+			////////////////////////////
+
+
+		case SELECT:
+			pAct = new SelectFigureAction(this);
+			break;
+
+		case SHAPES_PICK :
+			pOut->CreateShapesToolBar();
+			break;
+
+		case TO_DRAW:
+			pOut->CreateDrawToolBar();
+			break;
+
+		case TO_PLAY:
+			pOut->CreatePlayToolBar();
 			break;
 
 		case EXIT:
@@ -50,7 +97,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	if(pAct != NULL)
 	{
 		pAct->Execute();//Execute
-		delete pAct;	//You may need to change this line depending to your implementation
+		delete pAct;	//You may need to change this line depending to your implementation of undo and redo
 		pAct = NULL;
 	}
 }
@@ -70,12 +117,37 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 	//If a figure is found return a pointer to it.
 	//if this point (x,y) does not belong to any figure return NULL
 
+		Point Search;
+		Search.x = x;
+		Search.y = y;
+
+		for (int i = FigCount - 1; i >= 0; i--)
+		{
+			if (FigList[i]->IsInclude(Search))
+			{
+				return FigList[i];
+			}
+		}
+
+		return NULL;
+	
 
 	//Add your code here to search for a figure given a point x,y	
 	//Remember that ApplicationManager only calls functions do NOT implement it.
 
 	return NULL;
 }
+
+void ApplicationManager::SetSelectedFig(CFigure* F) 
+{
+
+	if (SelectedFig != NULL) ////////////////// ANAS IBRAHEM WANT TO ASK
+		SelectedFig->SetSelected(false); ////////////////// ANAS IBRAHEM WANT TO ASK
+
+	SelectedFig = F;
+}
+
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//

@@ -15,7 +15,7 @@ private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
-	CFigure* SelectedFig; //Pointer to the selected figure
+	CFigure* SelectedFig; //Pointer to the selected figure   // Needs Setter and Getter ANAS IBRAHEM
 
 	//Pointers to Input and Output classes
 	Input *pIn;
@@ -33,6 +33,7 @@ public:
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
+	void SetSelectedFig(CFigure* );
 		
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input

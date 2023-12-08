@@ -12,6 +12,11 @@ void CFigure::SetSelected(bool s)
 bool CFigure::IsSelected() const
 {	return Selected; }
 
+bool CFigure::IsInclude(Point) const
+{
+	return false;
+}
+
 void CFigure::ChngDrawClr(color Dclr)
 {	FigGfxInfo.DrawClr = Dclr; }
 

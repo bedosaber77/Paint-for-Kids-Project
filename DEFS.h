@@ -14,7 +14,6 @@ enum ActionType //The actions supported (you can add more if needed)
 	DRAWING_AREA,	//A click on the drawing area
 	STATUS,			//A click on the status bar
 
-	///TODO: Add the other action types of the two modes
 	SHAPES_PICK,
 	DRAW_CIRC,      //DRAW Circle
 	DRAW_SQU,		//Draw Square
@@ -58,7 +57,9 @@ enum ActionType //The actions supported (you can add more if needed)
 };
 
 struct Point	//To be used for figures points
-{ int x,y; };
+{
+	int x, y;
+};
 
 struct GfxInfo	//Graphical info of each figure (you may add more members)
 {
