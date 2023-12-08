@@ -12,6 +12,7 @@ class ApplicationManager
 	enum { MaxFigCount = 200 };	//Max no of figures
 
 private:
+
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
@@ -22,9 +23,10 @@ private:
 	Output *pOut;
 
 public:	
+	bool redraw;
 	ApplicationManager(); 
 	~ApplicationManager();
-	
+
 	// -- Action-Related Functions
 	//Reads the input command from the user and returns the corresponding action type
 	ActionType GetUserAction() const;

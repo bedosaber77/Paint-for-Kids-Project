@@ -17,6 +17,7 @@ public:
 	void CreateColorToolBar()  const;
 	void CreateStatusBar() const;	//create the status bar
 	void RedrawStatusBar();
+	void RedrawToolBar();
 	Input* CreateInput() const; //creates a pointer to the Input object	
 	void ClearStatusBar() const;	//Clears the status bar
 	void ClearToolBar() const;      //Clears the Tool Bar

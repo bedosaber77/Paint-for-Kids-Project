@@ -30,19 +30,25 @@ void SelectFigureAction::Execute()
 	CFigure* SelectedFig = pManager->GetFigure(SelectionPoint.x, SelectionPoint.y);
 	if (SelectedFig != NULL && SelectedFig->IsSelected() == false )
 	{
+		pManager->redraw = 1;
 		SelectedFig->SetSelected(true);
 		pManager->SetSelectedFig(SelectedFig);
 		SelectedFig->PrintInfo(pOut);
 
 	}
 	else if (SelectedFig != NULL && SelectedFig->IsSelected() == true) {
+		pManager->redraw = 1;
 		SelectedFig->SetSelected(false);
 		SelectedFig = NULL;
 		pManager->SetSelectedFig(SelectedFig);
 		pOut->PrintMessage("Figure is Deselected");	
 	}	
 	else if (SelectedFig == NULL)
+	{
 		pOut->PrintMessage("No Figure Selected, Please Click On Figure");
+		pManager->redraw = 0;
+	}
+
 
 
 }

@@ -16,7 +16,7 @@
 ApplicationManager::ApplicationManager()
 {
 	SelectedFig = NULL; ////////////////// ANAS IBRAHEM WANT TO ASK
-
+	redraw = 1;
 	//Create Input and output
 	pOut = new Output;
 	pIn = pOut->CreateInput();
@@ -70,26 +70,33 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		// ########################## Add Figure ##########################
 		case DRAW_RECT:
 			pAct = new AddRectAction(this);
+			redraw = 1;
 			break;
 
 		case DRAW_HEX:
 			pAct = new AddHexAction(this);
+			redraw = 1;
 			break;
 
 		case DRAW_SQU:
 			pAct = new AddSquAction(this);
+			redraw = 1;
 			break;
 
 		case DRAW_TRI:
 			pAct = new AddTriAction(this);
+			redraw = 1;
 			break;
 
 		case DRAW_CIRC:
 			pAct = new AddCircAction(this);
+			redraw = 1;
 			break;
 
 			////////////////////////////
-
+		case DRAWING_AREA:
+			redraw = 0;
+			break;
 
 		case SELECT:
 			pAct = new SelectFigureAction(this);
@@ -97,23 +104,31 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case SHAPES_PICK :
 			pOut->CreateShapesToolBar();
+			redraw = 0;
 			break;
 
 		case TO_DRAW:
 			pOut->CreateDrawToolBar();
+			redraw = 0;
 			break;
 
 		case TO_PLAY:
 			pOut->CreatePlayToolBar();
+			redraw = 0;
 			break;
 
 		case EXIT:
 			///create ExitAction here
-			
+			redraw = 0;
 			break;
 		
-		case STATUS:	//a click on the status bar ==> no action
+		case STATUS:
+			redraw = 0; //a click on the status bar ==> no action
 			return;
+
+		case EMPTY:
+			redraw = 0;
+			break;
 	}
 	
 	//Execute the created action
@@ -179,10 +194,6 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 		return NULL;
 	
 
-	//Add your code here to search for a figure given a point x,y	
-	//Remember that ApplicationManager only calls functions do NOT implement it.
-
-	return NULL;
 }
 
 void ApplicationManager::SetSelectedFig(CFigure* F) 
@@ -207,30 +218,19 @@ CFigure* ApplicationManager::GetSelectedFig()
 //Draw all figures on the user interface
 void ApplicationManager::UpdateInterface() const
 {	
-	pOut->ClearDrawArea();
-	for(int i=0; i<FigCount; i++)
-		if(FigList[i]!=NULL)
-		 FigList[i]->Draw(pOut);	
 
-	pOut->RedrawStatusBar();
-	pOut->ClearToolBar();
-	switch (UI.InterfaceMode)
+	if (redraw == 1)
 	{
-	case MODE_COLORS:
-		pOut->CreateColorToolBar();
-		break;
-	case MODE_DRAW:
-		pOut->CreateDrawToolBar();
-		break;
-	case MODE_PLAY:
-		pOut->CreatePlayToolBar();
-		break;
-	case MODE_SHAPES:
-		pOut->CreateShapesToolBar();
-		break;
+		pOut->ClearDrawArea();
 
+		for (int i = 0; i < FigCount; i++)
+			if (FigList[i] != NULL)
+				FigList[i]->Draw(pOut);
 
-	}	
+		pOut->RedrawToolBar();
+		pOut->RedrawStatusBar();
+	}
+
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input

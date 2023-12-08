@@ -21,9 +21,10 @@ void DeleteFigureAction::Execute()
 {
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
-	if (Figure == NULL) pOut->PrintMessage("Please Select A Figure First");
+	if (Figure == NULL) { pOut->PrintMessage("Please Select A Figure First"); pManager -> redraw = 0; }
 	else
 	{
+		pManager->redraw = 1;
 		Figure->SetSelected(false);
 		pManager->SetSelectedFig(NULL);
 		pManager->RemoveFigure(Figure);

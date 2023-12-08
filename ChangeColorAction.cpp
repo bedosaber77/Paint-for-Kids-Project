@@ -25,9 +25,10 @@ void ChangeColorAction::Execute()
 	CFigure* FigurePt = pManager->GetSelectedFig();
 	if (FigurePt == NULL)
 	{
-		pOut->PrintMessage("No Figure Selected Please Select Figure ");
+		pOut->PrintMessage("No Figure Selected Please Select Figure "); pManager->redraw = 0;
 	}
 	else {
+		pManager->redraw = 1;
 		pOut->CreateColorToolBar();
 		ActionType ColorPick = pManager->GetUserAction();
 		color ColorPicked;

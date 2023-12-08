@@ -64,6 +64,25 @@ void Output::RedrawStatusBar()
 	PrintMessage(lastmsg);
 	
 }
+void Output::RedrawToolBar()
+{
+	ClearToolBar();
+	switch (UI.InterfaceMode)
+	{
+	case MODE_COLORS:
+		CreateColorToolBar();
+		break;
+	case MODE_DRAW:
+		CreateDrawToolBar();
+		break;
+	case MODE_PLAY:
+		CreatePlayToolBar();
+		break;
+	case MODE_SHAPES:
+		CreateShapesToolBar();
+		break;
+	}
+}
 //////////////////////////////////////////////////////////////////////////////////////////
 void Output::ClearStatusBar() const
 {
