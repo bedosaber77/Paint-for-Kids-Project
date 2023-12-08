@@ -38,6 +38,7 @@ string Input::GetSrting(Output *pO) const
 ActionType Input::GetUserAction() const
 {	
 	int x,y;
+	pWind->FlushMouseQueue(); // Get Rid of Any Random Clicks Before (Clear Queue) // Anas Ibrahem
 	pWind->WaitMouseClick(x, y);	//Get the coordinates of the user click
 
 	if(UI.InterfaceMode == MODE_DRAW)	//GUI in the DRAW mode
@@ -53,6 +54,7 @@ ActionType Input::GetUserAction() const
 
 			switch (ClickedItemOrder) // Return All Possible Actions In Draw Mode
 			{
+
 			case ITM_SHAPES: return SHAPES_PICK;
 			case ITM_PLAYMODE: return TO_PLAY;
 			case ITM_BORDER: return BORDER_COLOR_PICK;
@@ -70,7 +72,6 @@ ActionType Input::GetUserAction() const
 			case ITM_PLAYREC:return PLAY_REC;
 			case ITM_DELETE:return ERASE;
 			case ITM_EXIT: return EXIT;	
-			
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
 		}

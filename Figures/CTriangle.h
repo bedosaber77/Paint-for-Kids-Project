@@ -12,6 +12,8 @@ public:
 	CTriangle(Point, Point, Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;
 
+	bool IsInclude(Point P) const;
+
 
 
 };

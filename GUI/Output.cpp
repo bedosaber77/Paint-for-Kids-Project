@@ -29,7 +29,7 @@ Output::Output()
 	//Create the output window
 	pWind = CreateWind(UI.width, UI.height, UI.wx, UI.wy);
 	//Change the title
-	pWind->ChangeTitle("Paint for Kids - Programming Techniques Project");
+	pWind->ChangeTitle("Paint for Kids - Team 11");
 	
 	CreateDrawToolBar();
 	CreateStatusBar();
@@ -255,7 +255,7 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	else			
 		DrawingClr = RectGfxInfo.DrawClr;
 	
-	pWind->SetPen(DrawingClr,1);
+	pWind->SetPen(DrawingClr,UI.PenWidth);
 	drawstyle style;
 	if (RectGfxInfo.isFilled)	
 	{
@@ -287,7 +287,7 @@ void Output::DrawSquare(Point P1, GfxInfo RectGfxInfo, bool selected) const
 	else
 		DrawingClr = RectGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 1);
+	pWind->SetPen(DrawingClr, UI.PenWidth);
 	drawstyle style;
 	if (RectGfxInfo.isFilled)
 	{
@@ -323,7 +323,7 @@ void Output::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo RectGfxInfo, boo
 	else
 		DrawingClr = RectGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 1);
+	pWind->SetPen(DrawingClr, UI.PenWidth );
 	drawstyle style;
 	if (RectGfxInfo.isFilled)
 	{
@@ -353,7 +353,7 @@ void Output::DrawCircle(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) 
 	else
 		DrawingClr = RectGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 1);
+	pWind->SetPen(DrawingClr, UI.PenWidth );
 	drawstyle style;
 	if (RectGfxInfo.isFilled)
 	{
@@ -381,7 +381,7 @@ void Output::DrawHex(Point P, GfxInfo HexaGfxInfo, bool selected) const
 	else
 		DrawingClr = HexaGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 1);
+	pWind->SetPen(DrawingClr, UI.PenWidth );
 	drawstyle style;
 	if (HexaGfxInfo.isFilled) //Figure should be drawn Filled Or not
 	{
@@ -392,7 +392,7 @@ void Output::DrawHex(Point P, GfxInfo HexaGfxInfo, bool selected) const
 		style = FRAME;
 	const int NumVertices = 6;
 	const double angle = 60 * 3.14159265 / 180; //60 degree and convert it to radian
-	int L = 150; //set Length for the Figure
+	int L = 150; //set Side Length for the Figure
 	int arrX[NumVertices]; //array of x-coordinates for each vertix
 	int arrY[NumVertices]; //array of y-coordinates for each vertix
 	for (int i = 0; i < NumVertices; i++) {

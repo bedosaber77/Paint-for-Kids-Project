@@ -15,10 +15,6 @@ bool CSquare::IsInclude(Point P) const
 {
 	int SquareSideLength = 200; // want to make it more felxiable u know Anas Ibrahem
 
-	if ( (P.y <= Center.y + SquareSideLength / 2 && P.y >= Center.y - SquareSideLength / 2) && 
-		(P.x <= Center.x + SquareSideLength / 2 && P.x >= Center.x - SquareSideLength / 2) )
-		return 1;
-
-	else 
-	return 0;
+	return (P.y <= Center.y + SquareSideLength / 2 && P.y >= Center.y - SquareSideLength / 2) && 
+		   (P.x <= Center.x + SquareSideLength / 2 && P.x >= Center.x - SquareSideLength / 2);
 }

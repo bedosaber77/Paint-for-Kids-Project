@@ -44,6 +44,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	switch (ActType)
 	{
 
+
 		// ########################## Add Figure ##########################
 		case DRAW_RECT:
 			pAct = new AddRectAction(this);
