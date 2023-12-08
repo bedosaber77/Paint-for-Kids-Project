@@ -13,6 +13,7 @@ public:
 	virtual void Draw(Output* pOut) const;
 
 	bool IsInclude(Point P) const;
+	void PrintInfo(Output* pOut);
 
 
 

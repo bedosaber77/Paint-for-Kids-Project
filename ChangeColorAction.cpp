@@ -21,7 +21,6 @@ void ChangeColorAction::ReadActionParameters()
 
 void ChangeColorAction::Execute()
 {
-	Input* pIn = pManager->GetInput();
 	Output* pOut = pManager->GetOutput();
 	CFigure* FigurePt = pManager->GetSelectedFig();
 	if (FigurePt == NULL)
@@ -31,28 +30,29 @@ void ChangeColorAction::Execute()
 	else {
 		pOut->CreateColorToolBar();
 		ActionType ColorPick = pManager->GetUserAction();
-
-		if (FillDraw == 'F') {
+		color ColorPicked;
 			switch (ColorPick) {
-			case  PICK_BLACK: {FigurePt->ChngFillClr(BLACK); UI.isFilled = true; UI.FillColor = BLACK; } break;
-			case  PICK_BLUE: {FigurePt->ChngFillClr(BLUE); UI.isFilled = true; UI.FillColor = BLUE; } break;
-			case  PICK_RED: {FigurePt->ChngFillClr(RED); UI.isFilled = true; UI.FillColor = RED; }break;
-			case  PICK_YELLOW: {FigurePt->ChngFillClr(YELLOW); UI.isFilled = true; UI.FillColor = YELLOW; }break;
-			case  PICK_GREEN: {FigurePt->ChngFillClr(GREEN); UI.isFilled = true; UI.FillColor = GREEN; }break;
-			case  PICK_ORANGE: {FigurePt->ChngFillClr(ORANGE); UI.isFilled = true; UI.FillColor = ORANGE; }break;
+			case  PICK_BLACK:  { ColorPicked = BLACK;  } break;
+			case  PICK_BLUE:   { ColorPicked = BLUE;   } break;
+			case  PICK_RED:    { ColorPicked = RED;    } break;
+			case  PICK_YELLOW: { ColorPicked = YELLOW; } break;
+			case  PICK_GREEN:  { ColorPicked = GREEN;  } break;
+			case  PICK_ORANGE: { ColorPicked = ORANGE; } break;
+			case  EMPTY:       { ColorPicked = (FillDraw == 'F') ? UI.FillColor : UI.DrawColor; } break;
 			}
-		}
 
-		if (FillDraw == 'D') {
-			switch (ColorPick) {
-			case  PICK_BLACK: FigurePt->ChngDrawClr(BLACK); break;
-			case  PICK_BLUE: FigurePt->ChngDrawClr(BLUE); break;
-			case  PICK_RED: FigurePt->ChngDrawClr(RED); break;
-			case  PICK_YELLOW: FigurePt->ChngDrawClr(YELLOW); break;
-			case  PICK_GREEN: FigurePt->ChngDrawClr(GREEN); break;
-			case  PICK_ORANGE: FigurePt->ChngDrawClr(ORANGE); break;
+			if (FillDraw == 'F')
+			{
+				UI.FillColor = ColorPicked;
+				FigurePt->ChngFillClr(UI.FillColor);
+				UI.isFilled = true;
 			}
-		}
+
+			else if (FillDraw == 'D')
+			{
+				UI.DrawColor = ColorPicked;
+				FigurePt->ChngDrawClr(UI.DrawColor);
+			}
 
 			pOut->CreateDrawToolBar();
 

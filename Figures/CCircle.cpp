@@ -21,3 +21,8 @@ bool CCircle::IsInclude(Point P) const
 
 
 }
+
+void CCircle::PrintInfo(Output* pOut)
+{
+	CFigure::PrintInfo(pOut);
+}

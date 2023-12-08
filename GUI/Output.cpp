@@ -4,19 +4,16 @@
 
 Output::Output()
 {
-	//Initialize user interface parameters
+	//Initialize user interface parameters (Defualts)
 	UI.InterfaceMode = MODE_DRAW;
-	
 	UI.width = 1250;
 	UI.height = 650;
 	UI.wx = 5;
 	UI.wy =5;
-
-	
 	UI.StatusBarHeight = 40;
 	UI.ToolBarHeight = 60;
 	UI.MenuItemWidth = 60;
-	
+	UI.isFilled = false; //Defualt Not Filled
 	UI.DrawColor = BLACK;	//Drawing color
 	UI.FillColor = GREEN;	//Filling color
 	UI.MsgColor = WHITE;		//Messages color
@@ -279,20 +276,20 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 //2.Draw Square:
 
 //Draw Square Function Special Case Of Draw Rect
-void Output::DrawSquare(Point P1, GfxInfo RectGfxInfo, bool selected) const
+void Output::DrawSquare(Point P1, GfxInfo SquGfxInfo, bool selected) const
 {
 	color DrawingClr;
 	if (selected)
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
 	else
-		DrawingClr = RectGfxInfo.DrawClr;
+		DrawingClr = SquGfxInfo.DrawClr;
 
 	pWind->SetPen(DrawingClr, UI.PenWidth);
 	drawstyle style;
-	if (RectGfxInfo.isFilled)
+	if (SquGfxInfo.isFilled)
 	{
 		style = FILLED;
-		pWind->SetBrush(RectGfxInfo.FillClr);
+		pWind->SetBrush(SquGfxInfo.FillClr);
 	}
 	else
 		style = FRAME;
@@ -315,20 +312,20 @@ void Output::DrawSquare(Point P1, GfxInfo RectGfxInfo, bool selected) const
 
 //3.Draw Triangle:
 
-void Output::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo RectGfxInfo, bool selected) const
+void Output::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriGfxInfo, bool selected) const
 {
 	color DrawingClr;
 	if (selected)
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
 	else
-		DrawingClr = RectGfxInfo.DrawClr;
+		DrawingClr = TriGfxInfo.DrawClr;
 
 	pWind->SetPen(DrawingClr, UI.PenWidth );
 	drawstyle style;
-	if (RectGfxInfo.isFilled)
+	if (TriGfxInfo.isFilled)
 	{
 		style = FILLED;
-		pWind->SetBrush(RectGfxInfo.FillClr);
+		pWind->SetBrush(TriGfxInfo.FillClr);
 	}
 	else
 		style = FRAME;
@@ -345,20 +342,20 @@ void Output::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo RectGfxInfo, boo
 //4.Draw Circle:
 
 
-void Output::DrawCircle(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const
+void Output::DrawCircle(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) const
 {
 	color DrawingClr;
 	if (selected)
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
 	else
-		DrawingClr = RectGfxInfo.DrawClr;
+		DrawingClr = CircGfxInfo.DrawClr;
 
 	pWind->SetPen(DrawingClr, UI.PenWidth );
 	drawstyle style;
-	if (RectGfxInfo.isFilled)
+	if (CircGfxInfo.isFilled)
 	{
 		style = FILLED;
-		pWind->SetBrush(RectGfxInfo.FillClr);
+		pWind->SetBrush(CircGfxInfo.FillClr);
 	}
 	else
 		style = FRAME;

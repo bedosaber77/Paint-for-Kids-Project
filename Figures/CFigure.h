@@ -34,7 +34,7 @@ public:
 	//virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
 	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
 
-	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar  
+	virtual void PrintInfo(Output* pOut);	//print all figure info on the status bar  
 	// last one should not actually be pure Anas IBrahem
 };
 

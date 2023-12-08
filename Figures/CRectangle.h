@@ -12,6 +12,8 @@ public:
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	virtual void Draw(Output* pOut) const;
 	bool IsInclude(Point P) const;
+	void PrintInfo(Output* pOut);
+
 };
 
 #endif

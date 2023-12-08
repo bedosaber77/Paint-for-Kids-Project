@@ -18,7 +18,6 @@ void AddHexAction::ReadActionParameters()
 	//Read Center and store in point P1
 	pIn->GetPointClicked(P1.x, P1.y);
 
-
 	HexGfxInfo.isFilled = UI.isFilled;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
 	HexGfxInfo.DrawClr = pOut->getCrntDrawColor();

@@ -32,14 +32,14 @@ void SelectFigureAction::Execute()
 	{
 		SelectedFig->SetSelected(true);
 		pManager->SetSelectedFig(SelectedFig);
-		pOut->PrintMessage("Figure Selected");
+		SelectedFig->PrintInfo(pOut);
 
 	}
 	else if (SelectedFig != NULL && SelectedFig->IsSelected() == true) {
 		SelectedFig->SetSelected(false);
 		SelectedFig = NULL;
 		pManager->SetSelectedFig(SelectedFig);
-		pOut->PrintMessage("Figure is  DeSelected");	
+		pOut->PrintMessage("Figure is Deselected");	
 	}	
 	else if (SelectedFig == NULL)
 		pOut->PrintMessage("No Figure Selected, Please Click On Figure");

@@ -18,3 +18,8 @@ bool CSquare::IsInclude(Point P) const
 	return (P.y <= Center.y + SquareSideLength / 2 && P.y >= Center.y - SquareSideLength / 2) && 
 		   (P.x <= Center.x + SquareSideLength / 2 && P.x >= Center.x - SquareSideLength / 2);
 }
+
+void CSquare::PrintInfo(Output* pOut)
+{
+	CFigure::PrintInfo(pOut);
+}

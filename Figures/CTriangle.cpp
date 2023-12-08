@@ -27,3 +27,8 @@ bool CTriangle::IsInclude(Point P) const
     return alpha >= 0.0 && beta >= 0.0 && gamma >= 0.0;;
 
 }
+
+void CTriangle::PrintInfo(Output* pOut)
+{
+	CFigure::PrintInfo(pOut);
+}

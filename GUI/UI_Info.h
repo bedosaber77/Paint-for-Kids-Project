@@ -96,7 +96,7 @@ struct UI_Info	//User Interface Info.
 		MenuItemWidth;		//Width of each item in toolbar menu
 	
 
-	bool isFilled;
+	bool isFilled;          //Is filled Defualt
 	color DrawColor;		//Drawing color
 	color FillColor;		//Filling color
 	color HighlightColor;	//Highlighting color

@@ -43,3 +43,9 @@ bool CHexagon::IsInclude(Point P) const
     return alpha >= 0.0 && beta >= 0.0 && gamma >= 0.0;
 
 }
+
+void CHexagon::PrintInfo(Output* pOut)
+{
+    CFigure::PrintInfo(pOut);
+}
+
