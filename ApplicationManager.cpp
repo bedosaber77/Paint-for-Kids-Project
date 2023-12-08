@@ -5,6 +5,7 @@
 #include "AddTriAction.h"
 #include "AddHexAction.h"
 #include "SelectFigureAction.h"
+#include "ChangeColorAction.h"
 
 
 
@@ -43,6 +44,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
+		// ########################## Change Color ##########################
+
+		case FILL_COLOR_PICK:
+			pAct = new ChangeColorAction(this,'F');
+			break;
+
+		case BORDER_COLOR_PICK:
+			pAct = new ChangeColorAction(this,'D');
+			break;
 
 
 		// ########################## Add Figure ##########################
@@ -146,6 +156,11 @@ void ApplicationManager::SetSelectedFig(CFigure* F)
 		SelectedFig->SetSelected(false); ////////////////// ANAS IBRAHEM WANT TO ASK
 
 	SelectedFig = F;
+}
+
+CFigure* ApplicationManager::GetSelectedFig()
+{
+	return SelectedFig;
 }
 
 
