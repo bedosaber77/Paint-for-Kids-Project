@@ -6,6 +6,7 @@ class Output	//The application manager should have a pointer to this class
 {
 private:	
 	window* pWind;	//Pointer to the Graphics Window
+	string lastmsg;
 public:
 	Output();		
 
@@ -15,7 +16,7 @@ public:
 	void CreateShapesToolBar() const;
 	void CreateColorToolBar()  const;
 	void CreateStatusBar() const;	//create the status bar
-
+	void RedrawStatusBar();
 	Input* CreateInput() const; //creates a pointer to the Input object	
 	void ClearStatusBar() const;	//Clears the status bar
 	void ClearToolBar() const;      //Clears the Tool Bar
@@ -31,7 +32,7 @@ public:
 	
 	///Make similar functions for drawing all other figure types.
 	
-	void PrintMessage(string msg) const;	//Print a message on Status bar
+	void PrintMessage(string msg) ;	//Print a message on Status bar
 
 	color getCrntDrawColor() const;	//get current drwawing color
 	color getCrntFillColor() const;	//get current filling color

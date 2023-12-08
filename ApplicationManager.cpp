@@ -6,6 +6,7 @@
 #include "AddHexAction.h"
 #include "SelectFigureAction.h"
 #include "ChangeColorAction.h"
+#include "DeleteFigureAction.h"
 
 
 
@@ -44,6 +45,17 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
+
+
+		// ########################## Delete Figure ##########################
+
+		case ERASE:
+			pAct = new DeleteFigureAction(this);
+			break;
+
+
+
+
 		// ########################## Change Color ##########################
 
 		case FILL_COLOR_PICK:
@@ -119,9 +131,33 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 //Add a figure to the list of figures
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
-	if(FigCount < MaxFigCount )
-		FigList[FigCount++] = pFig;	
+	if (FigCount < MaxFigCount)
+		FigList[FigCount++] = pFig;
 }
+
+
+void ApplicationManager::RemoveFigure(CFigure* pFig)
+{
+	bool found  = 0;
+	int i = 0;
+	while(i < FigCount && !found)
+	{  
+		if (pFig == FigList[i])
+		 {
+			found = 1;
+			for (int j = i; j < FigCount - 1; j++)
+			{
+				FigList[j] = FigList[j + 1]; // Shifting All Remaining Figures
+			}
+			delete FigList[FigCount];
+			FigList[--FigCount] = NULL;
+		 }
+		i++;
+
+	}
+	
+}
+
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
 {
@@ -152,8 +188,8 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 void ApplicationManager::SetSelectedFig(CFigure* F) 
 {
 
-	if (SelectedFig != NULL) ////////////////// ANAS IBRAHEM WANT TO ASK
-		SelectedFig->SetSelected(false); ////////////////// ANAS IBRAHEM WANT TO ASK
+	if (SelectedFig != NULL) 
+		SelectedFig->SetSelected(false); 
 
 	SelectedFig = F;
 }
@@ -171,8 +207,29 @@ CFigure* ApplicationManager::GetSelectedFig()
 //Draw all figures on the user interface
 void ApplicationManager::UpdateInterface() const
 {	
+	pOut->ClearDrawArea();
 	for(int i=0; i<FigCount; i++)
-		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
+		if(FigList[i]!=NULL)
+		 FigList[i]->Draw(pOut);	
+
+	pOut->RedrawStatusBar();
+	switch (UI.InterfaceMode)
+	{
+	case MODE_COLORS:
+		pOut->CreateColorToolBar();
+		break;
+	case MODE_DRAW:
+		pOut->CreateDrawToolBar();
+		break;
+	case MODE_PLAY:
+		pOut->CreatePlayToolBar();
+		break;
+	case MODE_SHAPES:
+		pOut->CreateShapesToolBar();
+		break;
+
+
+	}	
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input

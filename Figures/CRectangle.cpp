@@ -18,7 +18,7 @@ bool CRectangle::IsInclude(Point P) const
 {
 
 	return (P.y >= min(Corner1.y, Corner2.y) && P.y <= max(Corner1.y, Corner2.y)) &&
-		(P.x >= min(Corner1.x, Corner2.x) && P.x <= max(Corner1.x, Corner2.x));
+		   (P.x >= min(Corner1.x, Corner2.x) && P.x <= max(Corner1.x, Corner2.x));
 }
 
 

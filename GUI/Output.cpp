@@ -1,8 +1,8 @@
 #include "Output.h"
 #include <cmath>
+#include <string>
 
-
-Output::Output()
+Output::Output() : lastmsg(" ")
 {
 	//Initialize user interface parameters (Defualts)
 	UI.InterfaceMode = MODE_DRAW;
@@ -57,6 +57,12 @@ void Output::CreateStatusBar() const
 	pWind->SetPen(UI.StatusBarColor, 1);
 	pWind->SetBrush(UI.StatusBarColor);
 	pWind->DrawRectangle(0, UI.height - UI.StatusBarHeight, UI.width, UI.height);
+}
+void Output::RedrawStatusBar()
+{
+	CreateStatusBar();
+	PrintMessage(lastmsg);
+	
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 void Output::ClearStatusBar() const
@@ -217,10 +223,10 @@ void Output::ClearDrawArea() const
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
-void Output::PrintMessage(string msg) const	//Prints a message on status bar
+void Output::PrintMessage(string msg)	//Prints a message on status bar
 {
 	ClearStatusBar();	//First clear the status bar
-	
+	lastmsg = msg;
 	pWind->SetPen(UI.MsgColor, 50);
 	pWind->SetFont(20, BOLD , BY_NAME, "Arial");   
 	pWind->DrawString(10, UI.height - (int)(UI.StatusBarHeight/1), msg);
@@ -265,12 +271,6 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	
 	pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
 
-	if ((P1.y >= 0 && P1.y <= UI.ToolBarHeight)||(P2.y >= 0 && P2.y <= UI.ToolBarHeight)) 
-		//ReDraw ToolBar Condition To prevent Drawing Above ToolBar
-	{
-		ClearToolBar();
-		CreateDrawToolBar();
-	}
 }
 
 //2.Draw Square:
@@ -299,15 +299,8 @@ void Output::DrawSquare(Point P1, GfxInfo SquGfxInfo, bool selected) const
 	P1.x = P1.x - 100;
 	P1.y = P1.y - 100;
 
-	if (P1.y < 0) P1.y = 0; //limit it inside the window to ensure The /ReDraw ToolBar Condition To prevent Drawing Above ToolBar
-
 	pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
-	if ((P1.y >= 0 && P1.y <= UI.ToolBarHeight) || (P2.y >= 0 && P2.y <= UI.ToolBarHeight)) 
-		//ReDraw ToolBar Condition To prevent Drawing Above ToolBar
-	{
-		ClearToolBar();
-		CreateDrawToolBar();
-	}
+
 }
 
 //3.Draw Triangle:
@@ -331,12 +324,7 @@ void Output::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriGfxInfo, bool
 		style = FRAME;
 
 	pWind->DrawTriangle(P1.x, P1.y, P2.x, P2.y, P3.x, P3.y, style);
-	if ((P1.y >= 0 && P1.y <= UI.ToolBarHeight) || (P2.y >= 0 && P2.y <= UI.ToolBarHeight)|| 
-		(P3.y >= 0 && P3.y <= UI.ToolBarHeight)) ///ReDraw ToolBar Condition To prevent Drawing Above ToolBar
-	{
-		ClearToolBar();
-		CreateDrawToolBar();
-	}
+
 }
 
 //4.Draw Circle:
@@ -361,11 +349,7 @@ void Output::DrawCircle(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) 
 		style = FRAME;
 
 	pWind->DrawCircle(P1.x, P1.y, sqrt(pow(P2.x - P1.x, 2) + pow(P2.y - P1.y, 2)), style);
-	if ( (P1.y - sqrt(pow(P2.x - P1.x, 2) + pow(P2.y - P1.y, 2))) <= UI.ToolBarHeight) //ReDraw ToolBar Condition To prevent Drawing Above ToolBar
-	{
-		ClearToolBar();
-		CreateDrawToolBar();
-	}
+
 }
 
 //5.Drawing Hexagon:
@@ -397,11 +381,7 @@ void Output::DrawHex(Point P, GfxInfo HexaGfxInfo, bool selected) const
 		arrY[i] = P.y - (L * cos( angle * i));
 	}
 	pWind->DrawPolygon(arrX, arrY, NumVertices, style);
-	if (arrY[0]<= UI.ToolBarHeight) //ReDraw ToolBar Condition To prevent Drawing Above ToolBar
-	{
-		ClearToolBar();
-		CreateDrawToolBar();
-	}
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
