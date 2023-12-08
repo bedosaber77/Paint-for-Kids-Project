@@ -34,12 +34,12 @@ void ChangeColorAction::Execute()
 
 		if (FillDraw == 'F') {
 			switch (ColorPick) {
-			case  PICK_BLACK: FigurePt->ChngFillClr(BLACK); break;
-			case  PICK_BLUE: FigurePt->ChngFillClr(BLUE); break;
-			case  PICK_RED: FigurePt->ChngFillClr(RED); break;
-			case  PICK_YELLOW: FigurePt->ChngFillClr(YELLOW); break;
-			case  PICK_GREEN: FigurePt->ChngFillClr(GREEN); break;
-			case  PICK_ORANGE: FigurePt->ChngFillClr(ORANGE); break;
+			case  PICK_BLACK: {FigurePt->ChngFillClr(BLACK); UI.isFilled = true; UI.FillColor = BLACK; } break;
+			case  PICK_BLUE: {FigurePt->ChngFillClr(BLUE); UI.isFilled = true; UI.FillColor = BLUE; } break;
+			case  PICK_RED: {FigurePt->ChngFillClr(RED); UI.isFilled = true; UI.FillColor = RED; }break;
+			case  PICK_YELLOW: {FigurePt->ChngFillClr(YELLOW); UI.isFilled = true; UI.FillColor = YELLOW; }break;
+			case  PICK_GREEN: {FigurePt->ChngFillClr(GREEN); UI.isFilled = true; UI.FillColor = GREEN; }break;
+			case  PICK_ORANGE: {FigurePt->ChngFillClr(ORANGE); UI.isFilled = true; UI.FillColor = ORANGE; }break;
 			}
 		}
 
