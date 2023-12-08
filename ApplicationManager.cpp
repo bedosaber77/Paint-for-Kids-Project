@@ -213,6 +213,7 @@ void ApplicationManager::UpdateInterface() const
 		 FigList[i]->Draw(pOut);	
 
 	pOut->RedrawStatusBar();
+	pOut->ClearToolBar();
 	switch (UI.InterfaceMode)
 	{
 	case MODE_COLORS:
