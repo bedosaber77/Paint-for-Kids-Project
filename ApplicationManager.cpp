@@ -7,7 +7,9 @@
 #include "SelectFigureAction.h"
 #include "ChangeColorAction.h"
 #include "DeleteFigureAction.h"
+#include "RecordAction.h"
 
+RecordAction* pRecAct = NULL;
 
 
 
@@ -89,7 +91,24 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 			////////////////////////////
+		case START_REC:
+		{
+			if (pRecAct == NULL)
+			{
+				pRecAct = new RecordAction(this);
+			}
+		}
+		break;
 
+		case STOP_REC:
+		{
+			if (pRecAct != NULL)
+			{
+				delete pRecAct;
+				pRecAct = NULL;
+			}
+		}
+		break;
 
 		case SELECT:
 			pAct = new SelectFigureAction(this);
@@ -115,6 +134,22 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case STATUS:	//a click on the status bar ==> no action
 			return;
 	}
+	if (pRecAct != NULL)
+	{
+		switch (ActType)
+		{
+		case START_REC:
+		case STOP_REC:
+		case PLAY_REC:
+		case SAVE_GRAPH:
+		case LOAD:
+			pAct = NULL;
+			break;
+		default:
+			pRecAct->RecordOperation(pAct);
+		}
+	}
+
 	
 	//Execute the created action
 	if(pAct != NULL)
@@ -133,6 +168,8 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	if (FigCount < MaxFigCount)
 		FigList[FigCount++] = pFig;
+	if (pRecAct != NULL)
+		pRecAct->RecordFigure(pFig);
 }
 
 
@@ -197,6 +234,11 @@ void ApplicationManager::SetSelectedFig(CFigure* F)
 CFigure* ApplicationManager::GetSelectedFig()
 {
 	return SelectedFig;
+}
+
+int ApplicationManager::GetFigCount()
+{
+	return FigCount;
 }
 
 

@@ -36,6 +36,7 @@ public:
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	void SetSelectedFig(CFigure* );
 	CFigure* GetSelectedFig();
+	int GetFigCount(); //Check if the figure list is empty or not
 
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
