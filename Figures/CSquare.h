@@ -12,5 +12,6 @@ public:
 	virtual void Draw(Output* pOut) const;
 	bool IsInclude(Point) const;
 	void PrintInfo(Output* pOut);
+	virtual void Save(ofstream& OutFile);
 };
 

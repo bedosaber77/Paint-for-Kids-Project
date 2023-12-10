@@ -1,4 +1,7 @@
 #include "CRectangle.h"
+#include <fstream>
+#include "../ApplicationManager.h"
+using namespace std;
 
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
@@ -25,4 +28,16 @@ bool CRectangle::IsInclude(Point P) const
 void CRectangle::PrintInfo(Output* pOut)
 {
 	CFigure::PrintInfo(pOut);
+}
+
+void CRectangle::Save(ofstream& outfile)
+{
+	outfile << "RECT\t" << ID << '\t' << Corner1.x << '\t' << Corner1.y << '\t' << Corner2.x << '\t' 
+		<< Corner2.y << '\t' << ApplicationManager::ColorString(FigGfxInfo.DrawClr) << '\t';
+
+	if (FigGfxInfo.isFilled) {
+		outfile << ApplicationManager::ColorString(FigGfxInfo.FillClr) << '\n';
+	}
+	else
+		outfile << "NO_FILL\n";
 }

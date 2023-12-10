@@ -1,5 +1,7 @@
 #include "CSquare.h"
-
+#include <fstream>
+#include "../ApplicationManager.h"
+using namespace std;
 CSquare::CSquare(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
@@ -21,4 +23,15 @@ bool CSquare::IsInclude(Point P) const
 void CSquare::PrintInfo(Output* pOut)
 {
 	CFigure::PrintInfo(pOut);
+}
+
+void CSquare::Save(ofstream& OutFile)
+{
+	OutFile << "SQUARE\t" << ID << '\t' << Center.x << '\t' << Center.y << '\t'
+		<< ApplicationManager::ColorString(FigGfxInfo.DrawClr)<<'\t';
+	if (FigGfxInfo.isFilled) {
+		OutFile << ApplicationManager::ColorString(FigGfxInfo.FillClr) << '\n';
+	}
+	else
+		OutFile << "NO_FILL\n";
 }
