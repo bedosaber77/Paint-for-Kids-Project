@@ -8,6 +8,7 @@
 #include "ChangeColorAction.h"
 #include "DeleteFigureAction.h"
 #include "RecordAction.h"
+#include "SaveAction.h"
 
 RecordAction* pRecAct = NULL;
 
@@ -49,6 +50,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	{
 
 
+		// ########################## Save Figures ##########################
+	case SAVE_GRAPH:
+		pAct = new SaveAction(this);
+		break;
 		// ########################## Delete Figure ##########################
 
 		case ERASE:
@@ -273,6 +278,26 @@ void ApplicationManager::UpdateInterface() const
 
 
 	}	
+}
+void ApplicationManager::SaveALL(ofstream& OutFile)
+{
+	OutFile <<ColorString(UI.DrawColor)<<'\t'<<ColorString(UI.FillColor)<<'\n'<<FigCount<<'\n';
+
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i] != NULL)
+			FigList[i]->Save(OutFile);
+	}
+}
+string ApplicationManager::ColorString(color C)
+{
+
+		if (C == BLACK)    return "BLACK";
+		if (C == GREEN)    return "GREEN";
+		if (C == ORANGE)   return "ORANGE";
+		if (C == YELLOW)   return "YELLOW";
+		if (C == RED)      return "RED";
+		if (C == BLUE)     return "BLUE";
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input

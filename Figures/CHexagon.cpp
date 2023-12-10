@@ -1,5 +1,8 @@
 #include "CHexagon.h"
 #include <cmath>
+#include <fstream>
+#include "../ApplicationManager.h"
+using namespace std;
 CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
 {
 	Center = P1;
@@ -29,3 +32,13 @@ void CHexagon::PrintInfo(Output* pOut)
     CFigure::PrintInfo(pOut);
 }
 
+void CHexagon::Save(ofstream& OutFile) {
+	OutFile << "HEXAGON\t" << ID<< '\t' << Center.x <<'\t' << Center.y << '\t' 
+		<< ApplicationManager::ColorString(FigGfxInfo.DrawClr) << '\t';
+
+	if (FigGfxInfo.isFilled) {
+		OutFile << ApplicationManager::ColorString(FigGfxInfo.FillClr) << '\n';
+	}
+	else
+		OutFile << "NO_FILL\n";
+}

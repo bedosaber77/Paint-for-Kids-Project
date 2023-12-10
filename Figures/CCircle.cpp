@@ -1,4 +1,7 @@
 #include "CCircle.h"
+#include <fstream>
+#include "../ApplicationManager.h"
+using namespace std;
 
 CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
 {
@@ -25,4 +28,16 @@ bool CCircle::IsInclude(Point P) const
 void CCircle::PrintInfo(Output* pOut)
 {
 	CFigure::PrintInfo(pOut);
+}
+
+void CCircle::Save(ofstream& OutFile)
+{
+	OutFile << "CIRC\t" << ID << '\t' << Center.x << '\t' << Center.y << '\t' << PointOnCircle.x << '\t'
+		<< PointOnCircle.y << '\t' <<ApplicationManager :: ColorString(FigGfxInfo.DrawClr) << '\t';
+
+	if (FigGfxInfo.isFilled) {
+		OutFile << ApplicationManager :: ColorString(FigGfxInfo.FillClr) << '\n';
+	}
+	else
+		OutFile << "NO_FILL\n";
 }
