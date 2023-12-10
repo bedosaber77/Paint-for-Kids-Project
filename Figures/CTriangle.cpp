@@ -14,17 +14,18 @@ void CTriangle::Draw(Output* pOut) const
 	pOut->DrawTriangle(Corner1, Corner2, Corner3, FigGfxInfo, Selected);
 }
 
+
+double area(Point A, Point B, Point C) // Fucntion To Calc The Area of a Triangle
+{
+	return abs((A.x * (B.y - C.y) + B.x * (C.y - A.y) + C.x * (A.y - B.y)) / 2.0);
+}
+
+
 bool CTriangle::IsInclude(Point P) const
 {
+	//if P lies inside the triangle, then sum of areas to that point with Corners must be equal to Triangle Original Area.
+	return ( area( Corner1, Corner2, Corner3) == area(P, Corner2, Corner3) + area(P, Corner1, Corner3) + area(Corner1, Corner2, P) );
 
-    double detT = (Corner2.y - Corner3.y) * (Corner1.x - Corner3.x) + (Corner3.x - Corner2.x) * (Corner1.y - Corner3.y);
-
-    double alpha = ((Corner2.y - Corner3.y) * (P.x - Corner3.x) + (Corner3.x - Corner2.x) * (P.y - Corner3.y)) / detT;
-    double beta = ((Corner3.y - Corner1.y) * (P.x - Corner3.x) + (Corner1.x - Corner3.x) * (P.y - Corner3.y)) / detT;
-    double gamma = 1.0 - alpha - beta;
-
-    // Check if the point is inside the triangle
-    return alpha >= 0.0 && beta >= 0.0 && gamma >= 0.0;;
 
 }
 

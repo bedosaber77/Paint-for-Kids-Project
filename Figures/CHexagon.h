@@ -5,6 +5,7 @@ class CHexagon :
 {
 private:
 	Point Center;
+	double L; // Side Length
 
 public:
 	CHexagon(Point, GfxInfo FigureGfxInfo);

@@ -6,6 +6,7 @@ class CSquare :
 
 private:
 	Point Center;
+	double L; //Side Length
 public:
 	CSquare(Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;

@@ -24,12 +24,10 @@ public:
 	
 	// -- Figures Drawing functions
 	void DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected=false) const;  //Draw a rectangle
-	void DrawSquare(Point P1, GfxInfo RectGfxInfo, bool selected = false) const;  //Draw a Square
+	void DrawSquare(Point P1, double L, GfxInfo SquGfxInfo, bool selected) const;	//Draw a Square
 	void DrawTriangle(Point P1, Point P2, Point P3, GfxInfo RectGfxInfo, bool selected = false) const;  //Draw a triangle
 	void DrawCircle(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected = false) const;  //Draw a circle
-
-	void DrawHex(Point P, GfxInfo HexaInfo, bool selected = false) const;  //Draw Hexagon
-	
+	void DrawHex(Point P, double L, GfxInfo HexaGfxInfo, bool selected) const; //Draw a hexagon
 	///Make similar functions for drawing all other figure types.
 	
 	void PrintMessage(string msg) ;	//Print a message on Status bar
@@ -39,6 +37,8 @@ public:
 	int getCrntPenWidth() const;		//get current pen width
 
 	
+
+
 	~Output();
 };
 

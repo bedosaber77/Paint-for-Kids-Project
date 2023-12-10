@@ -276,7 +276,7 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 //2.Draw Square:
 
 //Draw Square Function Special Case Of Draw Rect
-void Output::DrawSquare(Point P1, GfxInfo SquGfxInfo, bool selected) const
+void Output::DrawSquare(Point P1, double L, GfxInfo SquGfxInfo, bool selected) const
 {
 	color DrawingClr;
 	if (selected)
@@ -294,10 +294,10 @@ void Output::DrawSquare(Point P1, GfxInfo SquGfxInfo, bool selected) const
 	else
 		style = FRAME;
 	Point P2;
-	P2.x = P1.x + 100;
-	P2.y = P1.y + 100;
-	P1.x = P1.x - 100;
-	P1.y = P1.y - 100;
+	P2.x = P1.x + L / 2;
+	P2.y = P1.y + L / 2;
+	P1.x = P1.x - L / 2;
+	P1.y = P1.y - L / 2;
 
 	pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
 
@@ -354,7 +354,7 @@ void Output::DrawCircle(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) 
 
 //5.Drawing Hexagon:
 
-void Output::DrawHex(Point P, GfxInfo HexaGfxInfo, bool selected) const 
+void Output::DrawHex(Point P, double L, GfxInfo HexaGfxInfo, bool selected) const 
 {
 	color DrawingClr;
 	if (selected)
@@ -373,7 +373,6 @@ void Output::DrawHex(Point P, GfxInfo HexaGfxInfo, bool selected) const
 		style = FRAME;
 	const int NumVertices = 6;
 	const double angle = 60 * 3.14159265 / 180; //60 degree and convert it to radian
-	int L = 150; //set Side Length for the Figure
 	int arrX[NumVertices]; //array of x-coordinates for each vertix
 	int arrY[NumVertices]; //array of y-coordinates for each vertix
 	for (int i = 0; i < NumVertices; i++) {
