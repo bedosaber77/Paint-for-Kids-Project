@@ -7,6 +7,7 @@
 #include "SelectFigureAction.h"
 #include "ChangeColorAction.h"
 #include "DeleteFigureAction.h"
+#include "ClearAllAction.h"
 #include "RecordAction.h"
 #include "SaveAction.h"
 
@@ -95,6 +96,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new AddCircAction(this);
 			break;
 
+		case CLEARALL:
+			pAct = new ClearAllAction(this);
+			break;
 			////////////////////////////
 		case START_REC:
 		{
@@ -244,6 +248,15 @@ CFigure* ApplicationManager::GetSelectedFig()
 int ApplicationManager::GetFigCount()
 {
 	return FigCount;
+}
+
+void ApplicationManager::ClearFigures()
+{
+	for (int i = 0; i < FigCount; i++)
+		delete FigList[i];
+	FigCount = 0;
+	SelectedFig = NULL;
+	pOut->ResetColors();//Anas Magdy: Ask if this is the right Place or Not
 }
 
 

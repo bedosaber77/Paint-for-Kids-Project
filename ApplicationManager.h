@@ -37,6 +37,8 @@ public:
 	void SetSelectedFig(CFigure* );
 	CFigure* GetSelectedFig();
 	int GetFigCount(); //Check if the figure list is empty or not
+	void ClearFigures();
+
 
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input

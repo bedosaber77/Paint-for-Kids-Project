@@ -21,6 +21,7 @@ public:
 	void ClearStatusBar() const;	//Clears the status bar
 	void ClearToolBar() const;      //Clears the Tool Bar
 	void ClearDrawArea() const;	//Clears the drawing area
+	void ResetColors(); //Reset the Colors to default values
 	
 	// -- Figures Drawing functions
 	void DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected=false) const;  //Draw a rectangle

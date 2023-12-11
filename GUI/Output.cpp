@@ -221,6 +221,13 @@ void Output::ClearDrawArea() const
 	pWind->DrawRectangle(0, UI.ToolBarHeight, UI.width, UI.height - UI.StatusBarHeight);
 	
 }
+void Output::ResetColors()
+{
+	UI.isFilled = false; //Defualt Not Filled
+	UI.DrawColor = BLACK;	//Drawing color
+	UI.FillColor = GREEN;	//Filling color
+
+}
 //////////////////////////////////////////////////////////////////////////////////////////
 
 void Output::PrintMessage(string msg)	//Prints a message on status bar
