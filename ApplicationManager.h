@@ -5,21 +5,32 @@
 #include "Figures\CFigure.h"
 #include "GUI\input.h"
 #include "GUI\output.h"
+#include "Action.h"
 
 //Main class that manages everything in the application.
 class ApplicationManager
 {
-	enum { MaxFigCount = 200 };	//Max no of figures
+	enum {
+		MaxFigCount = 200,
+		MaxRecActCount = 20
+	};	//Max no of (figures,RecordedActions,)
 
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
 	CFigure* SelectedFig; //Pointer to the selected figure   // Needs Setter and Getter ANAS IBRAHEM
-
+	
+	Action* RecordActionList[MaxRecActCount]; //List of Recorded Actions
+	int RecActCount = 0; //No. of Recorded Actions
+	
+	bool IsRec = 0;
+	bool IsPlayingRec = 0;
+	
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
+
 
 public:	
 	ApplicationManager(); 
@@ -39,6 +50,19 @@ public:
 	int GetFigCount(); //Check if the figure list is empty or not
 	void ClearFigures();
 
+	// -- Recording Management Functions
+	void SetRecordingState(bool);
+	bool IsRecording();
+	
+	void RecordAction(Action*);
+	void ClearRecord();
+	
+	void SetPlayingRecordState(bool);
+	bool IsPlayingRecord();
+	void PlayRecord();
+
+	int GetRecActCount();
+	int GetMaxRecCount();
 
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input

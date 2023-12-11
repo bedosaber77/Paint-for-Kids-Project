@@ -1,17 +1,14 @@
-
 #pragma once
 #include "Actions/Action.h"
 #include "CFigure.h"
 #include "..\ApplicationManager.h"
 
-
-class RecordAction :public Action
+class StopRecordAction :public Action
 {
 	Output* pOut = pManager->GetOutput();
-public:
 
-	RecordAction(ApplicationManager*);
+public:
+	StopRecordAction(ApplicationManager*);
 	virtual void ReadActionParameters();
 	virtual void Execute();
 };
-

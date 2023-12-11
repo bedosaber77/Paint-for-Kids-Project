@@ -187,6 +187,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RecordAction.cpp" />
     <ClCompile Include="SaveAction.cpp" />
+    <ClCompile Include="StopRecordAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\AddCircAction.h" />
@@ -232,6 +233,7 @@
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="RecordAction.h" />
     <ClInclude Include="SaveAction.h" />
+    <ClInclude Include="StopRecordAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

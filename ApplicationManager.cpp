@@ -9,11 +9,8 @@
 #include "DeleteFigureAction.h"
 #include "ClearAllAction.h"
 #include "RecordAction.h"
+#include "StopRecordAction.h"
 #include "SaveAction.h"
-
-RecordAction* pRecAct = NULL;
-
-
 
 
 //Constructor
@@ -30,6 +27,10 @@ ApplicationManager::ApplicationManager()
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
+
+	//Create an array of Recorded Actions pointers and set them to NULL		
+	for (int i = 0; i < MaxRecActCount; i++)
+		RecordActionList[i] = NULL;
 }
 
 //==================================================================================//
@@ -44,7 +45,7 @@ ActionType ApplicationManager::GetUserAction() const
 //Creates an action and executes it
 void ApplicationManager::ExecuteAction(ActionType ActType) 
 {
-	Action* pAct = NULL;
+	Action* pAct = NULL; //Pointer to the current Action
 	
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
@@ -101,23 +102,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 			////////////////////////////
 		case START_REC:
-		{
-			if (pRecAct == NULL)
-			{
-				pRecAct = new RecordAction(this);
-			}
-		}
-		break;
+			pAct = new class RecordAction(this);//Change class name
+			break;
 
 		case STOP_REC:
-		{
-			if (pRecAct != NULL)
-			{
-				delete pRecAct;
-				pRecAct = NULL;
-			}
-		}
-		break;
+			pAct = new StopRecordAction(this);
+			break;
 
 		case SELECT:
 			pAct = new SelectFigureAction(this);
@@ -143,29 +133,29 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case STATUS:	//a click on the status bar ==> no action
 			return;
 	}
-	if (pRecAct != NULL)
+	if (IsRecording())
 	{
 		switch (ActType)
 		{
 		case START_REC:
-		case STOP_REC:
 		case PLAY_REC:
 		case SAVE_GRAPH:
 		case LOAD:
+			delete pAct;
 			pAct = NULL;
 			break;
-		default:
-			pRecAct->RecordOperation(pAct);
 		}
 	}
 
-	
 	//Execute the created action
-	if(pAct != NULL)
+	if (pAct != NULL)
 	{
 		pAct->Execute();//Execute
-		delete pAct;	//You may need to change this line depending to your implementation of undo and redo
-		pAct = NULL;
+		if (!IsRecording())
+		{
+			delete pAct;	//You may need to change this line depending to your implementation of undo and redo
+			pAct = NULL;
+		}
 	}
 }
 //==================================================================================//
@@ -177,8 +167,6 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	if (FigCount < MaxFigCount)
 		FigList[FigCount++] = pFig;
-	if (pRecAct != NULL)
-		pRecAct->RecordFigure(pFig);
 }
 
 
@@ -257,6 +245,64 @@ void ApplicationManager::ClearFigures()
 	FigCount = 0;
 	SelectedFig = NULL;
 	pOut->ResetColors();//Anas Magdy: Ask if this is the right Place or Not
+}
+
+//==================================================================================//
+//							Record Management Functions							//
+//==================================================================================//
+
+void ApplicationManager::SetRecordingState(bool RecState)
+{
+	IsRec = RecState;
+}
+
+bool ApplicationManager::IsRecording()
+{
+	return IsRec;
+}
+
+void ApplicationManager::RecordAction(Action* pRecAct)
+{
+	if (GetRecActCount() < GetMaxRecCount())
+		RecordActionList[RecActCount++] = pRecAct;
+}
+
+void ApplicationManager::ClearRecord()
+{
+	for (int i = 0; i < MaxRecActCount; i++)
+		RecordActionList[i] = NULL;
+}
+
+void ApplicationManager::SetPlayingRecordState(bool PRState)
+{
+	IsPlayingRec = PRState;
+}
+
+bool ApplicationManager::IsPlayingRecord()
+{
+	return IsPlayingRec;
+}
+
+void ApplicationManager::PlayRecord()
+{
+	pOut->ClearDrawArea();
+	//ClearAll
+	for (int i = 0; i < RecActCount; i++)
+	{
+		Sleep(1000);
+		RecordActionList[i]->Execute();
+		UpdateInterface();
+	}
+}
+
+int ApplicationManager::GetRecActCount()
+{
+	return RecActCount;
+}
+
+int ApplicationManager::GetMaxRecCount()
+{
+	return MaxRecActCount;
 }
 
 
