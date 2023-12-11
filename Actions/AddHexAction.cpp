@@ -30,12 +30,20 @@ void AddHexAction::ReadActionParameters()
 //Execute the action
 void AddHexAction::Execute()
 {
-	//This action needs to read some parameters first
-	ReadActionParameters();
+	if (!pManager->IsPlayingRecord())
+	{
+		//This action needs to read some parameters first
+		ReadActionParameters();
+	}
 
-	//Create a Hexagon with the parameters read from the user
+	//Create a hexagon with the parameters read from the user or Saved while Recording.
 	CHexagon* H = new CHexagon(P1, HexGfxInfo);
 
-	//Add the Hexagon to the list of figures
+	//Add the hexagon to the list of figures
 	pManager->AddFigure(H);
+
+	//Save this Action when Recording
+	if (pManager->IsRecording())
+		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
+			pManager->RecordAction(this);
 }
