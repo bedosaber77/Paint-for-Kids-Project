@@ -286,7 +286,9 @@ bool ApplicationManager::IsPlayingRecord()
 void ApplicationManager::PlayRecord()
 {
 	pOut->ClearDrawArea();
-	//ClearAll
+	//ClearAll wait
+	for (int i = 0; i < FigCount; i++)
+		FigList[i] = NULL;
 	for (int i = 0; i < RecActCount; i++)
 	{
 		Sleep(1000);
