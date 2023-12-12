@@ -184,24 +184,25 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 
 void ApplicationManager::RemoveFigure(CFigure* pFig)
 {
-	bool found  = 0;
+	bool found = 0;
 	int i = 0;
-	while(i < FigCount && !found)
-	{  
+	while (i < FigCount && !found)
+	{
 		if (pFig == FigList[i])
-		 {
+		{
 			found = 1;
+			delete FigList[i];
 			for (int j = i; j < FigCount - 1; j++)
 			{
 				FigList[j] = FigList[j + 1]; // Shifting All Remaining Figures
 			}
-			delete FigList[FigCount];
-			FigList[--FigCount] = NULL;
-		 }
+			FigList[FigCount - 1] = NULL;
+			FigCount--;
+		}
 		i++;
 
 	}
-	
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -252,8 +253,9 @@ int ApplicationManager::GetFigCount()
 
 void ApplicationManager::ClearFigures()
 {
-	for (int i = 0; i < FigCount; i++)
+	for (int i = 0; i < FigCount; i++) {
 		delete FigList[i];
+	}
 	FigCount = 0;
 	SelectedFig = NULL;
 	pOut->ResetColors();//Anas Magdy: Ask if this is the right Place or Not
