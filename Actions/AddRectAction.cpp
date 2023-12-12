@@ -37,12 +37,20 @@ void AddRectAction::ReadActionParameters()
 //Execute the action
 void AddRectAction::Execute() 
 {
-	//This action needs to read some parameters first
-	ReadActionParameters();
-	
-	//Create a rectangle with the parameters read from the user
-	CRectangle *R=new CRectangle(P1, P2, RectGfxInfo);
+	if (!pManager->IsPlayingRecord())
+	{
+		//This action needs to read some parameters first
+		ReadActionParameters();
+	}
+
+	//Create a rectangle with the parameters read from the user or Saved while Recording.
+	CRectangle* R = new CRectangle(P1, P2, RectGfxInfo);
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
+
+	//Save this Action when Recording
+	if (pManager->IsRecording())
+		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
+			pManager->RecordAction(this);
 }

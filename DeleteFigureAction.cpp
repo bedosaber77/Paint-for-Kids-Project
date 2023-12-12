@@ -19,7 +19,9 @@ void DeleteFigureAction::ReadActionParameters()
 
 void DeleteFigureAction::Execute()
 {
-	ReadActionParameters();
+		//This action needs to read some parameters first
+		ReadActionParameters();
+
 	Output* pOut = pManager->GetOutput();
 	if (Figure == NULL) pOut->PrintMessage("Please Select A Figure First");
 	else
@@ -30,7 +32,10 @@ void DeleteFigureAction::Execute()
 
 	}
 
-
+	//Save this Action when Recording
+	if (pManager->IsRecording())
+		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
+			pManager->RecordAction(this);
 
 
 }

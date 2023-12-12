@@ -24,8 +24,11 @@ void SelectFigureAction::Execute()
 {
 	Output* pOut = pManager->GetOutput();
 
-	//This action needs to read some parameters first
-	ReadActionParameters();
+	if (!pManager->IsPlayingRecord())
+	{
+		//This action needs to read some parameters first
+		ReadActionParameters();
+	}
 
 	CFigure* SelectedFig = pManager->GetFigure(SelectionPoint.x, SelectionPoint.y);
 	if (SelectedFig != NULL && SelectedFig->IsSelected() == false )
@@ -44,6 +47,10 @@ void SelectFigureAction::Execute()
 	else if (SelectedFig == NULL)
 		pOut->PrintMessage("No Figure Selected, Please Click On Figure");
 
+	//Save this Action when Recording
+	if (pManager->IsRecording())
+		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
+			pManager->RecordAction(this);
 
 }
 

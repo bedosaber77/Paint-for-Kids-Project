@@ -4,12 +4,7 @@
 #include "..\GUI\Output.h"
 
 ChangeColorAction::ChangeColorAction(ApplicationManager* pApp , char c) : Action(pApp) ,  FillDraw(c) 
-{
-
-
-
-
-}
+{}
 
 void ChangeColorAction::ReadActionParameters()
 {
@@ -21,16 +16,17 @@ void ChangeColorAction::ReadActionParameters()
 
 void ChangeColorAction::Execute()
 {
+	FigurePt = pManager->GetSelectedFig();
 	Output* pOut = pManager->GetOutput();
-	CFigure* FigurePt = pManager->GetSelectedFig();
 	if (FigurePt == NULL)
 	{
 		pOut->PrintMessage("No Figure Selected Please Select Figure ");
 	}
 	else {
 		pOut->CreateColorToolBar();
-		ActionType ColorPick = pManager->GetUserAction();
-		color ColorPicked;
+		if(!pManager->IsPlayingRecord())
+			ColorPick = pManager->GetUserAction();
+
 			switch (ColorPick) {
 			case  PICK_BLACK:  { ColorPicked = BLACK;  } break;
 			case  PICK_BLUE:   { ColorPicked = BLUE;   } break;
@@ -57,5 +53,10 @@ void ChangeColorAction::Execute()
 			pOut->CreateDrawToolBar();
 
 	}
+
+	//Save this Action when Recording
+	if (pManager->IsRecording())
+		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
+			pManager->RecordAction(this);
 }
 	

@@ -32,12 +32,21 @@ void AddSquAction::ReadActionParameters()
 //Execute the action
 void AddSquAction::Execute()
 {
-	//This action needs to read some parameters first
-	ReadActionParameters();
+	if (!pManager->IsPlayingRecord())
+	{
+		//This action needs to read some parameters first
+		ReadActionParameters();
+	}
 
-	//Create a Square with the parameters read from the user
+	//Create a square with the parameters read from the user or Saved while Recording.
 	CSquare* S = new CSquare(P1, SquGfxInfo);
+	
 
-	//Add the Square to the list of figures
+	//Add the square to the list of figures
 	pManager->AddFigure(S);
+
+	//Save this Action when Recording
+	if (pManager->IsRecording())
+		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
+			pManager->RecordAction(this);
 }

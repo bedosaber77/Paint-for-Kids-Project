@@ -35,12 +35,20 @@ void AddCircAction::ReadActionParameters()
 //Execute the action
 void AddCircAction::Execute()
 {
-	//This action needs to read some parameters first
-	ReadActionParameters();
+	if (!pManager->IsPlayingRecord())
+	{
+		//This action needs to read some parameters first
+		ReadActionParameters();
+	}
 
-	//Create a Circle with the parameters read from the user
+	//Create a circle with the parameters read from the user or Saved while Recording.
 	CCircle* C = new CCircle(P1, P2, CircGfxInfo);
 
-	//Add the Circle to the list of figures
+	//Add the circle to the list of figures
 	pManager->AddFigure(C);
+
+	//Save this Action when Recording
+	if (pManager->IsRecording())
+		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
+			pManager->RecordAction(this);
 }

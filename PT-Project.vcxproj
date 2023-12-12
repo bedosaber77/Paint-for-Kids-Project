@@ -185,8 +185,10 @@
     <ClCompile Include="GUI\Output.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="RecordAction.cpp" />
+    <ClCompile Include="PlayRecordAction.cpp" />
+    <ClCompile Include="StartRecordAction.cpp" />
     <ClCompile Include="SaveAction.cpp" />
+    <ClCompile Include="StopRecordAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\AddCircAction.h" />
@@ -230,8 +232,10 @@
     <ClInclude Include="GUI\UI_Info.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
-    <ClInclude Include="RecordAction.h" />
+    <ClInclude Include="PlayRecordAction.h" />
+    <ClInclude Include="StartRecordAction.h" />
     <ClInclude Include="SaveAction.h" />
+    <ClInclude Include="StopRecordAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
