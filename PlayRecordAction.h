@@ -1,16 +1,17 @@
-#ifndef STOP_RECORD_ACTION
-#define STOP_RECORD_ACTION
+#ifndef PLAY_RECORD_ACTION
+#define PLAY_RECORD_ACTION
 
 #include "Actions/Action.h"
 #include "..\ApplicationManager.h"
 
-class StopRecordAction :public Action
+class PlayRecordAction :public Action
 {
 	Output* pOut = pManager->GetOutput();
-
 public:
-	StopRecordAction(ApplicationManager*);
+
+	PlayRecordAction(ApplicationManager*);
 	virtual void ReadActionParameters();
 	virtual void Execute();
 };
+
 #endif

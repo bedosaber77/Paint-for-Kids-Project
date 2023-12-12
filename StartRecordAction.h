@@ -1,17 +1,17 @@
+#ifndef START_RECORD_ACTION
+#define START_RECORD_ACTION
 
-#pragma once
 #include "Actions/Action.h"
-#include "CFigure.h"
 #include "..\ApplicationManager.h"
 
-
-class RecordAction :public Action
+class StartRecordAction :public Action
 {
 	Output* pOut = pManager->GetOutput();
 public:
 
-	RecordAction(ApplicationManager*);
+	StartRecordAction(ApplicationManager*);
 	virtual void ReadActionParameters();
 	virtual void Execute();
 };
 
+#endif

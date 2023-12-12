@@ -8,8 +8,9 @@
 #include "ChangeColorAction.h"
 #include "DeleteFigureAction.h"
 #include "ClearAllAction.h"
-#include "RecordAction.h"
+#include "StartRecordAction.h"
 #include "StopRecordAction.h"
+#include "PlayRecordAction.h"
 #include "SaveAction.h"
 
 
@@ -102,7 +103,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 			////////////////////////////
 		case START_REC:
-			pAct = new class RecordAction(this);//Change class name
+			pAct = new StartRecordAction(this);
 			break;
 
 		case STOP_REC:
@@ -286,9 +287,11 @@ bool ApplicationManager::IsPlayingRecord()
 void ApplicationManager::PlayRecord()
 {
 	pOut->ClearDrawArea();
-	//ClearAll wait
+
+	//ClearAll Alter ..do it in playrec class
 	for (int i = 0; i < FigCount; i++)
 		FigList[i] = NULL;
+
 	for (int i = 0; i < RecActCount; i++)
 	{
 		Sleep(1000);

@@ -18,6 +18,4 @@ void StopRecordAction::ReadActionParameters()
 void StopRecordAction::Execute()
 {
 	ReadActionParameters();
-	pManager->SetPlayingRecordState(true);
-	pManager->PlayRecord();
 }

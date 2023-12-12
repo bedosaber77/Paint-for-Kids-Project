@@ -184,9 +184,12 @@
     <ClCompile Include="SaveAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
-    <ClCompile Include="RecordAction.cpp">
+    <ClCompile Include="StartRecordAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="ClearAllAction.cpp" />
+    <ClCompile Include="StopRecordAction.cpp" />
+    <ClCompile Include="PlayRecordAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -310,9 +313,12 @@
     <ClInclude Include="SaveAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
-    <ClInclude Include="RecordAction.h">
+    <ClInclude Include="StartRecordAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
+    <ClInclude Include="ClearAllAction.h" />
+    <ClInclude Include="StopRecordAction.h" />
+    <ClInclude Include="PlayRecordAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
