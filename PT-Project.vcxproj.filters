@@ -190,6 +190,7 @@
     <ClCompile Include="ClearAllAction.cpp" />
     <ClCompile Include="StopRecordAction.cpp" />
     <ClCompile Include="PlayRecordAction.cpp" />
+    <ClCompile Include="PickByShapeAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -319,6 +320,7 @@
     <ClInclude Include="ClearAllAction.h" />
     <ClInclude Include="StopRecordAction.h" />
     <ClInclude Include="PlayRecordAction.h" />
+    <ClInclude Include="PickByShapeAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

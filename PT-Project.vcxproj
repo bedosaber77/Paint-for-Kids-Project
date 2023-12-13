@@ -185,6 +185,7 @@
     <ClCompile Include="GUI\Output.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PickByShapeAction.cpp" />
     <ClCompile Include="PlayRecordAction.cpp" />
     <ClCompile Include="StartRecordAction.cpp" />
     <ClCompile Include="SaveAction.cpp" />
@@ -232,6 +233,7 @@
     <ClInclude Include="GUI\UI_Info.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
+    <ClInclude Include="PickByShapeAction.h" />
     <ClInclude Include="PlayRecordAction.h" />
     <ClInclude Include="StartRecordAction.h" />
     <ClInclude Include="SaveAction.h" />

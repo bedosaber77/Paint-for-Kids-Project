@@ -12,6 +12,8 @@
 #include "StopRecordAction.h"
 #include "PlayRecordAction.h"
 #include "SaveAction.h"
+#include "PickByShapeAction.h"
+
 
 
 //Constructor
@@ -77,7 +79,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 
-		// ########################## Add Figure ##########################
+			// ########################## Add Figure ##########################
 		case DRAW_RECT:
 			pAct = new AddRectAction(this);
 			break;
@@ -101,7 +103,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case CLEARALL:
 			pAct = new ClearAllAction(this);
 			break;
-			////////////////////////////
+
+		// ########################## Recording ##########################
+			
 		case START_REC:
 			pAct = new StartRecordAction(this);
 			break;
@@ -109,6 +113,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case STOP_REC:
 			pAct = new StopRecordAction(this);
 			break;
+
+		case PLAY_REC:
+			pAct = new PlayRecordAction(this);
+			break;
+
+		case SHAPE_PLAY_PICK:
+			pAct = new PickByShapeAction(this);
 
 		case SELECT:
 			pAct = new SelectFigureAction(this);
@@ -134,7 +145,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case STATUS:	//a click on the status bar ==> no action
 			return;
 	}
-	if (IsRecording())
+	/*if (IsRecording())
 	{
 		switch (ActType)
 		{
@@ -146,7 +157,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = NULL;
 			break;
 		}
-	}
+	}*/
 
 	//Execute the created action
 	if (pAct != NULL)

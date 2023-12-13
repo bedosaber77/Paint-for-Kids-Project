@@ -12,6 +12,8 @@ void StartRecordAction::ReadActionParameters()
 		pManager->SetRecordingState(true);
 
 		pOut->PrintMessage("Recording Started.");
+		
+		pManager->ClearRecord();
 	}
 	else
 	{
@@ -23,5 +25,5 @@ void StartRecordAction::ReadActionParameters()
 void StartRecordAction::Execute()
 {
 	ReadActionParameters();
-	pManager->ClearRecord();
+
 }
