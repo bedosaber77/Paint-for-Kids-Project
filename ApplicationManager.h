@@ -20,6 +20,7 @@ private:
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
 	CFigure* SelectedFig; //Pointer to the selected figure   // Needs Setter and Getter ANAS IBRAHEM
+	CFigure* PickingFig; 
 	
 	Action* RecordActionList[MaxRecActCount]; //List of Recorded Actions
 	int RecActCount = 0; //No. of Recorded Actions
@@ -44,6 +45,7 @@ public:
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
 	void RemoveFigure(CFigure* pFig);
+	void SelectFigure(CFigure*);
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	void SetSelectedFig(CFigure* );
 	CFigure* GetSelectedFig();
@@ -63,6 +65,12 @@ public:
 
 	int GetRecActCount();
 	int GetMaxRecCount();
+
+	// -- Pick & Hide Functions
+	//set & get Picking shape or color
+	CFigure* Rand();
+	color ColorRand();
+	void PickShape();
 
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input

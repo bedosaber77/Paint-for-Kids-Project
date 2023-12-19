@@ -205,6 +205,25 @@ void ApplicationManager::RemoveFigure(CFigure* pFig)
 
 }
 
+void ApplicationManager::SelectFigure(CFigure* SelectFig)
+{
+	if (SelectFig != NULL && SelectFig->IsSelected() == false)
+	{
+		SelectFig->SetSelected(true);
+		SetSelectedFig(SelectFig);
+		SelectFig->PrintInfo(pOut);
+
+	}
+	else if (SelectFig != NULL && SelectFig->IsSelected() == true) {
+		SelectFig->SetSelected(false);
+		SelectFig = NULL;
+		SetSelectedFig(SelectFig);
+		pOut->PrintMessage("Figure is Deselected");
+	}
+	else if (SelectFig == NULL)
+		pOut->PrintMessage("No Figure Selected, Please Click On Figure");
+}
+
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
 {
@@ -323,6 +342,40 @@ int ApplicationManager::GetMaxRecCount()
 	return MaxRecActCount;
 }
 
+CFigure* ApplicationManager::Rand()
+{
+	int R = rand() % FigCount;
+	PickingFig = FigList[R];
+	return FigList[R];
+}
+
+color ApplicationManager::ColorRand()
+{
+	return Rand()->GetColor();
+}
+
+void ApplicationManager::PickShape()
+{
+	while (true)
+	{
+		switch (GetUserAction())
+		{
+		case SHAPE_PLAY_PICK:
+		case COLORED_SHAPE_PLAY_PICK:
+		case COLOR_PLAY_PICK:
+		case RESTART_PLAY:
+		case TO_DRAW:
+			//
+			break;
+		default:
+			Point SelectionPoint;
+			pIn->GetPointClicked(SelectionPoint.x, SelectionPoint.y);
+			CFigure* SF = GetFigure(SelectionPoint.x, SelectionPoint.y);
+			//if(dynamic_cast<SF>(PickingFig))
+		}
+	}
+}
+
 
 //==================================================================================//
 //							Interface Management Functions							//
@@ -333,7 +386,7 @@ void ApplicationManager::UpdateInterface() const
 {	
 	pOut->ClearDrawArea();
 	for(int i=0; i<FigCount; i++)
-		if(FigList[i]!=NULL)
+		if (FigList[i] != NULL && !(FigList[i]->GetHidden()))
 		 FigList[i]->Draw(pOut);	
 
 	pOut->RedrawStatusBar();
