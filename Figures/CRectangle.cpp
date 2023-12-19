@@ -8,6 +8,10 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(Figure
 	Corner1 = P1;
 	Corner2 = P2;
 }
+
+CRectangle::CRectangle(int id):CFigure(id)
+{
+}
 	
 
 void CRectangle::Draw(Output* pOut) const
@@ -40,4 +44,17 @@ void CRectangle::Save(ofstream& outfile)
 	}
 	else
 		outfile << "NO_FILL\n";
+}
+
+void CRectangle::Load(ifstream& Infile)
+{
+	string DrwClr, FillClr;
+	Infile >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y>>DrwClr>>FillClr;
+	ChngDrawClr(ApplicationManager::StringColor(DrwClr));
+	if (FillClr != "NO_FILL")
+	{
+		ChngFillClr(ApplicationManager::StringColor(FillClr));
+	}
+	else
+		FigGfxInfo.isFilled = false;
 }

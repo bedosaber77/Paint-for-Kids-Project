@@ -12,6 +12,7 @@
 #include "StopRecordAction.h"
 #include "PlayRecordAction.h"
 #include "SaveAction.h"
+#include "LoadAction.h"
 #include "PickByShapeAction.h"
 
 
@@ -58,6 +59,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		// ########################## Save Figures ##########################
 	case SAVE_GRAPH:
 		pAct = new SaveAction(this);
+		break;
+		// ########################## Load Figures ##########################
+	case LOAD:
+		pAct = new LoadAction(this);
 		break;
 		// ########################## Delete Figure ##########################
 
@@ -375,6 +380,15 @@ string ApplicationManager::ColorString(color C)
 		if (C == YELLOW)   return "YELLOW";
 		if (C == RED)      return "RED";
 		if (C == BLUE)     return "BLUE";
+}
+color ApplicationManager::StringColor(string C)
+{
+	if (C == "BLACK")    return BLACK ;
+	if (C == "GREEN")    return GREEN;
+	if (C == "ORANGE")   return ORANGE;
+	if (C == "YELLOW")   return YELLOW;
+	if (C == "RED")      return RED;
+	if (C == "BLUE")     return BLUE;
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input

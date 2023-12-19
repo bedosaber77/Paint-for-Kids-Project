@@ -10,12 +10,13 @@ private:
 	Point PointOnCircle;
 public:
 	CCircle(Point, Point, GfxInfo FigureGfxInfo);
+	CCircle(int);
 	virtual void Draw(Output* pOut) const;
 
 	bool IsInclude(Point P) const;
 	void PrintInfo(Output* pOut);
 	virtual void Save(ofstream& OutFile);
-
+	virtual void Load(ifstream& Infile);
 
 
 };

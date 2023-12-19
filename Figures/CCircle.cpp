@@ -9,6 +9,10 @@ CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) : CFigure(FigureGfxI
 	PointOnCircle = P2;
 }
 
+CCircle::CCircle(int id):CFigure(id)
+{
+}
+
 
 void CCircle::Draw(Output* pOut) const
 {
@@ -40,4 +44,17 @@ void CCircle::Save(ofstream& OutFile)
 	}
 	else
 		OutFile << "NO_FILL\n";
+}
+
+void CCircle::Load(ifstream& Infile)
+{
+	string DrwClr, FillClr;
+	Infile >> Center.x >> Center.y >> PointOnCircle.x >> PointOnCircle.y>>DrwClr>>FillClr;
+	ChngDrawClr(ApplicationManager::StringColor(DrwClr));
+	if (FillClr != "NO_FILL")
+	{
+		ChngFillClr(ApplicationManager::StringColor(FillClr));
+	}
+	else
+		FigGfxInfo.isFilled = false;
 }

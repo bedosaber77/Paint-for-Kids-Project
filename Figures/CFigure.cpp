@@ -11,6 +11,11 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 	ID = id++;
 }
 
+CFigure::CFigure(int id)
+{
+	ID = id;
+}
+
 void CFigure::SetSelected(bool s)
 {	Selected = s; }
 

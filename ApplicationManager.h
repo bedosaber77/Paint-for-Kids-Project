@@ -71,6 +71,7 @@ public:
 
 	void SaveALL(ofstream& OutFile);
 	static string ColorString(color C);
+	static color StringColor(string C);
 };
 
 #endif
