@@ -119,7 +119,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case SHAPE_PLAY_PICK:
-			pAct = new PickByShapeAction(this);
+			//pAct = new PickByShapeAction(this);
 
 		case SELECT:
 			pAct = new SelectFigureAction(this);
