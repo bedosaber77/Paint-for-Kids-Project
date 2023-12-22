@@ -16,6 +16,8 @@
 #include "PickByShapeAction.h"
 #include "Sound.h"
 #include "MuteAction.h"
+#include "MoveFigureByPoint.h"
+
 
 
 //Constructor
@@ -58,17 +60,23 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 
 		// ########################## Save Figures ##########################
-	case SAVE_GRAPH:
-		pAct = new SaveAction(this);
-		break;
+		case SAVE_GRAPH:
+			pAct = new SaveAction(this);
+			break;
 		// ########################## Load Figures ##########################
-	case LOAD:
-		pAct = new LoadAction(this);
-		break;
+		case LOAD:
+			pAct = new LoadAction(this);
+			break;
 		// ########################## Delete Figure ##########################
 
 		case ERASE:
 			pAct = new DeleteFigureAction(this);
+			break;
+
+		// ########################## Move Figure ##########################
+
+		case MOVE:
+			pAct = new MoveFigureByPoint(this);
 			break;
 
 
@@ -217,24 +225,8 @@ void ApplicationManager::RemoveFigure(CFigure* pFig)
 
 }
 
-void ApplicationManager::SelectFigure(CFigure* SelectFig)
-{
-	if (SelectFig != NULL && SelectFig->IsSelected() == false)
-	{
-		SelectFig->SetSelected(true);
-		SetSelectedFig(SelectFig);
-		SelectFig->PrintInfo(pOut);
 
-	}
-	else if (SelectFig != NULL && SelectFig->IsSelected() == true) {
-		SelectFig->SetSelected(false);
-		SelectFig = NULL;
-		SetSelectedFig(SelectFig);
-		pOut->PrintMessage("Figure is Deselected");
-	}
-	else if (SelectFig == NULL)
-		pOut->PrintMessage("No Figure Selected, Please Click On Figure");
-}
+
 
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const

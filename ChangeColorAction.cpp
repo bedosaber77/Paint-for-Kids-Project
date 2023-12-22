@@ -23,6 +23,8 @@ void ChangeColorAction::Execute()
 		pOut->PrintMessage("No Figure Selected Please Select Figure ");
 	}
 	else {
+
+
 		pOut->CreateColorToolBar();
 		if(!pManager->IsPlayingRecord())
 			ColorPick = pManager->GetUserAction();

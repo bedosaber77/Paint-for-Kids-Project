@@ -4,9 +4,13 @@
 using namespace std;
 CTriangle::CTriangle(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
+
+
 	Corner1 = P1;
 	Corner2 = P2;
 	Corner3 = P3;
+	Center.x = (Corner1.x + Corner2.x + Corner3.x) / 3;
+	Center.y = (Corner1.y + Corner2.y + Corner3.y) / 3;
 	S = TRIANGLE;
 }
 
@@ -63,4 +67,31 @@ void CTriangle::Load(ifstream& Infile)
 	}
 	else
 		FigGfxInfo.isFilled = false;
+}
+
+Point CTriangle::GetCenter()
+{
+
+	return Center;
+
+}
+
+void CTriangle::Moveto(Point NewCenter)
+{
+
+
+	//Shifting Corners 
+	Corner1.x += (NewCenter.x - Center.x);
+	Corner1.y += (NewCenter.y - Center.y);
+
+	Corner2.x += (NewCenter.x - Center.x);
+	Corner2.y += (NewCenter.y - Center.y);
+
+	Corner3.x += (NewCenter.x - Center.x);
+	Corner3.y += (NewCenter.y - Center.y);
+	
+	//Updating Center
+	Center = NewCenter;
+
+
 }

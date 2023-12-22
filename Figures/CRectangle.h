@@ -8,6 +8,8 @@ class CRectangle : public CFigure
 private:
 	Point Corner1;	
 	Point Corner2;
+	Point Center;
+
 public:
 	CRectangle(int);
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
@@ -16,6 +18,9 @@ public:
 	void PrintInfo(Output* pOut);
 	virtual void Save(ofstream& outfile);
 	virtual void Load(ifstream& Infile);
+	Point GetCenter();
+	void  Moveto(Point NewCenter);
+
 };
 
 #endif

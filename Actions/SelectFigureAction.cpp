@@ -24,6 +24,7 @@ void SelectFigureAction::Execute()
 {
 	Output* pOut = pManager->GetOutput();
 
+
 	//play Sound if on
 	if (pManager->GetSoundStatues()) {
 		PlaySound("Sounds\\select.wav", NULL, SND_ASYNC);
@@ -37,7 +38,6 @@ void SelectFigureAction::Execute()
 	}
 
 	CFigure* SelectedFig = pManager->GetFigure(SelectionPoint.x, SelectionPoint.y);
-	pManager->SelectFigure(SelectedFig);
 	if (SelectedFig != NULL && SelectedFig->IsSelected() == false)
 	{
 		SelectedFig->SetSelected(true);
@@ -58,6 +58,7 @@ void SelectFigureAction::Execute()
 	if (pManager->IsRecording())
 		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
 			pManager->RecordAction(this);
+
 
 }
 

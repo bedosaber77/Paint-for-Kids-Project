@@ -54,3 +54,21 @@ void CSquare::Load(ifstream& Infile)
 	else
 		FigGfxInfo.isFilled = false;
 }
+
+Point CSquare::GetCenter()
+{
+	return Center;
+}
+
+void CSquare::Moveto(Point NewCenter)
+{
+
+
+
+	//Updating Center
+	Center = NewCenter;
+
+
+}
+
+

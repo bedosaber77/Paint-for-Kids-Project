@@ -5,9 +5,9 @@ class CTriangle :
 {
 
 private:
-	Point Corner1;
-	Point Corner2;
-	Point Corner3;
+	Point Corner1 ,Corner2 ,Corner3 ,Center;
+
+
 public:
 	CTriangle(Point, Point, Point, GfxInfo FigureGfxInfo);
 	CTriangle(int);
@@ -17,6 +17,9 @@ public:
 	void PrintInfo(Output* pOut);
 	virtual void Save(ofstream& OutFile);
 	virtual void Load(ifstream& Infile);
+	Point GetCenter();
+	void  Moveto(Point NewCenter);
+
 
 };
 

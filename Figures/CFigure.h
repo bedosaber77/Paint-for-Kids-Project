@@ -37,6 +37,11 @@ public:
 
 	color GetColor();//PICKANDHIDE
 	Shape GetShape();
+	virtual Point GetCenter()  = 0 ;
+	virtual void  Moveto(Point) = 0;
+
+
+
 	void SetHidden(bool);
 	bool GetHidden();
 

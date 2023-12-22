@@ -99,6 +99,9 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
 	MenuItemImages[ITM_RESIZE] = "images\\MenuItems\\Menu_Resize.jpg";
 	MenuItemImages[ITM_MOVE] = "images\\MenuItems\\Menu_Move.jpg";
+	//MenuItemImages[ITM_MOVE_BY_DRAGGING] = "images\\MenuItems\\Menu_Move_By_Dragging.jpg";
+
+
 	MenuItemImages[ITM_SELECT] = "images\\MenuItems\\Menu_Select.jpg";
 	MenuItemImages[ITM_CLEARALL] = "images\\MenuItems\\Menu_Clear.jpg";
 	MenuItemImages[ITM_UNDO] = "images\\MenuItems\\Menu_Undo.jpg";
