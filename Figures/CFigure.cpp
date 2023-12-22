@@ -15,6 +15,7 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 CFigure::CFigure(int id)
 {
 	ID = id;
+	Hidden = false;
 }
 
 void CFigure::SetSelected(bool s)

@@ -283,25 +283,6 @@ void ApplicationManager::RemoveFigure(CFigure* pFig)
 
 }
 
-void ApplicationManager::SelectFigure(CFigure* SelectFig)
-{
-	if (SelectFig != NULL && SelectFig->IsSelected() == false)
-	{
-		SelectFig->SetSelected(true);
-		SetSelectedFig(SelectFig);
-		SelectFig->PrintInfo(pOut);
-
-	}
-	else if (SelectFig != NULL && SelectFig->IsSelected() == true) {
-		SelectFig->SetSelected(false);
-		SelectFig = NULL;
-		SetSelectedFig(SelectFig);
-		pOut->PrintMessage("Figure is Deselected");
-	}
-	else if (SelectFig == NULL)
-		pOut->PrintMessage("No Figure Selected, Please Click On Figure");
-}
-
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
 {
