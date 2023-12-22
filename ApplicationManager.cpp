@@ -287,16 +287,6 @@ void ApplicationManager::RemoveFigure(CFigure* pFig)
 	}
 	if (DelFigCount < MaxFigCount)
 		RecycleBin[DelFigCount++] = pFig;
-
-}
-	else if (SelectFig != NULL && SelectFig->IsSelected() == true) {
-		SelectFig->SetSelected(false);
-		SelectFig = NULL;
-		SetSelectedFig(SelectFig);
-		pOut->PrintMessage("Figure is Deselected");
-	}
-	else if (SelectFig == NULL)
-		pOut->PrintMessage("No Figure Selected, Please Click On Figure");
 }
 
 ////////////////////////////////////////////////////////////////////////////////////

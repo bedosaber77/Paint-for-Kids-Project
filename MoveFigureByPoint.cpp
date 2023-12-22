@@ -46,4 +46,12 @@ void MoveFigureByPoint::Execute()
 
 }
 
+void MoveFigureByPoint::undo()
+{
+}
+
+void MoveFigureByPoint::redo()
+{
+}
+
 
