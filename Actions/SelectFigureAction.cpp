@@ -31,7 +31,8 @@ void SelectFigureAction::Execute()
 	}
 
 	CFigure* SelectedFig = pManager->GetFigure(SelectionPoint.x, SelectionPoint.y);
-	if (SelectedFig != NULL && SelectedFig->IsSelected() == false )
+	pManager->SelectFigure(SelectedFig);
+	if (SelectedFig != NULL && SelectedFig->IsSelected() == false)
 	{
 		SelectedFig->SetSelected(true);
 		pManager->SetSelectedFig(SelectedFig);

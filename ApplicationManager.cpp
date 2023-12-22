@@ -12,6 +12,7 @@
 #include "StopRecordAction.h"
 #include "PlayRecordAction.h"
 #include "SaveAction.h"
+#include "LoadAction.h"
 #include "PickByShapeAction.h"
 #include "UndoAction.h"
 #include "RedoAction.h"
@@ -67,6 +68,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case SAVE_GRAPH:
 		pAct = new SaveAction(this);
 		toDelete = 1;
+		break;
+		// ########################## Load Figures ##########################
+	case LOAD:
+		pAct = new LoadAction(this);
 		break;
 		// ########################## Delete Figure ##########################
 
@@ -156,7 +161,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case SHAPE_PLAY_PICK:
-			//pAct = new PickByShapeAction(this);
+			pAct = new PickByShapeAction(this);
+			break;
 
 		case SELECT:
 			pAct = new SelectFigureAction(this);
@@ -268,6 +274,23 @@ void ApplicationManager::RemoveFigure(CFigure* pFig)
 	if (DelFigCount < MaxFigCount)
 		RecycleBin[DelFigCount++] = pFig;
 
+void ApplicationManager::SelectFigure(CFigure* SelectFig)
+{
+	if (SelectFig != NULL && SelectFig->IsSelected() == false)
+	{
+		SelectFig->SetSelected(true);
+		SetSelectedFig(SelectFig);
+		SelectFig->PrintInfo(pOut);
+
+	}
+	else if (SelectFig != NULL && SelectFig->IsSelected() == true) {
+		SelectFig->SetSelected(false);
+		SelectFig = NULL;
+		SetSelectedFig(SelectFig);
+		pOut->PrintMessage("Figure is Deselected");
+	}
+	else if (SelectFig == NULL)
+		pOut->PrintMessage("No Figure Selected, Please Click On Figure");
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -427,10 +450,54 @@ bool ApplicationManager::IsRead()
 {
 	return Isread;
 }
+void ApplicationManager::PickRand()
+{
+	int R = rand() % FigCount;
+	PickingFig = FigList[R];
+	PickingClr = FigList[R]->GetColor();
+}
+
 
 void ApplicationManager::SettoRead()
 {
 	Isread = true;
+}
+
+
+void ApplicationManager::PickShape()
+{
+	pOut->PrintMessage("Pick all " + ShapeString(PickingFig) + " Shapes.");
+	ActionType Act;
+
+	bool cont = 1;
+	while (cont)
+	{
+		/*Act = RESTART_PLAY;
+		switch (Act = GetUserAction())
+		{
+		case SHAPE_PLAY_PICK:
+		case COLORED_SHAPE_PLAY_PICK:
+		case COLOR_PLAY_PICK:
+		case RESTART_PLAY:
+			//return back all figs
+			//start the new game
+		case TO_DRAW:
+			//return back all figs
+			cont = 0;
+			break;
+
+		default:
+		*/
+		Point PickPoint;
+		pIn->GetPointClicked(PickPoint.x, PickPoint.y);
+		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
+
+		if (PickingFig->GetShape() == PickedFig->GetShape())
+			PickedFig->SetHidden(1);
+
+		UpdateInterface();
+
+	}
 }
 
 
@@ -443,7 +510,7 @@ void ApplicationManager::UpdateInterface() const
 {	
 	pOut->ClearDrawArea();
 	for(int i=0; i<FigCount; i++)
-		if(FigList[i]!=NULL)
+		if (FigList[i] != NULL && !(FigList[i]->GetHidden()))
 		 FigList[i]->Draw(pOut);	
 
 	pOut->RedrawStatusBar();
@@ -485,6 +552,44 @@ string ApplicationManager::ColorString(color C)
 		if (C == YELLOW)   return "YELLOW";
 		if (C == RED)      return "RED";
 		if (C == BLUE)     return "BLUE";
+}
+color ApplicationManager::StringColor(string C)
+{
+	if (C == "BLACK")    return BLACK ;
+	if (C == "GREEN")    return GREEN;
+	if (C == "ORANGE")   return ORANGE;
+	if (C == "YELLOW")   return YELLOW;
+	if (C == "RED")      return RED;
+	if (C == "BLUE")     return BLUE;
+}
+
+string ApplicationManager::ShapeString(CFigure* F)
+{
+	CFigure::Shape S = F->GetShape();
+	switch (S)
+	{
+	case CFigure::RECTANGLE:
+		return "RECTANGLE";
+		break;
+
+	case CFigure::TRIANGLE:
+		return "TRIANGLE";
+		break;
+
+	case CFigure::CIRCLE:
+		return "CIRCLE";
+		break;
+
+	case CFigure::SQUARE:
+		return "SQUARE";
+		break;
+
+	case CFigure::HEXAGON:
+		return "HEXAGON";
+		break;
+
+
+	}
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input

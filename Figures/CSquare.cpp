@@ -6,6 +6,12 @@ CSquare::CSquare(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
 	L = 180;
+	S = SQUARE;
+}
+
+CSquare::CSquare(int id) :CFigure(id)
+{
+	L = 180;
 }
 
 
@@ -34,4 +40,17 @@ void CSquare::Save(ofstream& OutFile)
 	}
 	else
 		OutFile << "NO_FILL\n";
+}
+
+void CSquare::Load(ifstream& Infile)
+{
+	string DrwClr, FillClr;
+	Infile >> Center.x >> Center.y >> DrwClr >> FillClr;
+	ChngDrawClr(ApplicationManager::StringColor(DrwClr));
+	if (FillClr != "NO_FILL")
+	{
+		ChngFillClr(ApplicationManager::StringColor(FillClr));
+	}
+	else
+		FigGfxInfo.isFilled = false;
 }

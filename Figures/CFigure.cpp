@@ -9,6 +9,12 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
 	ID = id++;
+	Hidden = false;
+}
+
+CFigure::CFigure(int id)
+{
+	ID = id;
 }
 
 void CFigure::SetSelected(bool s)
@@ -44,6 +50,26 @@ color CFigure::getFillClr()
 bool CFigure::IsFilled()
 {
 	return FigGfxInfo.isFilled;
+}
+
+color CFigure::GetColor()
+{
+	return this->FigGfxInfo.FillClr;
+}
+
+CFigure::Shape CFigure::GetShape()
+{
+	return this->S;
+}
+
+void CFigure::SetHidden(bool H)
+{
+	Hidden = H;
+}
+
+bool CFigure::GetHidden()
+{
+	return Hidden;
 }
 
 void CFigure::PrintInfo(Output* pOut)

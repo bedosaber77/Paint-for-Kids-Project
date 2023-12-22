@@ -9,13 +9,14 @@ private:
 
 public:
 	CHexagon(Point, GfxInfo FigureGfxInfo);
+	CHexagon(int);
 	virtual void Draw(Output* pOut) const;
 
 	bool IsInclude(Point P) const;
 	void PrintInfo(Output* pOut);
 
 	virtual void Save(ofstream& OutFile);
-
+	virtual void Load(ifstream& Infile);
 
 };
 

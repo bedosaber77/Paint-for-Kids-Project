@@ -7,6 +7,11 @@ CTriangle::CTriangle(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo) :CFigu
 	Corner1 = P1;
 	Corner2 = P2;
 	Corner3 = P3;
+	S = TRIANGLE;
+}
+
+CTriangle::CTriangle(int id) :CFigure(id)
+{
 }
 
 
@@ -38,11 +43,24 @@ void CTriangle::PrintInfo(Output* pOut)
 
 void CTriangle::Save(ofstream& OutFile)
 {
-	OutFile << "TRIANG\t" << ID << '\t' << Corner1.x << '\t' << Corner1.y << '\t' << Corner2.x << '\t' << Corner2.y << '\t'
+	OutFile << "TRI\t" << ID << '\t' << Corner1.x << '\t' << Corner1.y << '\t' << Corner2.x << '\t' << Corner2.y << '\t'
 		<< Corner3.x << '\t' << Corner3.y << '\t' << ApplicationManager::ColorString(FigGfxInfo.DrawClr)<<'\t';
 	if (FigGfxInfo.isFilled) {
 		OutFile << ApplicationManager::ColorString(FigGfxInfo.FillClr) << '\n';
 	}
 	else
 		OutFile << "NO_FILL\n";
+}
+
+void CTriangle::Load(ifstream& Infile)
+{
+	string DrwClr, FillClr;
+	Infile >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y>>Corner3.x>>Corner3.y>>DrwClr>>FillClr;
+	ChngDrawClr(ApplicationManager::StringColor(DrwClr));
+	if (FillClr != "NO_FILL")
+	{
+		ChngFillClr(ApplicationManager::StringColor(FillClr));
+	}
+	else
+		FigGfxInfo.isFilled = false;
 }

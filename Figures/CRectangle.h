@@ -9,11 +9,13 @@ private:
 	Point Corner1;	
 	Point Corner2;
 public:
+	CRectangle(int);
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	virtual void Draw(Output* pOut) const;
 	bool IsInclude(Point P) const;
 	void PrintInfo(Output* pOut);
 	virtual void Save(ofstream& outfile);
+	virtual void Load(ifstream& Infile);
 };
 
 #endif

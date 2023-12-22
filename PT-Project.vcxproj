@@ -184,6 +184,7 @@
     <ClCompile Include="GUI\Input.cpp" />
     <ClCompile Include="GUI\Output.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
+    <ClCompile Include="LoadAction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PickByShapeAction.cpp" />
     <ClCompile Include="PlayRecordAction.cpp" />
@@ -236,6 +237,7 @@
     <ClInclude Include="GUI\UI_Info.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
+    <ClInclude Include="LoadAction.h" />
     <ClInclude Include="PickByShapeAction.h" />
     <ClInclude Include="PlayRecordAction.h" />
     <ClInclude Include="RedoAction.h" />

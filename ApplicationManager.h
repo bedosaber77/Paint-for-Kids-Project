@@ -22,7 +22,8 @@ private:
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 	CFigure* RecycleBin[MaxFigCount]; //List of All deleted figures
 	CFigure* SelectedFig; //Pointer to the selected figure   // Needs Setter and Getter ANAS IBRAHEM
-	
+	CFigure* PickingFig; 
+	color PickingClr;
 	Action* RecordActionList[MaxRecActCount]; //List of Recorded Actions
 	int RecActCount = 0; //No. of Recorded Actions
 	
@@ -53,6 +54,7 @@ public:
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
 	void RemoveFigure(CFigure* pFig);
+	void SelectFigure(CFigure*);
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	void SetSelectedFig(CFigure* );
 	CFigure* GetSelectedFig();
@@ -83,6 +85,11 @@ public:
 	//Functions for managing reading parameters
 	bool IsRead();
 	void SettoRead();
+	// -- Pick & Hide Functions
+	//set & get Picking shape or color
+	void PickRand();
+	void PickShape();
+
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
@@ -90,6 +97,8 @@ public:
 
 	void SaveALL(ofstream& OutFile);
 	static string ColorString(color C);
+	static color StringColor(string C);
+	static string ShapeString(CFigure*);
 };
 
 #endif

@@ -7,6 +7,13 @@ CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
 {
 	Center = P1;
 	L = 120;
+	S = HEXAGON;
+
+}
+
+CHexagon::CHexagon(int id):CFigure(id)
+{
+	L = 120;
 }
 
 
@@ -41,4 +48,17 @@ void CHexagon::Save(ofstream& OutFile) {
 	}
 	else
 		OutFile << "NO_FILL\n";
+}
+
+void CHexagon::Load(ifstream& Infile)
+{
+	string DrwClr, FillClr;
+	Infile >> Center.x >> Center.y >> DrwClr >> FillClr;
+	ChngDrawClr(ApplicationManager::StringColor(DrwClr));
+	if (FillClr != "NO_FILL")
+	{
+     ChngFillClr(ApplicationManager::StringColor(FillClr));
+	}
+	else
+		FigGfxInfo.isFilled = false;
 }
