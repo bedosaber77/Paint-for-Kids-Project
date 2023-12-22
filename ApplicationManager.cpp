@@ -124,7 +124,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case SHAPE_PLAY_PICK:
-			//pAct = new PickByShapeAction(this);
+			pAct = new PickByShapeAction(this);
+			break;
 
 		case SELECT:
 			pAct = new SelectFigureAction(this);
@@ -347,37 +348,47 @@ int ApplicationManager::GetMaxRecCount()
 	return MaxRecActCount;
 }
 
-CFigure* ApplicationManager::Rand()
+void ApplicationManager::PickRand()
 {
 	int R = rand() % FigCount;
 	PickingFig = FigList[R];
-	return FigList[R];
+	PickingClr = FigList[R]->GetColor();
 }
 
-color ApplicationManager::ColorRand()
-{
-	return Rand()->GetColor();
-}
 
 void ApplicationManager::PickShape()
 {
-	while (true)
+	pOut->PrintMessage("Pick all " + ShapeString(PickingFig) + " Shapes.");
+	ActionType Act;
+
+	bool cont = 1;
+	while (cont)
 	{
-		switch (GetUserAction())
+		/*Act = RESTART_PLAY;
+		switch (Act = GetUserAction())
 		{
 		case SHAPE_PLAY_PICK:
 		case COLORED_SHAPE_PLAY_PICK:
 		case COLOR_PLAY_PICK:
 		case RESTART_PLAY:
+			//return back all figs
+			//start the new game
 		case TO_DRAW:
-			//
+			//return back all figs
+			cont = 0;
 			break;
+
 		default:
-			Point SelectionPoint;
-			pIn->GetPointClicked(SelectionPoint.x, SelectionPoint.y);
-			CFigure* SF = GetFigure(SelectionPoint.x, SelectionPoint.y);
-			//if(dynamic_cast<SF>(PickingFig))
-		}
+		*/
+		Point PickPoint;
+		pIn->GetPointClicked(PickPoint.x, PickPoint.y);
+		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
+
+		if (PickingFig->GetShape() == PickedFig->GetShape())
+			PickedFig->SetHidden(1);
+
+		UpdateInterface();
+
 	}
 }
 
@@ -442,6 +453,35 @@ color ApplicationManager::StringColor(string C)
 	if (C == "YELLOW")   return YELLOW;
 	if (C == "RED")      return RED;
 	if (C == "BLUE")     return BLUE;
+}
+
+string ApplicationManager::ShapeString(CFigure* F)
+{
+	CFigure::Shape S = F->GetShape();
+	switch (S)
+	{
+	case CFigure::RECTANGLE:
+		return "RECTANGLE";
+		break;
+
+	case CFigure::TRIANGLE:
+		return "TRIANGLE";
+		break;
+
+	case CFigure::CIRCLE:
+		return "CIRCLE";
+		break;
+
+	case CFigure::SQUARE:
+		return "SQUARE";
+		break;
+
+	case CFigure::HEXAGON:
+		return "HEXAGON";
+		break;
+
+
+	}
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input

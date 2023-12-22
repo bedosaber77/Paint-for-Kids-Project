@@ -6,6 +6,7 @@ CSquare::CSquare(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
 	L = 180;
+	S = SQUARE;
 }
 
 CSquare::CSquare(int id) :CFigure(id)

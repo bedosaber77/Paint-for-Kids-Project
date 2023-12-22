@@ -42,6 +42,11 @@ color CFigure::GetColor()
 	return this->FigGfxInfo.FillClr;
 }
 
+CFigure::Shape CFigure::GetShape()
+{
+	return this->S;
+}
+
 void CFigure::SetHidden(bool H)
 {
 	Hidden = H;

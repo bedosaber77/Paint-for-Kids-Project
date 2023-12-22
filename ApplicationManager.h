@@ -21,7 +21,7 @@ private:
 
 	CFigure* SelectedFig; //Pointer to the selected figure   // Needs Setter and Getter ANAS IBRAHEM
 	CFigure* PickingFig; 
-	
+	color PickingClr;
 	Action* RecordActionList[MaxRecActCount]; //List of Recorded Actions
 	int RecActCount = 0; //No. of Recorded Actions
 	
@@ -68,8 +68,7 @@ public:
 
 	// -- Pick & Hide Functions
 	//set & get Picking shape or color
-	CFigure* Rand();
-	color ColorRand();
+	void PickRand();
 	void PickShape();
 
 	// -- Interface Management Functions
@@ -80,6 +79,7 @@ public:
 	void SaveALL(ofstream& OutFile);
 	static string ColorString(color C);
 	static color StringColor(string C);
+	static string ShapeString(CFigure*);
 };
 
 #endif

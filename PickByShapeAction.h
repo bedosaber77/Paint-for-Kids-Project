@@ -5,8 +5,7 @@
 #include "../ApplicationManager.h"
 class PickByShapeAction:public Action
 {
-	CFigure* PickedFig; //Constr.
-	
+	Output* pOut;
 public:
 	PickByShapeAction(ApplicationManager*);
 	void ReadActionParameters();

@@ -17,6 +17,9 @@ protected:
 	/// Add more parameters if needed.
 
 public:
+	enum Shape {RECTANGLE,CIRCLE,TRIANGLE,HEXAGON,SQUARE};
+	Shape S;
+
 	CFigure(GfxInfo FigureGfxInfo);
 	CFigure(int);
 	void SetSelected(bool s);	//select/unselect the figure
@@ -33,6 +36,7 @@ public:
 	///Decide the parameters that you should pass to each function	
 
 	color GetColor();//PICKANDHIDE
+	Shape GetShape();
 	void SetHidden(bool);
 	bool GetHidden();
 

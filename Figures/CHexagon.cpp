@@ -7,6 +7,8 @@ CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
 {
 	Center = P1;
 	L = 120;
+	S = HEXAGON;
+
 }
 
 CHexagon::CHexagon(int id):CFigure(id)

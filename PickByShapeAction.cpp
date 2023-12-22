@@ -2,7 +2,8 @@
 
 PickByShapeAction::PickByShapeAction(ApplicationManager* pApp):Action(pApp)
 {
-	PickedFig = pManager->Rand();
+	pOut = pManager->GetOutput();
+	pManager->PickRand();
 }
 
 void PickByShapeAction::ReadActionParameters()
@@ -11,4 +12,5 @@ void PickByShapeAction::ReadActionParameters()
 
 void PickByShapeAction::Execute()
 {
+	pManager->PickShape();
 }
