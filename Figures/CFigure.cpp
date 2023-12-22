@@ -25,10 +25,25 @@ bool CFigure::IsInclude(Point) const
 void CFigure::ChngDrawClr(color Dclr)
 {	FigGfxInfo.DrawClr = Dclr; }
 
+color CFigure::getDrawClr()
+{
+	return FigGfxInfo.DrawClr;
+}
+
 void CFigure::ChngFillClr(color Fclr)
 {	
 	FigGfxInfo.isFilled = true;
 	FigGfxInfo.FillClr = Fclr; 
+}
+
+color CFigure::getFillClr()
+{
+		return FigGfxInfo.FillClr;
+}
+
+bool CFigure::IsFilled()
+{
+	return FigGfxInfo.isFilled;
 }
 
 void CFigure::PrintInfo(Output* pOut)

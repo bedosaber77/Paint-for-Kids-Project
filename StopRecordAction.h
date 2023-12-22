@@ -12,5 +12,10 @@ public:
 	StopRecordAction(ApplicationManager*);
 	virtual void ReadActionParameters();
 	virtual void Execute();
+
+
+	virtual void undo();
+	virtual void redo();
+
 };
 #endif

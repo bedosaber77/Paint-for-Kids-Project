@@ -25,3 +25,12 @@ void SaveAction::Execute()
 	pOut->PrintMessage("SAVED " + File_Name + " Done");
 	Outfile.close();
 }
+
+void SaveAction::undo()
+{
+}
+
+void SaveAction::redo()
+{
+}
+

@@ -187,9 +187,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PickByShapeAction.cpp" />
     <ClCompile Include="PlayRecordAction.cpp" />
+    <ClCompile Include="RedoAction.cpp" />
+    <ClCompile Include="stack.cpp" />
     <ClCompile Include="StartRecordAction.cpp" />
     <ClCompile Include="SaveAction.cpp" />
     <ClCompile Include="StopRecordAction.cpp" />
+    <ClCompile Include="UndoAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\AddCircAction.h" />
@@ -235,9 +238,12 @@
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="PickByShapeAction.h" />
     <ClInclude Include="PlayRecordAction.h" />
+    <ClInclude Include="RedoAction.h" />
+    <ClInclude Include="stack.h" />
     <ClInclude Include="StartRecordAction.h" />
     <ClInclude Include="SaveAction.h" />
     <ClInclude Include="StopRecordAction.h" />
+    <ClInclude Include="UndoAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

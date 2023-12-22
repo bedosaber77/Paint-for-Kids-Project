@@ -5,7 +5,9 @@
 #include "..\GUI\Output.h"
 
 AddHexAction::AddHexAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+ 
+}
 
 void AddHexAction::ReadActionParameters()
 {
@@ -30,14 +32,16 @@ void AddHexAction::ReadActionParameters()
 //Execute the action
 void AddHexAction::Execute()
 {
-	if (!pManager->IsPlayingRecord())
+	if (!pManager->IsPlayingRecord() || !pManager->IsRead())
 	{
 		//This action needs to read some parameters first
 		ReadActionParameters();
+		pManager->SettoRead();
 	}
 
 	//Create a hexagon with the parameters read from the user or Saved while Recording.
-	CHexagon* H = new CHexagon(P1, HexGfxInfo);
+	H = new CHexagon(P1, HexGfxInfo);
+	tmp = H;
 
 	//Add the hexagon to the list of figures
 	pManager->AddFigure(H);
@@ -46,4 +50,16 @@ void AddHexAction::Execute()
 	if (pManager->IsRecording())
 		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
 			pManager->RecordAction(this);
+}
+
+void AddHexAction::undo()
+{
+	if (H != NULL)
+		pManager->RemoveFigure(H);
+}
+
+void AddHexAction::redo()
+{
+	H = tmp;
+	pManager->AddFigure(H);
 }

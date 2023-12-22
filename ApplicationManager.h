@@ -6,7 +6,8 @@
 #include "GUI\input.h"
 #include "GUI\output.h"
 #include "Action.h"
-
+#include "stack.h"
+class stack;
 //Main class that manages everything in the application.
 class ApplicationManager
 {
@@ -17,8 +18,9 @@ class ApplicationManager
 
 private:
 	int FigCount;		//Actual number of figures
+	int DelFigCount;
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
-
+	CFigure* RecycleBin[MaxFigCount]; //List of All deleted figures
 	CFigure* SelectedFig; //Pointer to the selected figure   // Needs Setter and Getter ANAS IBRAHEM
 	
 	Action* RecordActionList[MaxRecActCount]; //List of Recorded Actions
@@ -26,11 +28,18 @@ private:
 	
 	bool IsRec = 0;
 	bool IsPlayingRec = 0;
+	bool Isread = 0;
 	
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
 
+	//Stacks For Undo and Redo Actions
+	stack* UndoActs;
+	stack* RedoActs;
+
+	//boolean variable to delete pAct
+	bool toDelete =0;
 
 public:	
 	ApplicationManager(); 
@@ -63,7 +72,17 @@ public:
 
 	int GetRecActCount();
 	int GetMaxRecCount();
+	//--------------------------Undo & Redo-----------------------------
 
+	// -- Undo And Redo Swapping functions
+	void AddtoRedo();
+	void AddtoUndo();
+
+	void UndoIT();
+	void RedoIT();
+	//Functions for managing reading parameters
+	bool IsRead();
+	void SettoRead();
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output

@@ -19,3 +19,11 @@ void StopRecordAction::Execute()
 {
 	ReadActionParameters();
 }
+
+void StopRecordAction::undo()
+{
+}
+
+void StopRecordAction::redo()
+{
+}

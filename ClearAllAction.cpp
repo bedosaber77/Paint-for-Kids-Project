@@ -14,3 +14,11 @@ void ClearAllAction::Execute()
 {
 	pManager->ClearFigures();
 }
+
+void ClearAllAction::undo()
+{
+}
+
+void ClearAllAction::redo()
+{
+}

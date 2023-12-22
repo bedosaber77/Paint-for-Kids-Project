@@ -54,4 +54,13 @@ void SelectFigureAction::Execute()
 
 }
 
+void SelectFigureAction::undo()
+{
+}
+
+void SelectFigureAction::redo()
+{
+}
+
+
 

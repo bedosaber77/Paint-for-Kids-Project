@@ -1,6 +1,6 @@
 #ifndef ACTION_H
 #define ACTION_H
-
+#include "CFigure.h"
 #include "..\DefS.h"
 
 class ApplicationManager; //forward class declaration
@@ -22,6 +22,8 @@ public:
 	//Execute action (code depends on action type)
 	virtual void Execute() =0;
 
+	virtual void undo() = 0;
+	virtual void redo() = 0;
 };
 
 #endif

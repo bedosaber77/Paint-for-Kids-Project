@@ -7,6 +7,8 @@
 class AddRectAction: public Action
 {
 private:
+	CFigure* R;
+	CFigure* tmp;
 	Point P1, P2; //Rectangle Corners
 	GfxInfo RectGfxInfo;
 public:
@@ -17,6 +19,9 @@ public:
 	
 	//Add rectangle to the ApplicationManager
 	virtual void Execute() ;
+
+	virtual void undo();
+	virtual void redo();
 	
 };
 

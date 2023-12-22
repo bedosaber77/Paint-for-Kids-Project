@@ -24,3 +24,11 @@ void PlayRecordAction::Execute()
 {
 	ReadActionParameters();
 }
+
+void PlayRecordAction::undo()
+{
+}
+
+void PlayRecordAction::redo()
+{
+}

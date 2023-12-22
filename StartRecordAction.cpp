@@ -27,3 +27,11 @@ void StartRecordAction::Execute()
 	ReadActionParameters();
 
 }
+
+void StartRecordAction::undo()
+{
+}
+
+void StartRecordAction::redo()
+{
+}

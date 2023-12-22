@@ -19,6 +19,9 @@
     <Filter Include="Application Manager">
       <UniqueIdentifier>{be3a4e10-d854-4bf8-9add-2f85904b4103}</UniqueIdentifier>
     </Filter>
+    <Filter Include="My Stack">
+      <UniqueIdentifier>{72f99876-3bab-48d0-81eb-338aef3a52b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMUgraphicsLib\auxil.cpp">
@@ -191,6 +194,15 @@
     <ClCompile Include="StopRecordAction.cpp" />
     <ClCompile Include="PlayRecordAction.cpp" />
     <ClCompile Include="PickByShapeAction.cpp" />
+    <ClCompile Include="stack.cpp">
+      <Filter>My Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="UndoAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="RedoAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -321,6 +333,15 @@
     <ClInclude Include="StopRecordAction.h" />
     <ClInclude Include="PlayRecordAction.h" />
     <ClInclude Include="PickByShapeAction.h" />
+    <ClInclude Include="stack.h">
+      <Filter>My Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="UndoAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="RedoAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
