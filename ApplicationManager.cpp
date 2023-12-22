@@ -14,6 +14,8 @@
 #include "SaveAction.h"
 #include "LoadAction.h"
 #include "PickByShapeAction.h"
+#include "PickByColorAction.h"
+#include "PickByColoredShapes.h"
 #include "Sound.h"
 #include "MuteAction.h"
 #include "UndoAction.h"
@@ -172,9 +174,21 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			toDelete = 1;
 			break;
 
+			// ########################## PICK & HIDE ##########################
+
 		case SHAPE_PLAY_PICK:
 			pAct = new PickByShapeAction(this);
 			break;
+
+		case COLOR_PLAY_PICK:
+			pAct = new PickByColorAction(this);
+			break;
+
+		case COLORED_SHAPE_PLAY_PICK:
+			pAct = new PickByColoredShapesAction(this);
+			break;
+
+			///////////////////////////////////////////////////////////////////
 
 		case SELECT:
 			pAct = new SelectFigureAction(this);
@@ -425,12 +439,69 @@ void ApplicationManager::PickRand()
 	int R = rand() % FigCount;
 	PickingFig = FigList[R];
 	PickingClr = FigList[R]->GetColor();
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (PickingFig->GetShape() == FigList[i]->GetShape())
+			PickingShapeCount++;
+
+		if (PickingFig->GetColor() == FigList[i]->GetColor())
+			PickingColorCount++;
+
+		if (PickingFig->GetColor() == FigList[i]->GetColor() && PickingFig->GetShape() == FigList[i]->GetShape())
+			PickingColoredShapeCount++;
+	}
 }
 
 
-void ApplicationManager::PickShape()
+void ApplicationManager::PickByShape()
 {
 	pOut->PrintMessage("Pick all " + ShapeString(PickingFig) + " Shapes.");
+	ActionType Act;
+
+	bool cont = 1;
+	int CorrectPicks = 0;
+	int WrongPicks = 0;
+	while (cont)
+	{
+		/*Act = RESTART_PLAY;
+		switch (Act = GetUserAction())
+		{
+		case SHAPE_PLAY_PICK:
+		case COLORED_SHAPE_PLAY_PICK:
+		case COLOR_PLAY_PICK:
+		case RESTART_PLAY:
+			//return back all figs
+			//start the new game
+		case TO_DRAW:
+			//return back all figs
+			cont = 0;
+			break;
+
+		default:
+		*/
+		Point PickPoint;
+		pIn->GetPointClicked(PickPoint.x, PickPoint.y);
+		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
+
+		if (PickingFig->GetShape() == PickedFig->GetShape())
+		{
+			PickedFig->SetHidden(1);
+			CorrectPicks++;
+		}
+		else
+			WrongPicks++;
+		if (CorrectPicks == PickingShapeCount)
+		{
+			pOut->PrintMessage("Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
+		}
+		UpdateInterface();
+
+	}
+}
+
+void ApplicationManager::PickByColor()
+{
+	pOut->PrintMessage("Pick all " + ColorString(PickingClr) + " filled Shapes.");
 	ActionType Act;
 
 	bool cont = 1;
@@ -456,7 +527,43 @@ void ApplicationManager::PickShape()
 		pIn->GetPointClicked(PickPoint.x, PickPoint.y);
 		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
 
-		if (PickingFig->GetShape() == PickedFig->GetShape())
+		if (PickingFig->GetColor() == PickedFig->GetColor() && PickingFig->GetShape() == PickedFig->GetShape())
+			PickedFig->SetHidden(1);
+
+		UpdateInterface();
+
+	}
+}
+
+void ApplicationManager::PickByColoredShapes()
+{
+	pOut->PrintMessage("Pick all " + ColorString(PickingClr) + " filled " + ShapeString(PickingFig) + " Shapes.");
+	ActionType Act;
+
+	bool cont = 1;
+	while (cont)
+	{
+		/*Act = RESTART_PLAY;
+		switch (Act = GetUserAction())
+		{
+		case SHAPE_PLAY_PICK:
+		case COLORED_SHAPE_PLAY_PICK:
+		case COLOR_PLAY_PICK:
+		case RESTART_PLAY:
+			//return back all figs
+			//start the new game
+		case TO_DRAW:
+			//return back all figs
+			cont = 0;
+			break;
+
+		default:
+		*/
+		Point PickPoint;
+		pIn->GetPointClicked(PickPoint.x, PickPoint.y);
+		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
+
+		if (PickingFig->GetColor() == PickedFig->GetColor())
 			PickedFig->SetHidden(1);
 
 		UpdateInterface();

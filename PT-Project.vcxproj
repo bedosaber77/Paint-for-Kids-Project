@@ -189,6 +189,8 @@
     <ClCompile Include="MoveByDragging.cpp" />
     <ClCompile Include="MoveFigureByPoint.cpp" />
     <ClCompile Include="MuteAction.cpp" />
+    <ClCompile Include="PickByColorAction.cpp" />
+    <ClCompile Include="PickByColoredShapes.cpp" />
     <ClCompile Include="PickByShapeAction.cpp" />
     <ClCompile Include="PlayRecordAction.cpp" />
     <ClCompile Include="Sound.cpp" />
@@ -245,6 +247,8 @@
     <ClInclude Include="MoveByDragging.h" />
     <ClInclude Include="MoveFigureByPoint.h" />
     <ClInclude Include="MuteAction.h" />
+    <ClInclude Include="PickByColorAction.h" />
+    <ClInclude Include="PickByColoredShapes.h" />
     <ClInclude Include="PickByShapeAction.h" />
     <ClInclude Include="PlayRecordAction.h" />
     <ClInclude Include="Sound.h" />

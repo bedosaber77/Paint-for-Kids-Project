@@ -12,7 +12,7 @@ void PickByShapeAction::ReadActionParameters()
 
 void PickByShapeAction::Execute()
 {
-	pManager->PickShape();
+	pManager->PickByShape();
 }
 
 void PickByShapeAction::undo()
