@@ -7,6 +7,8 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(Figure
 {
 	Corner1 = P1;
 	Corner2 = P2;
+	Center.x = (Corner1.x + Corner2.x) / 2;
+	Center.y = (Corner1.y + Corner2.y) / 2;
 	S = RECTANGLE;
 }
 
@@ -59,3 +61,30 @@ void CRectangle::Load(ifstream& Infile)
 	else
 		FigGfxInfo.isFilled = false;
 }
+
+Point CRectangle::GetCenter()
+{
+
+
+	return Center;
+
+}
+
+void CRectangle::Moveto(Point NewCenter)
+{
+
+	//Shifting Corners 
+	Corner1.x += (NewCenter.x - Center.x);
+	Corner1.y += (NewCenter.y - Center.y);
+
+	Corner2.x += (NewCenter.x - Center.x);
+	Corner2.y += (NewCenter.y - Center.y);
+
+
+	//Updating Center
+	Center = NewCenter;
+
+
+}
+
+

@@ -18,6 +18,7 @@
 #include "MuteAction.h"
 #include "UndoAction.h"
 #include "RedoAction.h"
+#include "MoveFigureByPoint.h"
 
 
 
@@ -72,9 +73,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		toDelete = 1;
 		break;
 		// ########################## Load Figures ##########################
-	case LOAD:
-		pAct = new LoadAction(this);
-		break;
+		case LOAD:
+			pAct = new LoadAction(this);
+			break;
 		// ########################## Delete Figure ##########################
 
 		case ERASE:
@@ -82,6 +83,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			UndoActs->push(pAct);
 			toDelete = 0;
 			RedoActs->clear();
+			break;
+
+		// ########################## Move Figure ##########################
+
+		case MOVE:
+			pAct = new MoveFigureByPoint(this);
 			break;
 
 
@@ -281,6 +288,15 @@ void ApplicationManager::RemoveFigure(CFigure* pFig)
 	if (DelFigCount < MaxFigCount)
 		RecycleBin[DelFigCount++] = pFig;
 
+}
+	else if (SelectFig != NULL && SelectFig->IsSelected() == true) {
+		SelectFig->SetSelected(false);
+		SelectFig = NULL;
+		SetSelectedFig(SelectFig);
+		pOut->PrintMessage("Figure is Deselected");
+	}
+	else if (SelectFig == NULL)
+		pOut->PrintMessage("No Figure Selected, Please Click On Figure");
 }
 
 ////////////////////////////////////////////////////////////////////////////////////

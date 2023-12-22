@@ -15,5 +15,8 @@ public:
 	void PrintInfo(Output* pOut);
 	virtual void Save(ofstream& OutFile);
 	virtual void Load(ifstream& Infile);
+	Point GetCenter();
+	void  Moveto(Point NewCenter);
+
 };
 

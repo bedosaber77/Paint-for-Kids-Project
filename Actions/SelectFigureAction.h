@@ -5,6 +5,7 @@ class SelectFigureAction :
 {
 
 private :
+
     Point SelectionPoint;
 
 

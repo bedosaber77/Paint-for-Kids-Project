@@ -62,3 +62,15 @@ void CHexagon::Load(ifstream& Infile)
 	else
 		FigGfxInfo.isFilled = false;
 }
+
+Point CHexagon::GetCenter()
+{
+	return Center;
+}
+
+void CHexagon::Moveto(Point NewCenter)
+{
+	//Updating Center
+	Center = NewCenter;
+
+}

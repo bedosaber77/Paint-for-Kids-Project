@@ -59,3 +59,25 @@ void CCircle::Load(ifstream& Infile)
 	else
 		FigGfxInfo.isFilled = false;
 }
+
+Point CCircle::GetCenter()
+{
+	return Center;
+}
+
+void CCircle::Moveto(Point NewCenter)
+{
+
+
+	//Updating Point On Circle
+
+
+	PointOnCircle.x += (NewCenter.x - Center.x);
+	PointOnCircle.y += (NewCenter.y - Center.y);
+
+	//Updating Center
+
+	Center = NewCenter;
+
+
+}
