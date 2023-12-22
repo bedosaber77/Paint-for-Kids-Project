@@ -14,7 +14,7 @@ DeleteFigureAction::DeleteFigureAction(ApplicationManager* pApp) : Action(pApp)
 void DeleteFigureAction::ReadActionParameters()
 {
 	Figure = pManager->GetSelectedFig();
-
+	Backup = Figure;
 }
 
 void DeleteFigureAction::Execute()
@@ -29,6 +29,7 @@ void DeleteFigureAction::Execute()
 		Figure->SetSelected(false);
 		pManager->SetSelectedFig(NULL);
 		pManager->RemoveFigure(Figure);
+		Figure = NULL;
 
 	}
 
@@ -38,4 +39,22 @@ void DeleteFigureAction::Execute()
 			pManager->RecordAction(this);
 
 
+}
+
+void DeleteFigureAction::undo()
+{
+	if (Figure == NULL) {
+		Figure = Backup;
+		pManager->AddFigure(Figure);
+		Backup = NULL;
+	}
+}
+
+void DeleteFigureAction::redo()
+{
+	if (Backup == NULL){ 
+		pManager->RemoveFigure(Figure);
+		Backup = Figure;
+		Figure = NULL;
+	}
 }

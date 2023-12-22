@@ -8,6 +8,9 @@ class ChangeColorAction :
 private:
     char FillDraw;
     color ColorPicked;
+    color LastDrawClr;
+    color LastFillClr;
+    bool wasFilled;
     CFigure* FigurePt;
     ActionType ColorPick;
 
@@ -20,7 +23,8 @@ public:
 
 
 
-
+    virtual void undo();
+    virtual void redo();
 
 };
 

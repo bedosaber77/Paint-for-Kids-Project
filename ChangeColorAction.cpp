@@ -23,20 +23,26 @@ void ChangeColorAction::Execute()
 		pOut->PrintMessage("No Figure Selected Please Select Figure ");
 	}
 	else {
+		
 		pOut->CreateColorToolBar();
-		if(!pManager->IsPlayingRecord())
+		if (!pManager->IsPlayingRecord()) {
+			LastDrawClr = FigurePt->getDrawClr();
+			LastFillClr = FigurePt->getFillClr();
+			wasFilled = FigurePt->IsFilled();
+
 			ColorPick = pManager->GetUserAction();
-
+	
 			switch (ColorPick) {
-			case  PICK_BLACK:  { ColorPicked = BLACK;  } break;
-			case  PICK_BLUE:   { ColorPicked = BLUE;   } break;
-			case  PICK_RED:    { ColorPicked = RED;    } break;
+			case  PICK_BLACK: { ColorPicked = BLACK;  } break;
+			case  PICK_BLUE: { ColorPicked = BLUE;   } break;
+			case  PICK_RED: { ColorPicked = RED;    } break;
 			case  PICK_YELLOW: { ColorPicked = YELLOW; } break;
-			case  PICK_GREEN:  { ColorPicked = GREEN;  } break;
+			case  PICK_GREEN: { ColorPicked = GREEN;  } break;
 			case  PICK_ORANGE: { ColorPicked = ORANGE; } break;
-			case  EMPTY:       { ColorPicked = (FillDraw == 'F') ? UI.FillColor : UI.DrawColor; } break;
+			case  EMPTY: { ColorPicked = (FillDraw == 'F') ? UI.FillColor : UI.DrawColor; } break;
 			}
-
+		}
+		
 			if (FillDraw == 'F')
 			{
 				UI.FillColor = ColorPicked;
@@ -60,3 +66,40 @@ void ChangeColorAction::Execute()
 			pManager->RecordAction(this);
 }
 	
+void ChangeColorAction::undo()
+{
+	if (FillDraw == 'F')
+	{
+		if (!wasFilled) {
+			UI.FillColor = UI.BkGrndColor;
+			FigurePt->ChngFillClr(UI.FillColor);
+		}
+		else {
+			UI.FillColor = LastFillClr;
+			FigurePt->ChngFillClr(UI.FillColor);
+			UI.isFilled = true;
+		}
+	}
+
+	else if (FillDraw == 'D')
+	{
+		UI.DrawColor = LastDrawClr;
+		FigurePt->ChngDrawClr(UI.DrawColor);
+	}
+}
+
+void ChangeColorAction::redo()
+{
+	if (FillDraw == 'F')
+	{
+		UI.FillColor = ColorPicked;
+		FigurePt->ChngFillClr(UI.FillColor);
+		UI.isFilled = true;
+	}
+
+	else if (FillDraw == 'D')
+	{
+		UI.DrawColor = ColorPicked;
+		FigurePt->ChngDrawClr(UI.DrawColor);
+	}
+}

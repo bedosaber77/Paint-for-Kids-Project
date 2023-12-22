@@ -5,6 +5,8 @@ class AddTriAction :
 {
 
 private:
+	CFigure* T;
+	CFigure* tmp;
 	Point P1, P2, P3; //Triangle Corners
 	GfxInfo TriGfxInfo;
 public:
@@ -16,5 +18,7 @@ public:
 	//Add Triangle to the ApplicationManager
 	virtual void Execute();
 
+	virtual void undo();
+	virtual void redo();
 };
 

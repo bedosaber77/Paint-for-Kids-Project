@@ -1,25 +1,15 @@
 #pragma once
 #include "Action.h"
-#include "CFigure.h"
-class DeleteFigureAction :
+#include "stack.h"  
+
+class UndoAction :
     public Action
 {
-
-private:
-    CFigure* Figure;
-    CFigure* Backup;
-
 public:
-
-
-    DeleteFigureAction(ApplicationManager* pApp);
+    UndoAction(ApplicationManager* pApp);
     virtual void ReadActionParameters();
     virtual void Execute();
-
-
-
     virtual void undo();
     virtual void redo();
-
 };
 

@@ -28,7 +28,10 @@ public:
 	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
 	virtual bool IsInclude(Point) const; //make it pure Anas Ibrahem
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
+	color getDrawClr();
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
+	color getFillClr();
+	bool IsFilled();
 
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure

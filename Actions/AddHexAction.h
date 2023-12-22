@@ -5,6 +5,8 @@ class AddHexAction :
 {
 
 	private:
+		CFigure* H;
+		CFigure* tmp;
 		Point P1; //Hexagon Center Point
 		GfxInfo HexGfxInfo;
 	public:
@@ -16,5 +18,7 @@ class AddHexAction :
 		//Add Hexagon to the ApplicationManager
 		virtual void Execute();
 
+		virtual void undo();
+		virtual void redo();
 };
 

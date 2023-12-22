@@ -38,15 +38,16 @@ void AddSquAction::Execute()
 	}
 
 
-	if (!pManager->IsPlayingRecord())
+	if (!pManager->IsPlayingRecord() || !pManager->IsRead())
 	{
 		//This action needs to read some parameters first
 		ReadActionParameters();
+		pManager->SettoRead();
 	}
 
 	//Create a square with the parameters read from the user or Saved while Recording.
-	CSquare* S = new CSquare(P1, SquGfxInfo);
-	
+	S = new CSquare(P1, SquGfxInfo);
+	tmp = S;
 
 	//Add the square to the list of figures
 	pManager->AddFigure(S);
@@ -55,4 +56,16 @@ void AddSquAction::Execute()
 	if (pManager->IsRecording())
 		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
 			pManager->RecordAction(this);
+}
+
+void AddSquAction::undo()
+{
+	if (S != NULL)
+		pManager->RemoveFigure(S);
+}
+
+void AddSquAction::redo()
+{
+	S = tmp;
+	pManager->AddFigure(S);
 }

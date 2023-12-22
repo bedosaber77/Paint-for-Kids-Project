@@ -5,7 +5,8 @@
 #include "..\GUI\Output.h"
 
 AddCircAction::AddCircAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+}
 
 void AddCircAction::ReadActionParameters()
 {
@@ -42,15 +43,17 @@ void AddCircAction::Execute()
 	}
 
 
-	if (!pManager->IsPlayingRecord())
+	if (!pManager->IsPlayingRecord() || !pManager->IsRead())
 	{
 		//This action needs to read some parameters first
 		ReadActionParameters();
+		pManager->SettoRead();
 	}
 
 	//Create a circle with the parameters read from the user or Saved while Recording.
-	CCircle* C = new CCircle(P1, P2, CircGfxInfo);
-	
+	C = new CCircle(P1, P2, CircGfxInfo);
+	tmp = C;
+
 	//Add the circle to the list of figures
 	pManager->AddFigure(C);
 
@@ -61,3 +64,16 @@ void AddCircAction::Execute()
 
 	
 }
+
+void AddCircAction::undo()
+{
+	if(C != NULL)
+		pManager->RemoveFigure(C);
+}
+
+void AddCircAction::redo()
+{
+	C = tmp;
+	pManager->AddFigure(C);
+}
+

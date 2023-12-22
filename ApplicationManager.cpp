@@ -16,6 +16,9 @@
 #include "PickByShapeAction.h"
 #include "Sound.h"
 #include "MuteAction.h"
+#include "UndoAction.h"
+#include "RedoAction.h"
+
 
 
 //Constructor
@@ -27,7 +30,13 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output;
 	pIn = pOut->CreateInput();
 	
+	UndoActs = new stack();
+	RedoActs = new stack();
+
+
 	FigCount = 0;
+	DelFigCount = 0;
+
 		
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
@@ -60,6 +69,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		// ########################## Save Figures ##########################
 	case SAVE_GRAPH:
 		pAct = new SaveAction(this);
+		toDelete = 1;
 		break;
 		// ########################## Load Figures ##########################
 	case LOAD:
@@ -69,6 +79,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case ERASE:
 			pAct = new DeleteFigureAction(this);
+			UndoActs->push(pAct);
+			toDelete = 0;
+			RedoActs->clear();
 			break;
 
 
@@ -78,50 +91,75 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case FILL_COLOR_PICK:
 			pAct = new ChangeColorAction(this,'F');
+			toDelete = 0;
+			UndoActs->push(pAct);
+			RedoActs->clear();
 			break;
 
 		case BORDER_COLOR_PICK:
 			pAct = new ChangeColorAction(this,'D');
+			toDelete = 0;
+			UndoActs->push(pAct);
+			RedoActs->clear();
 			break;
 
 
 			// ########################## Add Figure ##########################
 		case DRAW_RECT:
 			pAct = new AddRectAction(this);
+			toDelete = 0;
+			UndoActs->push(pAct);
+			RedoActs->clear();
 			break;
 
 		case DRAW_HEX:
 			pAct = new AddHexAction(this);
+			toDelete = 0;
+			UndoActs->push(pAct);
+			RedoActs->clear();
 			break;
 
 		case DRAW_SQU:
 			pAct = new AddSquAction(this);
+			toDelete = 0;
+			UndoActs->push(pAct);
+			RedoActs->clear();
 			break;
 
 		case DRAW_TRI:
 			pAct = new AddTriAction(this);
+			toDelete = 0;
+			UndoActs->push(pAct);
+			RedoActs->clear();
 			break;
 
 		case DRAW_CIRC:
 			pAct = new AddCircAction(this);
+			toDelete = 0;
+			UndoActs->push(pAct);
+			RedoActs->clear();
 			break;
 
 		case CLEARALL:
 			pAct = new ClearAllAction(this);
+			toDelete = 1;
 			break;
 
 		// ########################## Recording ##########################
 			
 		case START_REC:
 			pAct = new StartRecordAction(this);
+			toDelete = 1;
 			break;
 
 		case STOP_REC:
 			pAct = new StopRecordAction(this);
+			toDelete = 1;
 			break;
 
 		case PLAY_REC:
 			pAct = new PlayRecordAction(this);
+			toDelete = 1;
 			break;
 
 		case SHAPE_PLAY_PICK:
@@ -130,6 +168,19 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case SELECT:
 			pAct = new SelectFigureAction(this);
+			toDelete = 1;
+			break;
+
+			// ########################## Undo & Redo ##########################
+
+		case UNDO:
+			pAct = new UndoAction(this);
+			toDelete = 1;
+			break;
+
+		case REDO:
+			pAct = new RedoAction(this);
+			toDelete = 1;
 			break;
 
 		case SHAPES_PICK :
@@ -157,7 +208,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case STATUS:	//a click on the status bar ==> no action
 			return;
 	}
-	/*if (IsRecording())
+	if (IsRecording())
 	{
 		switch (ActType)
 		{
@@ -169,13 +220,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = NULL;
 			break;
 		}
-	}*/
+	}
 
 	//Execute the created action
 	if (pAct != NULL)
 	{
 		pAct->Execute();//Execute
-		if (!IsRecording())
+		if (!IsRecording() && toDelete)
 		{
 			delete pAct;	//You may need to change this line depending to your implementation of undo and redo
 			pAct = NULL;
@@ -189,6 +240,20 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 //Add a figure to the list of figures
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
+	bool found = 0;
+	int i = 0;
+	while (i < DelFigCount && !found) {
+		if (pFig == RecycleBin[i]) {
+			found = 1;
+			for (int j = i; j < DelFigCount - 1; j++)
+			{
+				RecycleBin[j] = RecycleBin[j + 1]; // Shifting All Remaining Figures
+			}
+			RecycleBin[DelFigCount - 1] = NULL;
+			DelFigCount--;
+		}
+		i++;
+	}
 	if (FigCount < MaxFigCount)
 		FigList[FigCount++] = pFig;
 }
@@ -203,7 +268,6 @@ void ApplicationManager::RemoveFigure(CFigure* pFig)
 		if (pFig == FigList[i])
 		{
 			found = 1;
-			delete FigList[i];
 			for (int j = i; j < FigCount - 1; j++)
 			{
 				FigList[j] = FigList[j + 1]; // Shifting All Remaining Figures
@@ -214,6 +278,8 @@ void ApplicationManager::RemoveFigure(CFigure* pFig)
 		i++;
 
 	}
+	if (DelFigCount < MaxFigCount)
+		RecycleBin[DelFigCount++] = pFig;
 
 }
 
@@ -284,10 +350,15 @@ int ApplicationManager::GetFigCount()
 
 void ApplicationManager::ClearFigures()
 {
+	UndoActs->clear();
+	RedoActs->clear();
+	for (int i = 0; i < DelFigCount; i++)
+		delete RecycleBin[i];
 	for (int i = 0; i < FigCount; i++) {
 		delete FigList[i];
 	}
 	FigCount = 0;
+	DelFigCount = 0;
 	SelectedFig = NULL;
 	pOut->ResetColors();//Anas Magdy: Ask if this is the right Place or Not
 }
@@ -403,6 +474,46 @@ void ApplicationManager::PickShape()
 	}
 }
 
+void ApplicationManager::AddtoRedo()
+{
+	if(!UndoActs->isEmpty())
+		RedoActs->push(UndoActs->Top());
+	
+}
+
+void ApplicationManager::AddtoUndo()
+{
+	if (!RedoActs->isEmpty())
+		UndoActs->push(RedoActs->Top());
+
+}
+
+void ApplicationManager::UndoIT()
+{
+	if (!UndoActs->isEmpty()) {
+		UndoActs->Top()->undo();
+		UndoActs->pop();
+	}
+}
+
+void ApplicationManager::RedoIT()
+{
+	if (!RedoActs->isEmpty()) {
+		RedoActs->Top()->redo();
+		RedoActs->pop();
+	}
+}
+
+bool ApplicationManager::IsRead()
+{
+	return Isread;
+}
+
+void ApplicationManager::SettoRead()
+{
+	Isread = true;
+}
+
 
 //==================================================================================//
 //							Interface Management Functions							//
@@ -507,6 +618,8 @@ ApplicationManager::~ApplicationManager()
 {
 	for(int i=0; i<FigCount; i++)
 		delete FigList[i];
+	for (int i = 0; i < DelFigCount; i++)
+		delete RecycleBin[i];
 	delete pIn;
 	delete pOut;
 	
