@@ -86,6 +86,7 @@ public:
 	// -- Pick & Hide Functions
 	//set & get Picking shape or color
 	void PickRand();
+	void RestartGame();
 	void PickByShape();
 	void PickByColor();
 	void PickByColoredShapes();

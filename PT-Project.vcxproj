@@ -193,6 +193,7 @@
     <ClCompile Include="PickByColoredShapes.cpp" />
     <ClCompile Include="PickByShapeAction.cpp" />
     <ClCompile Include="PlayRecordAction.cpp" />
+    <ClCompile Include="RestartGame.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="RedoAction.cpp" />
     <ClCompile Include="stack.cpp" />
@@ -251,6 +252,7 @@
     <ClInclude Include="PickByColoredShapes.h" />
     <ClInclude Include="PickByShapeAction.h" />
     <ClInclude Include="PlayRecordAction.h" />
+    <ClInclude Include="RestartGame.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="RedoAction.h" />
     <ClInclude Include="stack.h" />
