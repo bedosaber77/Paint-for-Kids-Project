@@ -18,3 +18,11 @@ void Sound::Execute()
 		pOut->PrintMessage("Sound IS ON");
 		UI.isSoundON = true;
 }
+
+void Sound::undo()
+{
+}
+
+void Sound::redo()
+{
+}

@@ -194,9 +194,7 @@
     <ClCompile Include="StopRecordAction.cpp" />
     <ClCompile Include="PlayRecordAction.cpp" />
     <ClCompile Include="PickByShapeAction.cpp" />
-    <ClCompile Include="LoadAction.cpp" />
     <ClCompile Include="Sound.cpp" />
-    <ClCompile Include="MuteAction.cpp" />
     <ClCompile Include="stack.cpp">
       <Filter>My Stack</Filter>
     </ClCompile>
@@ -204,6 +202,12 @@
       <Filter>Action Classes</Filter>
     </ClCompile>
     <ClCompile Include="RedoAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="MuteAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -336,7 +340,6 @@
     <ClInclude Include="StopRecordAction.h" />
     <ClInclude Include="PlayRecordAction.h" />
     <ClInclude Include="PickByShapeAction.h" />
-    <ClInclude Include="LoadAction.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="MuteAction.h" />
     <ClInclude Include="stack.h">
@@ -346,6 +349,9 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="RedoAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

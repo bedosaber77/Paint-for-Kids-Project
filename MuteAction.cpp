@@ -16,3 +16,11 @@ void MuteAction::Execute()
 	UI.isSoundON = false;
 	pOut->PrintMessage("Sound IS OFF");
 }
+
+void MuteAction::undo()
+{
+}
+
+void MuteAction::redo()
+{
+}

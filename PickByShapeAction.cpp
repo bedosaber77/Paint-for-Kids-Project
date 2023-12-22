@@ -14,3 +14,11 @@ void PickByShapeAction::Execute()
 {
 	pManager->PickShape();
 }
+
+void PickByShapeAction::undo()
+{
+}
+
+void PickByShapeAction::redo()
+{
+}

@@ -77,3 +77,11 @@ void LoadAction::Execute()
 		}
 	}
 }
+
+void LoadAction::undo()
+{
+}
+
+void LoadAction::redo()
+{
+}

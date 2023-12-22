@@ -10,7 +10,8 @@ public:
 	PickByShapeAction(ApplicationManager*);
 	void ReadActionParameters();
 	void Execute();
-
+	virtual void undo();
+	virtual void redo();
 };
 
 #endif
