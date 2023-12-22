@@ -71,6 +71,8 @@ ActionType Input::GetUserAction() const
 			case ITM_STOPREC:return STOP_REC;
 			case ITM_PLAYREC:return PLAY_REC;
 			case ITM_DELETE:return ERASE;
+			case ITM_SOUND:return UNMUTE;
+			case ITM_MUTE:return MUTE;
 			case ITM_EXIT: return EXIT;	
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}

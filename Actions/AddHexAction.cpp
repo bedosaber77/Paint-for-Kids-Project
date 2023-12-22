@@ -30,6 +30,11 @@ void AddHexAction::ReadActionParameters()
 //Execute the action
 void AddHexAction::Execute()
 {
+	//play Sound if on
+	if (pManager->GetSoundStatues()) {
+		PlaySound("Sounds\\hexagon.wav", NULL, SND_ASYNC);
+	}
+
 	if (!pManager->IsPlayingRecord())
 	{
 		//This action needs to read some parameters first

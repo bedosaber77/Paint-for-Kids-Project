@@ -22,7 +22,8 @@ Output::Output() : lastmsg(" ")
 	UI.StatusBarColor = PURPLE;
 	UI.ToolBarColor = WHITE;
 	UI.PenWidth = 3;	//width of the figures frames
-
+	UI.isSoundON = true;    //Default Sound is ON
+	
 	//Create the output window
 	pWind = CreateWind(UI.width, UI.height, UI.wx, UI.wy);
 	//Change the title
@@ -107,6 +108,8 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_STARTREC] = "images\\MenuItems\\Menu_StartRecord.jpg";
 	MenuItemImages[ITM_FILL] = "images\\MenuItems\\Menu_Fill.jpg";
 	MenuItemImages[ITM_DELETE] = "images\\MenuItems\\Menu_Delete.jpg";
+	MenuItemImages[ITM_SOUND] = "images\\MenuItems\\sound.jpg";
+	MenuItemImages[ITM_MUTE] = "images\\MenuItems\\mute.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 
 

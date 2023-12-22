@@ -36,6 +36,8 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_PLAYREC,
 	ITM_CLEARALL,
 	ITM_DELETE,
+	ITM_SOUND,
+	ITM_MUTE,
 	ITM_EXIT,		//Exit item
 	
 	DRAW_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
@@ -95,7 +97,7 @@ struct UI_Info	//User Interface Info.
 		ToolBarHeight,		//Tool Bar Height (distance from top of window to bottom line of toolbar)
 		MenuItemWidth;		//Width of each item in toolbar menu
 	
-
+	bool isSoundON;             //Sound 
 	bool isFilled;          //Is filled Defualt
 	color DrawColor;		//Drawing color
 	color FillColor;		//Filling color

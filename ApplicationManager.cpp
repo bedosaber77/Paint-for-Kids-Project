@@ -14,7 +14,8 @@
 #include "SaveAction.h"
 #include "LoadAction.h"
 #include "PickByShapeAction.h"
-
+#include "Sound.h"
+#include "MuteAction.h"
 
 
 //Constructor
@@ -142,7 +143,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case TO_PLAY:
 			pOut->CreatePlayToolBar();
 			break;
-
+		case UNMUTE:
+			pAct = new Sound(this);
+			break;
+		case MUTE:
+			pAct = new MuteAction(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			
@@ -346,6 +352,11 @@ int ApplicationManager::GetRecActCount()
 int ApplicationManager::GetMaxRecCount()
 {
 	return MaxRecActCount;
+}
+
+bool ApplicationManager::GetSoundStatues()
+{
+	return UI.isSoundON;
 }
 
 void ApplicationManager::PickRand()

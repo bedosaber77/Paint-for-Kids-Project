@@ -52,6 +52,8 @@ enum ActionType //The actions supported (you can add more if needed)
 	PLAY_REC,
 	ERASE,
 
+	MUTE,
+	UNMUTE
 
 
 };

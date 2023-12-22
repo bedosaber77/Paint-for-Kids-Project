@@ -32,6 +32,12 @@ void AddSquAction::ReadActionParameters()
 //Execute the action
 void AddSquAction::Execute()
 {
+	//play Sound if on
+	if (pManager->GetSoundStatues()) {
+		PlaySound("Sounds\\square.wav", NULL, SND_ASYNC);
+	}
+
+
 	if (!pManager->IsPlayingRecord())
 	{
 		//This action needs to read some parameters first

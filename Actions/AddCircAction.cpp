@@ -19,7 +19,7 @@ void AddCircAction::ReadActionParameters()
 	pIn->GetPointClicked(P1.x, P1.y);
 
 	pOut->PrintMessage("New Circle: Click at a Point On The Circle");
-
+	
 	//Read The Point On Circle and store in point P2
 	pIn->GetPointClicked(P2.x, P2.y);
 
@@ -35,6 +35,13 @@ void AddCircAction::ReadActionParameters()
 //Execute the action
 void AddCircAction::Execute()
 {
+	
+	//play Sound if on
+	if (pManager->GetSoundStatues()) {
+		PlaySound("Sounds\\circle.wav", NULL, SND_ASYNC);
+	}
+
+
 	if (!pManager->IsPlayingRecord())
 	{
 		//This action needs to read some parameters first
@@ -43,7 +50,7 @@ void AddCircAction::Execute()
 
 	//Create a circle with the parameters read from the user or Saved while Recording.
 	CCircle* C = new CCircle(P1, P2, CircGfxInfo);
-
+	
 	//Add the circle to the list of figures
 	pManager->AddFigure(C);
 
@@ -51,4 +58,6 @@ void AddCircAction::Execute()
 	if (pManager->IsRecording())
 		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
 			pManager->RecordAction(this);
+
+	
 }

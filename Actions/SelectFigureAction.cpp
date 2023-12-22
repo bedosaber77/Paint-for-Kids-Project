@@ -24,6 +24,12 @@ void SelectFigureAction::Execute()
 {
 	Output* pOut = pManager->GetOutput();
 
+	//play Sound if on
+	if (pManager->GetSoundStatues()) {
+		PlaySound("Sounds\\select.wav", NULL, SND_ASYNC);
+	}
+
+
 	if (!pManager->IsPlayingRecord())
 	{
 		//This action needs to read some parameters first

@@ -186,8 +186,10 @@
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="LoadAction.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MuteAction.cpp" />
     <ClCompile Include="PickByShapeAction.cpp" />
     <ClCompile Include="PlayRecordAction.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="StartRecordAction.cpp" />
     <ClCompile Include="SaveAction.cpp" />
     <ClCompile Include="StopRecordAction.cpp" />
@@ -235,8 +237,10 @@
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="LoadAction.h" />
+    <ClInclude Include="MuteAction.h" />
     <ClInclude Include="PickByShapeAction.h" />
     <ClInclude Include="PlayRecordAction.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="StartRecordAction.h" />
     <ClInclude Include="SaveAction.h" />
     <ClInclude Include="StopRecordAction.h" />

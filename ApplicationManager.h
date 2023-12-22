@@ -27,7 +27,7 @@ private:
 	
 	bool IsRec = 0;
 	bool IsPlayingRec = 0;
-	
+	bool IsSoundOn;
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
@@ -66,6 +66,7 @@ public:
 	int GetRecActCount();
 	int GetMaxRecCount();
 
+	bool GetSoundStatues();
 	// -- Pick & Hide Functions
 	//set & get Picking shape or color
 	void PickRand();
