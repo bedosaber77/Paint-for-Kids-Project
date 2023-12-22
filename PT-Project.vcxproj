@@ -186,6 +186,7 @@
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="LoadAction.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MoveByDragging.cpp" />
     <ClCompile Include="MoveFigureByPoint.cpp" />
     <ClCompile Include="MuteAction.cpp" />
     <ClCompile Include="PickByShapeAction.cpp" />
@@ -241,6 +242,7 @@
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="LoadAction.h" />
+    <ClInclude Include="MoveByDragging.h" />
     <ClInclude Include="MoveFigureByPoint.h" />
     <ClInclude Include="MuteAction.h" />
     <ClInclude Include="PickByShapeAction.h" />

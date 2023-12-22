@@ -65,6 +65,7 @@ ActionType Input::GetUserAction() const
 			case ITM_REDO:return REDO;
 			case ITM_SELECT:return SELECT;
 			case ITM_MOVE:return MOVE;
+			case ITM_MOVE_BY_DRAGGING:return MOVEBYDRAGGING;
 			case ITM_CLEARALL:return CLEARALL;
 			case ITM_RESIZE:return RESIZE;
 			case ITM_STARTREC:return START_REC;
@@ -199,9 +200,30 @@ ActionType Input::GetUserAction() const
 	//}	done
 
 }
+clicktype Input::GetMouseClick(Point &Clicked)
+{
+	return 	  pWind->GetMouseClick(Clicked.x, Clicked.y);
+
+}
+
+
+buttonstate Input::GetButtonStateLeftButton(Point& Clicked)
+{
+	return 	  pWind->GetButtonState(LEFT_BUTTON, Clicked.x, Clicked.y);
+}
+void Input::WaitMouseClick(Point& Cursor)
+{
+
+	pWind->WaitMouseClick(Cursor.x, Cursor.y);
+
+}
 /////////////////////////////////
 	
 Input::~Input()
 {
-
 }
+
+
+
+
+

@@ -19,6 +19,7 @@
 #include "UndoAction.h"
 #include "RedoAction.h"
 #include "MoveFigureByPoint.h"
+#include "MoveByDragging.h"
 
 
 
@@ -68,10 +69,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 
 		// ########################## Save Figures ##########################
-	case SAVE_GRAPH:
-		pAct = new SaveAction(this);
-		toDelete = 1;
-		break;
+		case SAVE_GRAPH:
+			pAct = new SaveAction(this);
+			toDelete = 1;
+			break;
 		// ########################## Load Figures ##########################
 		case LOAD:
 			pAct = new LoadAction(this);
@@ -91,7 +92,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new MoveFigureByPoint(this);
 			break;
 
-
+		case MOVEBYDRAGGING:
+			pAct = new MoveByDragging(this);
+			break;
 
 
 		// ########################## Change Color ##########################

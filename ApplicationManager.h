@@ -100,6 +100,10 @@ public:
 	static string ColorString(color C);
 	static color StringColor(string C);
 	static string ShapeString(CFigure*);
+
+
+
+
 };
 
 #endif

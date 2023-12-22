@@ -43,6 +43,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	LOAD,
 	RESIZE,
 	MOVE,
+	MOVEBYDRAGGING,
 	CLEARALL,
 	SELECT,
 	UNDO,

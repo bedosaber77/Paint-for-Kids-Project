@@ -2,23 +2,25 @@
 #include "Action.h"
 #include "CFigure.h"
 
-class MoveFigureByPoint :
+class MoveByDragging :
 	public Action
 {
 private:
 	Point NewCenter;               //Current center 
-	Point PrevCenter;       //Previous center 
+	Point PrevCenter;			    //Previous center 
 	CFigure* SelectedFig;
+	Point Cursor;
+
 
 public:
 
-	MoveFigureByPoint(ApplicationManager* pApp);
+	MoveByDragging(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
 	virtual void Execute();
-	void redo();
-	void undo();
-
+	virtual void undo();
+	virtual void redo();
 
 
 
 };
+

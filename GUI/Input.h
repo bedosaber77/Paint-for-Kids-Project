@@ -18,7 +18,31 @@ public:
 
 	ActionType GetUserAction() const; //Read the user click and map to an action
 
+
+
+
+	clicktype GetMouseClick(Point& Clicked);
+	buttonstate GetButtonStateLeftButton(Point& Clicked);
+	void WaitMouseClick(Point& Cursor);
+
+	
+	
+	
+	
+	
+	
+	
+	
 	~Input();
+
+
+
+
+
+
+
+
+
 };
 
 #endif
