@@ -65,13 +65,18 @@ void AddRectAction::Execute()
 
 void AddRectAction::undo()
 {
-	if (R != NULL)
+	if (R != NULL) {
 		pManager->RemoveFigure(R);
+		Output* pOut = pManager->GetOutput();
+		pOut->PrintMessage("The Rectangle has been successfully Undone");
+	}
 }
 
 void AddRectAction::redo()
 {
 	R = tmp;
 	pManager->AddFigure(R);
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("The Rectangle has been successfully Redone");
 }
 

@@ -190,11 +190,6 @@
     <ClCompile Include="StartRecordAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
-    <ClCompile Include="ClearAllAction.cpp" />
-    <ClCompile Include="StopRecordAction.cpp" />
-    <ClCompile Include="PlayRecordAction.cpp" />
-    <ClCompile Include="PickByShapeAction.cpp" />
-    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="stack.cpp">
       <Filter>My Stack</Filter>
     </ClCompile>
@@ -208,6 +203,24 @@
       <Filter>Action Classes</Filter>
     </ClCompile>
     <ClCompile Include="LoadAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearAllAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveFigureByPoint.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="PickByShapeAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayRecordAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="StopRecordAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -336,12 +349,6 @@
     <ClInclude Include="StartRecordAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
-    <ClInclude Include="ClearAllAction.h" />
-    <ClInclude Include="StopRecordAction.h" />
-    <ClInclude Include="PlayRecordAction.h" />
-    <ClInclude Include="PickByShapeAction.h" />
-    <ClInclude Include="Sound.h" />
-    <ClInclude Include="MuteAction.h" />
     <ClInclude Include="stack.h">
       <Filter>My Stack</Filter>
     </ClInclude>
@@ -352,6 +359,27 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="LoadAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveFigureByPoint.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearAllAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="MuteAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="PickByShapeAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayRecordAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="StopRecordAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

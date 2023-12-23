@@ -59,12 +59,17 @@ void AddHexAction::Execute()
 
 void AddHexAction::undo()
 {
-	if (H != NULL)
+	if (H != NULL) {
 		pManager->RemoveFigure(H);
+		Output* pOut = pManager->GetOutput();
+		pOut->PrintMessage("The Hexagon has been successfully Uedone");
+	}
 }
 
 void AddHexAction::redo()
 {
 	H = tmp;
 	pManager->AddFigure(H);
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("The Hexagon has been successfully Redone");
 }

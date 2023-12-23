@@ -68,6 +68,7 @@ void ChangeColorAction::Execute()
 	
 void ChangeColorAction::undo()
 {
+	Output* pOut = pManager->GetOutput();
 	if (FillDraw == 'F')
 	{
 		if (!wasFilled) {
@@ -79,27 +80,33 @@ void ChangeColorAction::undo()
 			FigurePt->ChngFillClr(UI.FillColor);
 			UI.isFilled = true;
 		}
+		pOut->PrintMessage("The Filling color has been successfully Undone");
 	}
 
 	else if (FillDraw == 'D')
 	{
 		UI.DrawColor = LastDrawClr;
 		FigurePt->ChngDrawClr(UI.DrawColor);
+		pOut->PrintMessage("The Drawing color has been successfully Undone");
 	}
 }
 
 void ChangeColorAction::redo()
 {
+	Output* pOut = pManager->GetOutput();
 	if (FillDraw == 'F')
 	{
 		UI.FillColor = ColorPicked;
 		FigurePt->ChngFillClr(UI.FillColor);
 		UI.isFilled = true;
+		pOut->PrintMessage("The Filling color has been successfully Redone");
 	}
 
 	else if (FillDraw == 'D')
 	{
 		UI.DrawColor = ColorPicked;
 		FigurePt->ChngDrawClr(UI.DrawColor);
+		pOut->PrintMessage("The Drawing color has been successfully Redone");
+
 	}
 }

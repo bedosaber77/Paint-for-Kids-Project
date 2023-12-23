@@ -67,13 +67,18 @@ void AddCircAction::Execute()
 
 void AddCircAction::undo()
 {
-	if(C != NULL)
+	if (C != NULL) {
 		pManager->RemoveFigure(C);
+		Output* pOut = pManager->GetOutput();
+		pOut->PrintMessage("The Circle has been successfully Undone");
+	}
 }
 
 void AddCircAction::redo()
 {
 	C = tmp;
 	pManager->AddFigure(C);
+	Output* pOut = pManager->GetOutput();
+	pOut->PrintMessage("The Circle has been successfully Redone");
 }
 

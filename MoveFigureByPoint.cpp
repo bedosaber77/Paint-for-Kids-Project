@@ -48,10 +48,16 @@ void MoveFigureByPoint::Execute()
 
 void MoveFigureByPoint::undo()
 {
+	Output* pOut = pManager->GetOutput();
+	SelectedFig->Moveto(PrevCenter);
+	pOut->PrintMessage("The Moved figure has been successfully back to his previous position");
 }
 
 void MoveFigureByPoint::redo()
 {
+	Output* pOut = pManager->GetOutput();
+	SelectedFig->Moveto(NewCenter);
+	pOut->PrintMessage("The Moved figure has been successfully back to his new position");
 }
 
 

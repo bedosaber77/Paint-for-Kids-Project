@@ -89,6 +89,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case MOVE:
 			pAct = new MoveFigureByPoint(this);
+			UndoActs->push(pAct);
+			toDelete = 0;
+			RedoActs->clear();
 			break;
 
 

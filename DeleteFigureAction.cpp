@@ -43,18 +43,22 @@ void DeleteFigureAction::Execute()
 
 void DeleteFigureAction::undo()
 {
+	Output* pOut = pManager->GetOutput();
 	if (Figure == NULL) {
 		Figure = Backup;
 		pManager->AddFigure(Figure);
 		Backup = NULL;
+		pOut->PrintMessage("Deletion of the Fig has been successfully Undone");
 	}
 }
 
 void DeleteFigureAction::redo()
 {
+	Output* pOut = pManager->GetOutput();
 	if (Backup == NULL){ 
 		pManager->RemoveFigure(Figure);
 		Backup = Figure;
 		Figure = NULL;
+		pOut->PrintMessage("Deletion of the Fig has been successfully Undone");
 	}
 }
