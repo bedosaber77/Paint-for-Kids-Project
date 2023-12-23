@@ -53,6 +53,15 @@ CFigure::Shape CFigure::GetShape()
 	return this->S;
 }
 
+void CFigure::Resize(Point)
+{
+}
+
+bool CFigure::isOnCorner(Point)
+{
+	return false;
+}
+
 void CFigure::addToInfo(string s)
 {
 	Info += s;

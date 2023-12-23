@@ -14,6 +14,7 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(Figure
 
 CRectangle::CRectangle(int id):CFigure(id)
 {
+	S = RECTANGLE;
 }
 	
 
@@ -101,6 +102,21 @@ void CRectangle::Moveto(Point NewCenter)
 	Center = NewCenter;
 
 
+}
+
+void CRectangle::Resize(Point Cursor)
+{
+	Corner1.x -= (Cursor.x - Corner2.x);
+	Corner1.y -= (Cursor.y - Corner2.y);
+	Corner2.x = Cursor.x;
+	Corner2.y = Cursor.y;
+}
+
+bool CRectangle::isOnCorner(Point p)
+{
+	return ((((p.x <= Corner1.x + 8) && (p.x >= Corner1.x - 8)) && ((p.y <= Corner1.y + 8) && (p.y >= Corner1.y - 8))) ||
+		(((p.x <= Corner2.x + 8) && (p.x >= Corner2.x - 8)) && ((p.y <= Corner2.y + 8) && (p.y >= Corner2.y - 8))));
+	
 }
 
 

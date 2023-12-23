@@ -14,6 +14,7 @@ CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
 CHexagon::CHexagon(int id):CFigure(id)
 {
 	L = 120;
+	S = HEXAGON;
 }
 
 
@@ -80,4 +81,13 @@ void CHexagon::Moveto(Point NewCenter)
 	//Updating Center
 	Center = NewCenter;
 
+}
+
+void CHexagon::Resize(Point)
+{
+}
+
+bool CHexagon::isOnCorner(Point)
+{
+	return false;
 }

@@ -12,6 +12,7 @@ CSquare::CSquare(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 CSquare::CSquare(int id) :CFigure(id)
 {
 	L = 180;
+	S = SQUARE;
 }
 
 
@@ -75,6 +76,20 @@ void CSquare::Moveto(Point NewCenter)
 	Center = NewCenter;
 
 
+}
+
+void CSquare::Resize(Point Cursor)
+{
+	double x, y;
+	x = pow((Cursor.x - Center.x), 2);
+	y = pow((Cursor.y - Center.y), 2);
+	L = sqrt(x + y)*2/pow(2,0.5);
+}
+
+bool CSquare::isOnCorner(Point p)
+{
+	return (((Center.x + L / 2 <= p.x + 8 && Center.x + L / 2 >= p.x - 8) && ((Center.y + L / 2 <= p.y + 8 && Center.y + L / 2 >= p.y - 8)))||
+		((Center.x - L / 2 <= p.x + 8 && Center.x - L / 2 >= p.x - 8) && ((Center.y - L / 2 <= p.y + 8 && Center.y - L / 2 >= p.y - 8))));
 }
 
 

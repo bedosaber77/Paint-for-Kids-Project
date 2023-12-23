@@ -42,6 +42,8 @@ public:
 	Shape GetShape();
 	virtual Point GetCenter()  = 0 ;
 	virtual void  Moveto(Point) = 0;
+	virtual void Resize(Point);
+	virtual bool isOnCorner(Point);
 	void addToInfo(string s);
 
 

@@ -23,6 +23,7 @@
 #include "RedoAction.h"
 #include "MoveFigureByPoint.h"
 #include "MoveByDragging.h"
+#include "ResizeAction.h"
 #include "GUI/Output.h"
 
 
@@ -105,8 +106,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			toDelete = 0;
 			RedoActs->clear();
 			break;
-
-
+		case RESIZE:
+			pAct = new ResizeAction(this);
+			break;
 		// ########################## Change Color ##########################
 
 		case FILL_COLOR_PICK:
