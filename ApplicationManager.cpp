@@ -382,6 +382,7 @@ void ApplicationManager::ClearFigures()
 	FigCount = 0;
 	DelFigCount = 0;
 	SelectedFig = NULL;
+	ClearRecord();
 	pOut->ResetColors();//Anas Magdy: Ask if this is the right Place or Not
 }
 
@@ -432,7 +433,8 @@ void ApplicationManager::PlayRecord()
 	for (int i = 0; i < RecActCount; i++)
 	{
 		Sleep(1000);
-		RecordActionList[i]->Execute();
+		if(RecordActionList[i] !=NULL)
+			RecordActionList[i]->Execute();
 		UpdateInterface();
 	}
 }

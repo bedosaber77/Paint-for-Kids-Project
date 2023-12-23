@@ -8,8 +8,6 @@ void ClearAllAction::ReadActionParameters()
 {
 }
 //calling a function implemented to clear what the user drawn
-//Not finished yet
-//to be continued after finishing {Recording}
 void ClearAllAction::Execute()
 {
 	pManager->ClearFigures();
