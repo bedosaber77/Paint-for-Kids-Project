@@ -32,7 +32,14 @@ bool CCircle::IsInclude(Point P) const
 
 void CCircle::PrintInfo(Output* pOut)
 {
+	Info = "";
+	double Radius = sqrt(pow(PointOnCircle.x - Center.x, 2) + pow(PointOnCircle.y - Center.y, 2));
+	addToInfo("Circle | ");
 	CFigure::PrintInfo(pOut);
+	addToInfo("Center : (");
+	addToInfo(to_string(Center.x) + " , " + to_string(Center.y) + ") ");
+	addToInfo(" | Radius : " + to_string(Radius).substr(0, to_string(Radius).find('.') + 3)); // Controlling 2 Decimal Points
+	pOut->PrintMessage(Info);
 }
 
 void CCircle::Save(ofstream& OutFile)

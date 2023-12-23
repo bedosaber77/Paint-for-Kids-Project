@@ -53,6 +53,11 @@ CFigure::Shape CFigure::GetShape()
 	return this->S;
 }
 
+void CFigure::addToInfo(string s)
+{
+	Info += s;
+}
+
 void CFigure::SetHidden(bool H)
 {
 	Hidden = H;
@@ -74,13 +79,12 @@ bool CFigure::IsFilled()
 
 void CFigure::PrintInfo(Output* pOut)
 {
-	string Info = "ID : ";
+	Info += "ID : ";
 	Info += to_string(ID) + " | ";
 	Info += "D Color : ";
 	Info += ApplicationManager::ColorString(FigGfxInfo.DrawClr)+ " | ";
     Info += "F Color : ";
 	Info += ApplicationManager::ColorString(FigGfxInfo.FillClr) + " | ";
-	pOut->PrintMessage(Info);
 }
 
 
