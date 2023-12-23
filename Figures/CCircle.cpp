@@ -45,10 +45,10 @@ void CCircle::PrintInfo(Output* pOut)
 void CCircle::Save(ofstream& OutFile)
 {
 	OutFile << "CIRC\t" << ID << '\t' << Center.x << '\t' << Center.y << '\t' << PointOnCircle.x << '\t'
-		<< PointOnCircle.y << '\t' <<ApplicationManager :: ColorString(FigGfxInfo.DrawClr) << '\t';
+		<< PointOnCircle.y << '\t' << Output::ColorString(FigGfxInfo.DrawClr) << '\t';
 
 	if (FigGfxInfo.isFilled) {
-		OutFile << ApplicationManager :: ColorString(FigGfxInfo.FillClr) << '\n';
+		OutFile << Output::ColorString(FigGfxInfo.FillClr) << '\n';
 	}
 	else
 		OutFile << "NO_FILL\n";
@@ -58,10 +58,10 @@ void CCircle::Load(ifstream& Infile)
 {
 	string DrwClr, FillClr;
 	Infile >> Center.x >> Center.y >> PointOnCircle.x >> PointOnCircle.y>>DrwClr>>FillClr;
-	ChngDrawClr(ApplicationManager::StringColor(DrwClr));
+	ChngDrawClr(Output::StringColor(DrwClr));
 	if (FillClr != "NO_FILL")
 	{
-		ChngFillClr(ApplicationManager::StringColor(FillClr));
+		ChngFillClr(Output::StringColor(FillClr));
 	}
 	else
 		FigGfxInfo.isFilled = false;

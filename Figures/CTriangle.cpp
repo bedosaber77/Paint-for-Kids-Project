@@ -64,9 +64,9 @@ void CTriangle::PrintInfo(Output* pOut)
 void CTriangle::Save(ofstream& OutFile)
 {
 	OutFile << "TRI\t" << ID << '\t' << Corner1.x << '\t' << Corner1.y << '\t' << Corner2.x << '\t' << Corner2.y << '\t'
-		<< Corner3.x << '\t' << Corner3.y << '\t' << ApplicationManager::ColorString(FigGfxInfo.DrawClr)<<'\t';
+		<< Corner3.x << '\t' << Corner3.y << '\t' << Output::ColorString(FigGfxInfo.DrawClr)<<'\t';
 	if (FigGfxInfo.isFilled) {
-		OutFile << ApplicationManager::ColorString(FigGfxInfo.FillClr) << '\n';
+		OutFile << Output::ColorString(FigGfxInfo.FillClr) << '\n';
 	}
 	else
 		OutFile << "NO_FILL\n";
@@ -76,10 +76,10 @@ void CTriangle::Load(ifstream& Infile)
 {
 	string DrwClr, FillClr;
 	Infile >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y>>Corner3.x>>Corner3.y>>DrwClr>>FillClr;
-	ChngDrawClr(ApplicationManager::StringColor(DrwClr));
+	ChngDrawClr(Output::StringColor(DrwClr));
 	if (FillClr != "NO_FILL")
 	{
-		ChngFillClr(ApplicationManager::StringColor(FillClr));
+		ChngFillClr(Output::StringColor(FillClr));
 	}
 	else
 		FigGfxInfo.isFilled = false;

@@ -106,8 +106,6 @@ public:
 	void UpdateInterface() const;	//Redraws all the drawing window	
 
 	void SaveALL(ofstream& OutFile);
-	static string ColorString(color C);
-	static color StringColor(string C);
 	static string ShapeString(CFigure*);
 
 

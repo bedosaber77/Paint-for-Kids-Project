@@ -82,9 +82,9 @@ void CFigure::PrintInfo(Output* pOut)
 	Info += "ID : ";
 	Info += to_string(ID) + " | ";
 	Info += "D Color : ";
-	Info += ApplicationManager::ColorString(FigGfxInfo.DrawClr)+ " | ";
+	Info += Output::ColorString(FigGfxInfo.DrawClr)+ " | ";
     Info += "F Color : ";
-	Info += ApplicationManager::ColorString(FigGfxInfo.FillClr) + " | ";
+	Info += Output::ColorString(FigGfxInfo.FillClr) + " | ";
 }
 
 

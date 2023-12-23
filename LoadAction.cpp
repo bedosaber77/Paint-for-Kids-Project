@@ -34,9 +34,9 @@ void LoadAction::Execute()
 	else {
 		pManager->ClearFigures();
 		infile >> str;
-		UI.DrawColor = ApplicationManager::StringColor(str);
+		UI.DrawColor = Output::StringColor(str);
 		infile >> str;
-		UI.FillColor= ApplicationManager::StringColor(str);
+		UI.FillColor= Output::StringColor(str);
 		int n, id;
 		CFigure* NewFig=NULL;
 		infile >> n;

@@ -54,10 +54,10 @@ void CRectangle::PrintInfo(Output* pOut)
 void CRectangle::Save(ofstream& outfile)
 {
 	outfile << "RECT\t" << ID << '\t' << Corner1.x << '\t' << Corner1.y << '\t' << Corner2.x << '\t' 
-		<< Corner2.y << '\t' << ApplicationManager::ColorString(FigGfxInfo.DrawClr) << '\t';
+		<< Corner2.y << '\t' << Output::ColorString(FigGfxInfo.DrawClr) << '\t';
 
 	if (FigGfxInfo.isFilled) {
-		outfile << ApplicationManager::ColorString(FigGfxInfo.FillClr) << '\n';
+		outfile << Output::ColorString(FigGfxInfo.FillClr) << '\n';
 	}
 	else
 		outfile << "NO_FILL\n";
@@ -67,10 +67,10 @@ void CRectangle::Load(ifstream& Infile)
 {
 	string DrwClr, FillClr;
 	Infile >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y>>DrwClr>>FillClr;
-	ChngDrawClr(ApplicationManager::StringColor(DrwClr));
+	ChngDrawClr(Output::StringColor(DrwClr));
 	if (FillClr != "NO_FILL")
 	{
-		ChngFillClr(ApplicationManager::StringColor(FillClr));
+		ChngFillClr(Output::StringColor(FillClr));
 	}
 	else
 		FigGfxInfo.isFilled = false;

@@ -40,9 +40,9 @@ void CSquare::PrintInfo(Output* pOut)
 void CSquare::Save(ofstream& OutFile)
 {
 	OutFile << "SQUARE\t" << ID << '\t' << Center.x << '\t' << Center.y << '\t'
-		<< ApplicationManager::ColorString(FigGfxInfo.DrawClr)<<'\t';
+		<< Output::ColorString(FigGfxInfo.DrawClr)<<'\t';
 	if (FigGfxInfo.isFilled) {
-		OutFile << ApplicationManager::ColorString(FigGfxInfo.FillClr) << '\n';
+		OutFile << Output::ColorString(FigGfxInfo.FillClr) << '\n';
 	}
 	else
 		OutFile << "NO_FILL\n";
@@ -52,10 +52,10 @@ void CSquare::Load(ifstream& Infile)
 {
 	string DrwClr, FillClr;
 	Infile >> Center.x >> Center.y >> DrwClr >> FillClr;
-	ChngDrawClr(ApplicationManager::StringColor(DrwClr));
+	ChngDrawClr(Output::StringColor(DrwClr));
 	if (FillClr != "NO_FILL")
 	{
-		ChngFillClr(ApplicationManager::StringColor(FillClr));
+		ChngFillClr(Output::StringColor(FillClr));
 	}
 	else
 		FigGfxInfo.isFilled = false;

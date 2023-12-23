@@ -23,7 +23,7 @@
 #include "RedoAction.h"
 #include "MoveFigureByPoint.h"
 #include "MoveByDragging.h"
-
+#include "GUI/Output.h"
 
 
 //Constructor
@@ -531,7 +531,7 @@ void ApplicationManager::PickByShape()
 
 void ApplicationManager::PickByColor()
 {
-	pOut->PrintMessage("Pick all " + ColorString(PickingClr) + " filled Shapes.");
+	pOut->PrintMessage("Pick all " + Output::ColorString(PickingClr) + " filled Shapes.");
 	ActionType Act;
 
 	bool cont = 1;
@@ -577,7 +577,7 @@ void ApplicationManager::PickByColor()
 
 void ApplicationManager::PickByColoredShapes()
 {
-	pOut->PrintMessage("Pick all " + ColorString(PickingClr) + " filled " + ShapeString(PickingFig) + " Shapes.");
+	pOut->PrintMessage("Pick all " + Output::ColorString(PickingClr) + " filled " + ShapeString(PickingFig) + " Shapes.");
 	ActionType Act;
 
 	bool cont = 1;
@@ -697,32 +697,13 @@ void ApplicationManager::UpdateInterface() const
 }
 void ApplicationManager::SaveALL(ofstream& OutFile)
 {
-	OutFile <<ColorString(UI.DrawColor)<<'\t'<<ColorString(UI.FillColor)<<'\n'<<FigCount<<'\n';
+	OutFile << Output::ColorString(UI.DrawColor)<<'\t'<< Output::ColorString(UI.FillColor)<<'\n'<<FigCount<<'\n';
 
 	for (int i = 0; i < FigCount; i++)
 	{
 		if (FigList[i] != NULL)
 			FigList[i]->Save(OutFile);
 	}
-}
-string ApplicationManager::ColorString(color C)
-{
-
-		if (C == BLACK)    return "BLACK";
-		if (C == GREEN)    return "GREEN";
-		if (C == ORANGE)   return "ORANGE";
-		if (C == YELLOW)   return "YELLOW";
-		if (C == RED)      return "RED";
-		if (C == BLUE)     return "BLUE";
-}
-color ApplicationManager::StringColor(string C)
-{
-	if (C == "BLACK")    return BLACK ;
-	if (C == "GREEN")    return GREEN;
-	if (C == "ORANGE")   return ORANGE;
-	if (C == "YELLOW")   return YELLOW;
-	if (C == "RED")      return RED;
-	if (C == "BLUE")     return BLUE;
 }
 
 string ApplicationManager::ShapeString(CFigure* F)

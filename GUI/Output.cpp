@@ -15,7 +15,7 @@ Output::Output() : lastmsg(" ")
 	UI.MenuItemWidth = 60;
 	UI.isFilled = false; //Defualt Not Filled
 	UI.DrawColor = BLACK;	//Drawing color
-	UI.FillColor = GREEN;	//Filling color
+	UI.FillColor = WHITESMOKE;	//Filling color
 	UI.MsgColor = WHITE;		//Messages color
 	UI.BkGrndColor = WHITESMOKE;	//Background color
 	UI.HighlightColor = MAGENTA;	//This color should NOT be used to draw figures. use if for highlight only
@@ -256,6 +256,27 @@ color Output::getCrntFillColor() const	//get current filling color
 	
 int Output::getCrntPenWidth() const		//get current pen width
 {	return UI.PenWidth;	}
+
+string Output::ColorString(color C)
+{
+	if (C == BLACK)    return "BLACK";
+	if (C == GREEN)    return "GREEN";
+	if (C == ORANGE)   return "ORANGE";
+	if (C == YELLOW)   return "YELLOW";
+	if (C == RED)      return "RED";
+	if (C == BLUE)     return "BLUE";
+	if (C == WHITESMOKE) return "TRANSPERNT";
+}
+
+color Output::StringColor(string C)
+{
+	if (C == "BLACK")    return BLACK;
+	if (C == "GREEN")    return GREEN;
+	if (C == "ORANGE")   return ORANGE;
+	if (C == "YELLOW")   return YELLOW;
+	if (C == "RED")      return RED;
+	if (C == "BLUE")     return BLUE;
+}
 
 //======================================================================================//
 //								Figures Drawing Functions								//
