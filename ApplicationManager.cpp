@@ -410,6 +410,7 @@ void ApplicationManager::ClearRecord()
 {
 	for (int i = 0; i < MaxRecActCount; i++)
 		RecordActionList[i] = NULL;
+	RecActCount = 0;
 }
 
 void ApplicationManager::SetPlayingRecordState(bool PRState)
@@ -430,13 +431,13 @@ void ApplicationManager::PlayRecord()
 	for (int i = 0; i < FigCount; i++)
 		FigList[i] = NULL;
 
-	for (int i = 0; i < RecActCount; i++)
-	{
-		Sleep(1000);
+		for (int i = 0; i < RecActCount; i++)
+		{
+			Sleep(1000);
 		if(RecordActionList[i] !=NULL)
-			RecordActionList[i]->Execute();
-		UpdateInterface();
-	}
+				RecordActionList[i]->Execute();
+			UpdateInterface();
+		}
 }
 
 int ApplicationManager::GetRecActCount()
@@ -763,10 +764,7 @@ Output *ApplicationManager::GetOutput() const
 //Destructor
 ApplicationManager::~ApplicationManager()
 {
-	for(int i=0; i<FigCount; i++)
-		delete FigList[i];
-	for (int i = 0; i < DelFigCount; i++)
-		delete RecycleBin[i];
+	ClearFigures();
 	delete pIn;
 	delete pOut;
 	

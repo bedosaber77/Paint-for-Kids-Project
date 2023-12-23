@@ -61,7 +61,7 @@ void AddHexAction::undo()
 {
 	if (H != NULL) {
 		pManager->RemoveFigure(H);
-		pOut->PrintMessage("The Hexagon has been successfully Uedone");
+		pOut->PrintMessage("The Hexagon has been successfully Undone");
 	}
 }
 

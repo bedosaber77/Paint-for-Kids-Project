@@ -83,6 +83,8 @@ void CTriangle::Load(ifstream& Infile)
 	}
 	else
 		FigGfxInfo.isFilled = false;
+	Center.x = (Corner1.x + Corner2.x + Corner3.x) / 3;
+	Center.y = (Corner1.y + Corner2.y + Corner3.y) / 3;
 }
 
 Point CTriangle::GetCenter()
