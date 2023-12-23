@@ -17,6 +17,8 @@ public:
 	virtual void Load(ifstream& Infile);
 	Point GetCenter();
 	void  Moveto(Point NewCenter);
+	void Resize(Point Cursor);
+	bool isOnCorner(Point p);
 
 };
 

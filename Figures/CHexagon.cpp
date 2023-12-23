@@ -81,3 +81,12 @@ void CHexagon::Moveto(Point NewCenter)
 	Center = NewCenter;
 
 }
+
+void CHexagon::Resize(Point)
+{
+}
+
+bool CHexagon::isOnCorner(Point)
+{
+	return false;
+}

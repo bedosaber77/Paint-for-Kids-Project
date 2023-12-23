@@ -21,6 +21,14 @@ void CCircle::Draw(Output* pOut) const
 	pOut->DrawCircle(Center, PointOnCircle, FigGfxInfo, Selected);
 }
 
+bool CCircle::isOnCorner(Point P)
+{
+	double R,NewR;
+	R = sqrt(pow(PointOnCircle.x - Center.x, 2) + pow(PointOnCircle.y - Center.y, 2));
+	NewR = sqrt(pow(P.x - Center.x, 2) + pow(P.y - Center.y, 2));
+	return ((NewR<=R+8)&&(NewR >= R - 8));
+}
+
 
 bool CCircle::IsInclude(Point P) const
 {
@@ -87,4 +95,10 @@ void CCircle::Moveto(Point NewCenter)
 	Center = NewCenter;
 
 
+}
+
+void CCircle::Resize(Point Cursor)
+{
+	PointOnCircle.x = Cursor.x;
+	PointOnCircle.y = Cursor.y ;
 }

@@ -113,3 +113,25 @@ void CTriangle::Moveto(Point NewCenter)
 
 
 }
+
+void CTriangle::Resize(Point Cursor)
+{
+}
+
+bool CTriangle::isOnCorner(Point p)
+{
+	Point Corners[3];
+	Corners[0] = Corner1;
+	Corners[1] = Corner2;
+	Corners[2] = Corner3;
+	bool isOnCorner=false;
+	for (int i = 0; i < 3; i++)
+	{
+		if (Corners[i].x <= p.x + 8 && Corners[i].x >= p.x - 8 && Corners[i].y <= p.y + 8 && Corners[i].y >= p.y - 8)
+		{
+			isOnCorner = true;
+			idx=i;
+		}
+	}
+	return isOnCorner;
+}
