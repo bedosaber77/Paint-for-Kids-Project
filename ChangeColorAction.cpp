@@ -60,11 +60,6 @@ void ChangeColorAction::Execute()
 			pOut->CreateDrawToolBar();
 
 	}
-
-	//Save this Action when Recording
-	if (pManager->IsRecording())
-		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
-			pManager->RecordAction(this);
 }
 	
 void ChangeColorAction::undo()

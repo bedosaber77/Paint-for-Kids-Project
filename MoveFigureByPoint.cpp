@@ -33,7 +33,10 @@ void MoveFigureByPoint::Execute()
 	}
 	else
 	{
-		ReadActionParameters();
+		if(!pManager->IsPlayingRecord())
+		{
+			ReadActionParameters();
+		}
 		PrevCenter = SelectedFig->GetCenter(); // Use It For Recording And Undo
 		SelectedFig->Moveto(NewCenter);
 		SelectedFig->PrintInfo(pOut); // Update Info On status Bar

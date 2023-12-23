@@ -232,7 +232,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case TO_PLAY:
-			pOut->CreatePlayToolBar();
+			if(!IsRecording())
+				pOut->CreatePlayToolBar();
 			break;
 		case UNMUTE:
 			pAct = new Sound(this);
@@ -244,30 +245,38 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case EXIT:
 			///create ExitAction here
-			
+			break;
+
+		case DRAWING_AREA:
+			return;
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
 			return;
 	}
-	if (IsRecording())
-	{
-		switch (ActType)
-		{
-		case START_REC:
-		case PLAY_REC:
-		case SAVE_GRAPH:
-		case LOAD:
-			delete pAct;
-			pAct = NULL;
-			break;
-		}
-	}
 
 	//Execute the created action
 	if (pAct != NULL)
 	{
-		pAct->Execute();//Execute
+		pAct->Execute();	//Execute
+		if (IsRecording())
+		{
+			switch (ActType)
+			{
+			case START_REC:
+			case PLAY_REC:
+			case SAVE_GRAPH:
+			case LOAD:
+			case TO_PLAY:
+			case EXIT:
+				break;
+
+			default:
+				if (IsRecording() && GetRecActCount() < GetMaxRecCount() && ActType != START_REC)
+					RecordAction(pAct);
+			}
+		}
+
 		if (!IsRecording() && toDelete)
 		{
 			delete pAct;	//You may need to change this line depending to your implementation of undo and redo
@@ -409,8 +418,10 @@ void ApplicationManager::RecordAction(Action* pRecAct)
 void ApplicationManager::ClearRecord()
 {
 	for (int i = 0; i < MaxRecActCount; i++)
+	{
+		delete RecordActionList[i];
 		RecordActionList[i] = NULL;
-	RecActCount = 0;
+	}
 }
 
 void ApplicationManager::SetPlayingRecordState(bool PRState)
@@ -481,6 +492,7 @@ void ApplicationManager::RestartGame()
 {
 	for (int i = 0; i < FigCount; i++)
 		FigList[i]->SetHidden(false);
+	UpdateInterface();
 }
 
 
@@ -494,29 +506,35 @@ void ApplicationManager::PickByShape()
 	int WrongPicks = 0;
 	while (cont)
 	{
-		/*Act = RESTART_PLAY;
-		switch (Act = GetUserAction())
-		{
-		case SHAPE_PLAY_PICK:
-		case COLORED_SHAPE_PLAY_PICK:
-		case COLOR_PLAY_PICK:
-		case RESTART_PLAY:
-			//return back all figs
-			//start the new game
-		case TO_DRAW:
-			//return back all figs
-			cont = 0;
-			break;
 
-		default:
-		*/
 		Point PickPoint;
 		pIn->GetPointClicked(PickPoint.x, PickPoint.y);
 		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
-		PickedFig->SetHidden(1);
 
-		if (PickingFig->GetShape() == PickedFig->GetShape()) CorrectPicks++;
-		else WrongPicks++;
+		if (PickedFig != NULL)
+			PickedFig->SetHidden(1);
+		else
+		{
+			Act = TO_PLAY;
+			switch (Act = GetUserAction())
+			{
+			case SHAPE_PLAY_PICK:
+			case COLORED_SHAPE_PLAY_PICK:
+			case COLOR_PLAY_PICK:
+			case RESTART_PLAY:
+			case TO_DRAW:
+				cont = 0;
+				RestartGame();
+				ExecuteAction(Act);
+				break;
+			case DRAWING_AREA:
+				return;
+				break;
+			}
+		}
+		if (PickingFig != NULL)
+			if (PickingFig->GetShape() == PickedFig->GetShape()) CorrectPicks++;
+			else WrongPicks++;
 
 		if (CorrectPicks == PickingShapeCount)
 		{
@@ -524,6 +542,7 @@ void ApplicationManager::PickByShape()
 			cont = 0;
 			RestartGame();
 		}
+
 		UpdateInterface();
 
 	}
@@ -531,7 +550,8 @@ void ApplicationManager::PickByShape()
 
 void ApplicationManager::PickByColor()
 {
-	pOut->PrintMessage("Pick all " + Output::ColorString(PickingClr) + " filled Shapes.");
+	RestartGame();
+	pOut->PrintMessage("Pick all " + pOut->ColorString(PickingClr) + " filled Shapes.");
 	ActionType Act;
 
 	bool cont = 1;
@@ -540,26 +560,31 @@ void ApplicationManager::PickByColor()
 
 	while (cont)
 	{
-		/*Act = RESTART_PLAY;
-		switch (Act = GetUserAction())
-		{
-		case SHAPE_PLAY_PICK:
-		case COLORED_SHAPE_PLAY_PICK:
-		case COLOR_PLAY_PICK:
-		case RESTART_PLAY:
-			//return back all figs
-			//start the new game
-		case TO_DRAW:
-			//return back all figs
-			cont = 0;
-			break;
-
-		default:
-		*/
 		Point PickPoint;
 		pIn->GetPointClicked(PickPoint.x, PickPoint.y);
 		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
-		PickedFig->SetHidden(1);
+
+		if (PickedFig != NULL)
+			PickedFig->SetHidden(1);
+		else
+		{
+			Act = TO_PLAY;
+			switch (Act = GetUserAction())
+			{
+			case SHAPE_PLAY_PICK:
+			case COLORED_SHAPE_PLAY_PICK:
+			case COLOR_PLAY_PICK:
+			case RESTART_PLAY:
+			case TO_DRAW:
+				cont = 0;
+				RestartGame();
+				ExecuteAction(Act);
+				break;
+			case DRAWING_AREA:
+				return;
+				break;
+			}
+		}
 
 		if (PickingFig->GetColor() == PickedFig->GetColor()) CorrectPicks++;
 		else WrongPicks++;
@@ -570,6 +595,7 @@ void ApplicationManager::PickByColor()
 			cont = 0;
 			RestartGame();
 		}
+
 		UpdateInterface();
 
 	}
@@ -577,7 +603,8 @@ void ApplicationManager::PickByColor()
 
 void ApplicationManager::PickByColoredShapes()
 {
-	pOut->PrintMessage("Pick all " + Output::ColorString(PickingClr) + " filled " + ShapeString(PickingFig) + " Shapes.");
+	RestartGame();
+	pOut->PrintMessage("Pick all " + pOut->ColorString(PickingClr) + " filled " + ShapeString(PickingFig) + " Shapes.");
 	ActionType Act;
 
 	bool cont = 1;
@@ -586,26 +613,31 @@ void ApplicationManager::PickByColoredShapes()
 
 	while (cont)
 	{
-		/*Act = RESTART_PLAY;
-		switch (Act = GetUserAction())
-		{
-		case SHAPE_PLAY_PICK:
-		case COLORED_SHAPE_PLAY_PICK:
-		case COLOR_PLAY_PICK:
-		case RESTART_PLAY:
-			//return back all figs
-			//start the new game
-		case TO_DRAW:
-			//return back all figs
-			cont = 0;
-			break;
-
-		default:
-		*/
 		Point PickPoint;
 		pIn->GetPointClicked(PickPoint.x, PickPoint.y);
 		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
-		PickedFig->SetHidden(1);
+
+		if (PickingFig != NULL)
+			PickedFig->SetHidden(1);
+		else
+		{
+			Act = TO_PLAY;
+			switch (Act = GetUserAction())
+			{
+			case SHAPE_PLAY_PICK:
+			case COLORED_SHAPE_PLAY_PICK:
+			case COLOR_PLAY_PICK:
+			case RESTART_PLAY:
+			case TO_DRAW:
+				cont = 0;
+				RestartGame();
+				ExecuteAction(Act);
+				break;
+			case DRAWING_AREA:
+				return;
+				break;
+			}
+		}
 
 		if (PickingFig->GetColor() == PickedFig->GetColor() && PickingFig->GetShape() == PickedFig->GetShape()) CorrectPicks++;
 		else WrongPicks++;
@@ -621,6 +653,7 @@ void ApplicationManager::PickByColoredShapes()
 
 	}
 }
+
 
 void ApplicationManager::AddtoRedo()
 {

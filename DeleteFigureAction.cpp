@@ -30,15 +30,7 @@ void DeleteFigureAction::Execute()
 		pManager->SetSelectedFig(NULL);
 		pManager->RemoveFigure(Figure);
 		Figure = NULL;
-
 	}
-
-	//Save this Action when Recording
-	if (pManager->IsRecording())
-		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
-			pManager->RecordAction(this);
-
-
 }
 
 void DeleteFigureAction::undo()

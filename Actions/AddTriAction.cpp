@@ -63,10 +63,6 @@ void AddTriAction::Execute()
 	pManager->AddFigure(T);
 	pOut->PrintMessage("A Triangle has been succesfully Added");
 
-	//Save this Action when Recording
-	if (pManager->IsRecording())
-		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
-			pManager->RecordAction(this);
 }
 
 void AddTriAction::undo()

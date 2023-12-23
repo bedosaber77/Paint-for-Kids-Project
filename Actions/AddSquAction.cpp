@@ -52,10 +52,7 @@ void AddSquAction::Execute()
 	//Add the square to the list of figures
 	pManager->AddFigure(S);
 	pOut->PrintMessage("A Square has been succesfully Added");
-	//Save this Action when Recording
-	if (pManager->IsRecording())
-		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
-			pManager->RecordAction(this);
+
 }
 
 void AddSquAction::undo()
