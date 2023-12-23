@@ -14,6 +14,7 @@ CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
 CHexagon::CHexagon(int id):CFigure(id)
 {
 	L = 120;
+	S = HEXAGON;
 }
 
 

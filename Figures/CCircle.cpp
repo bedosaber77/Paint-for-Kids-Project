@@ -12,6 +12,7 @@ CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) : CFigure(FigureGfxI
 
 CCircle::CCircle(int id):CFigure(id)
 {
+	S = CIRCLE;
 }
 
 

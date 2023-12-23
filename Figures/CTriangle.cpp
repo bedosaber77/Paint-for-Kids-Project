@@ -16,6 +16,7 @@ CTriangle::CTriangle(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo) :CFigu
 
 CTriangle::CTriangle(int id) :CFigure(id)
 {
+	S = TRIANGLE;
 }
 
 

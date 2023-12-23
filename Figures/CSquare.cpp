@@ -12,6 +12,7 @@ CSquare::CSquare(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 CSquare::CSquare(int id) :CFigure(id)
 {
 	L = 180;
+	S = SQUARE;
 }
 
 
