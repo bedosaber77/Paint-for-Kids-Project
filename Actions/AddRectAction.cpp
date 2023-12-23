@@ -12,7 +12,7 @@ AddRectAction::AddRectAction(ApplicationManager * pApp):Action(pApp)
 void AddRectAction::ReadActionParameters() 
 {	
 	//Get a Pointer to the Input / Output Interfaces
-	Output* pOut = pManager->GetOutput();
+	pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
 	pOut->PrintMessage("New Rectangle: Click at first corner");
@@ -56,7 +56,7 @@ void AddRectAction::Execute()
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
-
+	pOut->PrintMessage("A Rectangle has been succesfully Added");
 	//Save this Action when Recording
 	if (pManager->IsRecording())
 		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
@@ -67,7 +67,6 @@ void AddRectAction::undo()
 {
 	if (R != NULL) {
 		pManager->RemoveFigure(R);
-		Output* pOut = pManager->GetOutput();
 		pOut->PrintMessage("The Rectangle has been successfully Undone");
 	}
 }
@@ -76,7 +75,6 @@ void AddRectAction::redo()
 {
 	R = tmp;
 	pManager->AddFigure(R);
-	Output* pOut = pManager->GetOutput();
 	pOut->PrintMessage("The Rectangle has been successfully Redone");
 }
 

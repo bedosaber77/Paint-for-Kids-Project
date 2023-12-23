@@ -12,7 +12,7 @@ AddHexAction::AddHexAction(ApplicationManager* pApp) :Action(pApp)
 void AddHexAction::ReadActionParameters()
 {
 	//Get a Pointer to the Input / Output Interfaces
-	Output* pOut = pManager->GetOutput();
+	pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
 	pOut->PrintMessage("New Hexagon: Click at Center Point");
@@ -50,7 +50,7 @@ void AddHexAction::Execute()
 
 	//Add the hexagon to the list of figures
 	pManager->AddFigure(H);
-
+	pOut->PrintMessage("A Hexagon has been succesfully Added");
 	//Save this Action when Recording
 	if (pManager->IsRecording())
 		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
@@ -61,7 +61,6 @@ void AddHexAction::undo()
 {
 	if (H != NULL) {
 		pManager->RemoveFigure(H);
-		Output* pOut = pManager->GetOutput();
 		pOut->PrintMessage("The Hexagon has been successfully Uedone");
 	}
 }
@@ -70,6 +69,5 @@ void AddHexAction::redo()
 {
 	H = tmp;
 	pManager->AddFigure(H);
-	Output* pOut = pManager->GetOutput();
 	pOut->PrintMessage("The Hexagon has been successfully Redone");
 }

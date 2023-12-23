@@ -6,6 +6,7 @@ class MoveByDragging :
 	public Action
 {
 private:
+	Input* pIn;
 	Point NewCenter;               //Current center 
 	Point PrevCenter;			    //Previous center 
 	CFigure* SelectedFig;

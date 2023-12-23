@@ -11,7 +11,7 @@ AddCircAction::AddCircAction(ApplicationManager* pApp) :Action(pApp)
 void AddCircAction::ReadActionParameters()
 {
 	//Get a Pointer to the Input / Output Interfaces
-	Output* pOut = pManager->GetOutput();
+	pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
 	pOut->PrintMessage("New Circle: Click at Center Point");
@@ -56,6 +56,7 @@ void AddCircAction::Execute()
 
 	//Add the circle to the list of figures
 	pManager->AddFigure(C);
+	pOut->PrintMessage("A Circle has been succesfully Added");
 
 	//Save this Action when Recording
 	if (pManager->IsRecording())
@@ -69,7 +70,6 @@ void AddCircAction::undo()
 {
 	if (C != NULL) {
 		pManager->RemoveFigure(C);
-		Output* pOut = pManager->GetOutput();
 		pOut->PrintMessage("The Circle has been successfully Undone");
 	}
 }
@@ -78,7 +78,6 @@ void AddCircAction::redo()
 {
 	C = tmp;
 	pManager->AddFigure(C);
-	Output* pOut = pManager->GetOutput();
 	pOut->PrintMessage("The Circle has been successfully Redone");
 }
 

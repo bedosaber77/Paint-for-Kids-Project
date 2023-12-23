@@ -11,6 +11,7 @@ class Action
 {
 protected:
 	ApplicationManager *pManager;	//Actions needs AppMngr to do their job
+	Output* pOut;
 	bool Recording = 0;
 public:
 

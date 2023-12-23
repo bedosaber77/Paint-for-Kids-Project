@@ -79,6 +79,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		// ########################## Load Figures ##########################
 		case LOAD:
 			pAct = new LoadAction(this);
+			toDelete = 1;
 			break;
 		// ########################## Delete Figure ##########################
 
@@ -100,6 +101,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case MOVEBYDRAGGING:
 			pAct = new MoveByDragging(this);
+			UndoActs->push(pAct);
+			toDelete = 0;
+			RedoActs->clear();
 			break;
 
 
@@ -182,18 +186,22 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case SHAPE_PLAY_PICK:
 			pAct = new PickByShapeAction(this);
+			toDelete = 1;
 			break;
 
 		case COLOR_PLAY_PICK:
 			pAct = new PickByColorAction(this);
+			toDelete = 1;
 			break;
 
 		case COLORED_SHAPE_PLAY_PICK:
 			pAct = new PickByColoredShapesAction(this);
+			toDelete = 1;
 			break;
 
 		case RESTART_PLAY:
 			pAct = new class RestartGame(this);
+			toDelete = 1;
 			break;
 
 			///////////////////////////////////////////////////////////////////
@@ -228,9 +236,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case UNMUTE:
 			pAct = new Sound(this);
+			toDelete = 1;
 			break;
 		case MUTE:
 			pAct = new MuteAction(this);
+			toDelete = 1;
 			break;
 		case EXIT:
 			///create ExitAction here

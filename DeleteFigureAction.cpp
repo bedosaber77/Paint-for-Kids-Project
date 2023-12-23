@@ -22,7 +22,7 @@ void DeleteFigureAction::Execute()
 		//This action needs to read some parameters first
 		ReadActionParameters();
 
-	Output* pOut = pManager->GetOutput();
+	pOut = pManager->GetOutput();
 	if (Figure == NULL) pOut->PrintMessage("Please Select A Figure First");
 	else
 	{
@@ -43,7 +43,6 @@ void DeleteFigureAction::Execute()
 
 void DeleteFigureAction::undo()
 {
-	Output* pOut = pManager->GetOutput();
 	if (Figure == NULL) {
 		Figure = Backup;
 		pManager->AddFigure(Figure);
@@ -54,7 +53,6 @@ void DeleteFigureAction::undo()
 
 void DeleteFigureAction::redo()
 {
-	Output* pOut = pManager->GetOutput();
 	if (Backup == NULL){ 
 		pManager->RemoveFigure(Figure);
 		Backup = Figure;

@@ -12,7 +12,7 @@ AddSquAction::AddSquAction(ApplicationManager* pApp) :Action(pApp)
 void AddSquAction::ReadActionParameters()
 {
 	//Get a Pointer to the Input / Output Interfaces
-	Output* pOut = pManager->GetOutput();
+	pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
 	pOut->PrintMessage("New Square: Click at Center Point");
@@ -51,7 +51,7 @@ void AddSquAction::Execute()
 
 	//Add the square to the list of figures
 	pManager->AddFigure(S);
-
+	pOut->PrintMessage("A Square has been succesfully Added");
 	//Save this Action when Recording
 	if (pManager->IsRecording())
 		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
@@ -62,7 +62,6 @@ void AddSquAction::undo()
 {
 	if (S != NULL)
 		pManager->RemoveFigure(S);
-	Output* pOut = pManager->GetOutput();
 	pOut->PrintMessage("The Square has been successfully Undone");
 }
 
@@ -70,6 +69,5 @@ void AddSquAction::redo()
 {
 	S = tmp;
 	pManager->AddFigure(S);
-	Output* pOut = pManager->GetOutput();
 	pOut->PrintMessage("The Square has been successfully Redone");
 }

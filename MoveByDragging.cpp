@@ -12,8 +12,8 @@ MoveByDragging::MoveByDragging(ApplicationManager* pApp) :Action(pApp)
 
 void MoveByDragging::ReadActionParameters()
 {
-	Output* pOut = pManager->GetOutput();
-	Input* pIn = pManager->GetInput();
+	
+	
 	SelectedFig = pManager->GetSelectedFig();
 	if (SelectedFig == NULL)
 	{
@@ -29,14 +29,15 @@ void MoveByDragging::ReadActionParameters()
 void MoveByDragging::Execute()
 {
 
-	Output* pOut = pManager->GetOutput();
-	Input* pIn = pManager->GetInput();
+	pOut = pManager->GetOutput();
+	pIn = pManager->GetInput();
 	ReadActionParameters();
 
 
 
 	if (SelectedFig != NULL)
 	{
+		PrevCenter = SelectedFig->GetCenter();
 		pOut->PrintMessage("Click And Hold To Drag Figure , Release Figure To Stop");
 		do
 		{
@@ -58,18 +59,19 @@ void MoveByDragging::Execute()
 		pOut->PrintMessage("Figure Moved");
 
 	}
-
-
-
+	NewCenter = SelectedFig->GetCenter();
 }
 
 void MoveByDragging::undo()
 {
-
+	SelectedFig->Moveto(PrevCenter);
+	pOut->PrintMessage("Moving By Dragging Has Successfully Undone");
 }
 
 void MoveByDragging::redo()
 {
+	SelectedFig->Moveto(NewCenter);
+	pOut->PrintMessage("Moving By Dragging Has Successfully Redone");
 }
 
 

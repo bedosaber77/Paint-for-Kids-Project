@@ -17,7 +17,7 @@ void AddTriAction::ReadActionParameters()
 	}
 
 	//Get a Pointer to the Input / Output Interfaces
-	Output* pOut = pManager->GetOutput();
+	pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
 	pOut->PrintMessage("New Triangle: Click at first corner");
@@ -30,7 +30,7 @@ void AddTriAction::ReadActionParameters()
 	//Read 2nd corner and store in point P2
 	pIn->GetPointClicked(P2.x, P2.y);
 
-	pOut->PrintMessage("New Triangle: Click at second corner");
+	pOut->PrintMessage("New Triangle: Click at third corner");
 
 	//Read 3rd corner and store in point P3
 	pIn->GetPointClicked(P3.x, P3.y);
@@ -47,7 +47,7 @@ void AddTriAction::ReadActionParameters()
 //Execute the action
 void AddTriAction::Execute()
 {
-	if (!pManager->IsPlayingRecord() || !pManager->IsRead())
+	if (!pManager->IsPlayingRecord())
 	{
 		//This action needs to read some parameters first
 		ReadActionParameters();
@@ -61,6 +61,7 @@ void AddTriAction::Execute()
 
 	//Add the triangle to the list of figures
 	pManager->AddFigure(T);
+	pOut->PrintMessage("A Triangle has been succesfully Added");
 
 	//Save this Action when Recording
 	if (pManager->IsRecording())
@@ -72,7 +73,6 @@ void AddTriAction::undo()
 {
 	if (T != NULL) {
 		pManager->RemoveFigure(T);
-		Output* pOut = pManager->GetOutput();
 		pOut->PrintMessage("The Triangle has been successfully Undone");
 	}
 }
@@ -81,6 +81,5 @@ void AddTriAction::redo()
 {
 	T = tmp;
 	pManager->AddFigure(T);
-	Output* pOut = pManager->GetOutput();
 	pOut->PrintMessage("The Triangle has been successfully Redone");
 }

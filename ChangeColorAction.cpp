@@ -17,7 +17,7 @@ void ChangeColorAction::ReadActionParameters()
 void ChangeColorAction::Execute()
 {
 	FigurePt = pManager->GetSelectedFig();
-	Output* pOut = pManager->GetOutput();
+	pOut = pManager->GetOutput();
 	if (FigurePt == NULL)
 	{
 		pOut->PrintMessage("No Figure Selected Please Select Figure ");
@@ -68,7 +68,6 @@ void ChangeColorAction::Execute()
 	
 void ChangeColorAction::undo()
 {
-	Output* pOut = pManager->GetOutput();
 	if (FillDraw == 'F')
 	{
 		if (!wasFilled) {
@@ -93,7 +92,6 @@ void ChangeColorAction::undo()
 
 void ChangeColorAction::redo()
 {
-	Output* pOut = pManager->GetOutput();
 	if (FillDraw == 'F')
 	{
 		UI.FillColor = ColorPicked;

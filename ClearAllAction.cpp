@@ -13,7 +13,7 @@ void ClearAllAction::ReadActionParameters()
 void ClearAllAction::Execute()
 {
 	pManager->ClearFigures();
-	Output* pOut = pManager->GetOutput();
+	pOut = pManager->GetOutput();
 	pOut->PrintMessage("All cleared, Back to initial state");
 }
 
