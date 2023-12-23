@@ -16,7 +16,7 @@ void PlayRecordAction::ReadActionParameters()
 	pManager->SetPlayingRecordState(true);
 	pManager->PlayRecord();
 	pManager->SetPlayingRecordState(false);
-	pOut->PrintMessage("Palying Record has ended.");
+	pOut->PrintMessage("Playing Record has ended.");
 	}
 }
 
