@@ -57,10 +57,7 @@ void AddRectAction::Execute()
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
 	pOut->PrintMessage("A Rectangle has been succesfully Added");
-	//Save this Action when Recording
-	if (pManager->IsRecording())
-		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
-			pManager->RecordAction(this);
+
 }
 
 void AddRectAction::undo()

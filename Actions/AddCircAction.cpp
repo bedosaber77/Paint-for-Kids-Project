@@ -58,12 +58,6 @@ void AddCircAction::Execute()
 	pManager->AddFigure(C);
 	pOut->PrintMessage("A Circle has been succesfully Added");
 
-	//Save this Action when Recording
-	if (pManager->IsRecording())
-		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
-			pManager->RecordAction(this);
-
-	
 }
 
 void AddCircAction::undo()

@@ -54,12 +54,6 @@ void SelectFigureAction::Execute()
 	else if (SelectedFig == NULL)
 		pOut->PrintMessage("No Figure Selected, Please Click On Figure");
 
-	//Save this Action when Recording
-	if (pManager->IsRecording())
-		if (pManager->GetRecActCount() < pManager->GetMaxRecCount())
-			pManager->RecordAction(this);
-
-
 }
 
 void SelectFigureAction::undo()
