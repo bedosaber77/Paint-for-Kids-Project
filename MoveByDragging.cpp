@@ -55,7 +55,7 @@ void MoveByDragging::Execute()
 
 		} while (SelectedFig->IsInclude(Cursor) == 1);
 
-		pOut->PrintMessage("Figure Moved");
+		SelectedFig->PrintInfo(pOut); // Update Info On status Bar
 
 	}
 

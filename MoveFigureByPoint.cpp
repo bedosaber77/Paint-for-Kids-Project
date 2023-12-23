@@ -37,6 +37,7 @@ void MoveFigureByPoint::Execute()
 		ReadActionParameters();
 		PrevCenter = SelectedFig->GetCenter(); // Use It For Recording And Undo
 		SelectedFig->Moveto(NewCenter);
+		SelectedFig->PrintInfo(pOut); // Update Info On status Bar
 
 	}
 

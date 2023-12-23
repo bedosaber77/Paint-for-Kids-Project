@@ -42,7 +42,23 @@ bool CTriangle::IsInclude(Point P) const
 
 void CTriangle::PrintInfo(Output* pOut)
 {
+	Info = "";
+	addToInfo("Triangle | ");
 	CFigure::PrintInfo(pOut);
+
+
+	addToInfo("Center : (");
+	addToInfo(to_string(Center.x) + " , " + to_string(Center.y) + ") ");
+
+
+	addToInfo("Corner1 : (");
+	addToInfo(to_string(Corner1.x) + " , " + to_string(Corner1.y) + ") ");
+	addToInfo("Corner2 : (");
+	addToInfo(to_string(Corner2.x) + " , " + to_string(Corner2.y) + ") ");;
+	addToInfo("Corner3 : (");
+	addToInfo(to_string(Corner3.x) + " , " + to_string(Corner3.y) + ") ");
+
+	pOut->PrintMessage(Info);
 }
 
 void CTriangle::Save(ofstream& OutFile)

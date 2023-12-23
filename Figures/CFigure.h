@@ -12,7 +12,7 @@ protected:
 	static int id;
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
-	
+	string Info;
 	bool Hidden;
 	/// Add more parameters if needed.
 
@@ -42,7 +42,7 @@ public:
 	Shape GetShape();
 	virtual Point GetCenter()  = 0 ;
 	virtual void  Moveto(Point) = 0;
-
+	void addToInfo(string s);
 
 
 	void SetHidden(bool);
@@ -52,7 +52,6 @@ public:
 	virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
 
 	virtual void PrintInfo(Output* pOut);	//print all figure info on the status bar  
-	// last one should not actually be pure Anas IBrahem
 };
 
 #endif

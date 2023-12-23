@@ -56,6 +56,7 @@ void ChangeColorAction::Execute()
 				FigurePt->ChngDrawClr(UI.DrawColor);
 			}
 
+			FigurePt->PrintInfo(pOut); // Update Info On status Bar
 			pOut->CreateDrawToolBar();
 
 	}

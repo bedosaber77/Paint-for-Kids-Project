@@ -28,7 +28,13 @@ bool CSquare::IsInclude(Point P) const
 
 void CSquare::PrintInfo(Output* pOut)
 {
+	Info = "";
+	addToInfo("Square | ");
 	CFigure::PrintInfo(pOut);
+	addToInfo("Center : (");
+	addToInfo(to_string(Center.x) + " , " + to_string(Center.y) + ") ");
+	addToInfo(" | Side Length : " + to_string(L).substr(0, to_string(L).find('.') + 3)); // Controlling 2 Decimal Points
+	pOut->PrintMessage(Info);
 }
 
 void CSquare::Save(ofstream& OutFile)
