@@ -276,6 +276,7 @@ color Output::StringColor(string C)
 	if (C == "YELLOW")   return YELLOW;
 	if (C == "RED")      return RED;
 	if (C == "BLUE")     return BLUE;
+	if (C == "TRANSPERNT") return WHITESMOKE;
 }
 
 //======================================================================================//

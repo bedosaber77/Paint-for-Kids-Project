@@ -36,6 +36,8 @@ void LoadAction::Execute()
 		infile >> str;
 		UI.DrawColor = Output::StringColor(str);
 		infile >> str;
+		if (str != "TRANSPERNT")
+			UI.isFilled = true;
 		UI.FillColor= Output::StringColor(str);
 		int n, id;
 		CFigure* NewFig=NULL;
