@@ -3,16 +3,22 @@
 PickByColorAction::PickByColorAction(ApplicationManager* pApp):Action(pApp)
 {
 	pOut = pManager->GetOutput();
-	pManager->PickRand();
 }
 
 void PickByColorAction::ReadActionParameters()
 {
+	if (pManager->GetFigCount() != 0)
+		pManager->PickRand();
+	else
+		pOut->PrintMessage("No Figures to start Play");
 }
 
 void PickByColorAction::Execute()
 {
-	pManager->PickByColor();
+	ReadActionParameters();
+
+	if (pManager->GetFigCount() != 0)
+		pManager->PickByColor();
 }
 
 void PickByColorAction::undo()

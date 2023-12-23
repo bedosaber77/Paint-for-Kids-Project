@@ -3,16 +3,23 @@
 PickByShapeAction::PickByShapeAction(ApplicationManager* pApp):Action(pApp)
 {
 	pOut = pManager->GetOutput();
-	pManager->PickRand();
 }
 
 void PickByShapeAction::ReadActionParameters()
 {
+	if (pManager->GetFigCount() != 0)
+		pManager->PickRand();
+	else
+		pOut->PrintMessage("No Figures to start Play");
 }
+
 
 void PickByShapeAction::Execute()
 {
-	pManager->PickByShape();
+	ReadActionParameters();
+
+	if (pManager->GetFigCount() != 0)
+		pManager->PickByShape();
 }
 
 void PickByShapeAction::undo()
