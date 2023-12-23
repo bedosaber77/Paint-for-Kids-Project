@@ -22,8 +22,13 @@ private:
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 	CFigure* RecycleBin[MaxFigCount]; //List of All deleted figures
 	CFigure* SelectedFig; //Pointer to the selected figure   // Needs Setter and Getter ANAS IBRAHEM
-	CFigure* PickingFig; 
-	color PickingClr;
+	
+	CFigure* PickingFig; //Randomed figure type
+	color PickingClr;	//Randomed color
+	int PickingShapeCount = 0;	//Number of shapes
+	int PickingColorCount = 0;
+	int PickingColoredShapeCount = 0;
+	
 	Action* RecordActionList[MaxRecActCount]; //List of Recorded Actions
 	int RecActCount = 0; //No. of Recorded Actions
 	
@@ -77,10 +82,14 @@ public:
 	//--------------------------Undo & Redo-----------------------------
 
 	bool GetSoundStatues();
+
 	// -- Pick & Hide Functions
 	//set & get Picking shape or color
 	void PickRand();
-	void PickShape();
+	void RestartGame();
+	void PickByShape();
+	void PickByColor();
+	void PickByColoredShapes();
 
 	// -- Undo And Redo Swapping functions
 	void AddtoRedo();
@@ -100,6 +109,10 @@ public:
 	static string ColorString(color C);
 	static color StringColor(string C);
 	static string ShapeString(CFigure*);
+
+
+
+
 };
 
 #endif

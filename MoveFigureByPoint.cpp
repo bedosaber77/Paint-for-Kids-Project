@@ -41,9 +41,6 @@ void MoveFigureByPoint::Execute()
 	}
 
 
-
-
-
 }
 
 void MoveFigureByPoint::undo()
