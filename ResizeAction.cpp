@@ -35,6 +35,10 @@ void ResizeAction::Execute()
 		pOut->PrintMessage("Click And Hold To Resizing");
 		while (pIn->GetButtonStateLeftButton(Cursor)==BUTTON_DOWN)
 		{
+			if (!ReadOnce) {
+				prevPoint = Cursor;
+				ReadOnce = true;
+			}
 			SelectedFig->Resize(Cursor);
 			pManager->UpdateInterface();
 		}
@@ -44,13 +48,19 @@ void ResizeAction::Execute()
 		{
 		}
 	} while (SelectedFig->isOnCorner(Cursor));
+	newPoint = Cursor;
 	SelectedFig->PrintInfo(pOut);
+	pManager->CreateInUndo(this);
 }
 
 void ResizeAction::undo()
 {
+	SelectedFig->Resize(prevPoint);
+	pOut->PrintMessage("Resizing Figure has been successfully Undo");
 }
 
 void ResizeAction::redo()
 {
+	SelectedFig->Resize(newPoint);
+	pOut->PrintMessage("Resizing Figure has been successfully Redo");
 }

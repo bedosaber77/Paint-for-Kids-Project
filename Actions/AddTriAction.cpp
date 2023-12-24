@@ -62,7 +62,7 @@ void AddTriAction::Execute()
 	//Add the triangle to the list of figures
 	pManager->AddFigure(T);
 	pOut->PrintMessage("A Triangle has been succesfully Added");
-
+	pManager->CreateInUndo(this);
 }
 
 void AddTriAction::undo()

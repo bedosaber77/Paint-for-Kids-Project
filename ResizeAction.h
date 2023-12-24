@@ -6,7 +6,9 @@ private:
 	Input* pIn;
 	CFigure* SelectedFig;
 	Point Cursor;
-
+	Point prevPoint;
+	Point newPoint;
+	bool ReadOnce = 0;
 
 public:
 

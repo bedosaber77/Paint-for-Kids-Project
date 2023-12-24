@@ -10,7 +10,7 @@ void StartRecordAction::ReadActionParameters()
 	{
 
 		pManager->SetRecordingState(true);
-
+		pManager->SetUndoRecordState(true);
 		pOut->PrintMessage("Recording Started.");
 		
 		pManager->ClearRecord();

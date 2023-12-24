@@ -51,7 +51,7 @@ void AddHexAction::Execute()
 	//Add the hexagon to the list of figures
 	pManager->AddFigure(H);
 	pOut->PrintMessage("A Hexagon has been succesfully Added");
-
+	pManager->CreateInUndo(this);
 }
 
 void AddHexAction::undo()

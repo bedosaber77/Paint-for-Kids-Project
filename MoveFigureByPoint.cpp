@@ -43,7 +43,7 @@ void MoveFigureByPoint::Execute()
 
 	}
 
-
+	pManager->CreateInUndo(this);
 }
 
 void MoveFigureByPoint::undo()

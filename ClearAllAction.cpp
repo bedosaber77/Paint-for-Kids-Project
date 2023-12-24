@@ -12,6 +12,7 @@ void ClearAllAction::Execute()
 {
 	pManager->ClearFigures();
 	pOut = pManager->GetOutput();
+	pManager->SetUndoRecordState(false);
 	pOut->PrintMessage("All cleared, Back to initial state");
 }
 

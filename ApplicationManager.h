@@ -79,7 +79,7 @@ public:
 
 	int GetRecActCount();
 	int GetMaxRecCount();
-	//--------------------------Undo & Redo-----------------------------
+
 
 	bool GetSoundStatues();
 
@@ -90,13 +90,17 @@ public:
 	void PickByShape();
 	void PickByColor();
 	void PickByColoredShapes();
-
+	//--------------------------Undo & Redo-----------------------------
 	// -- Undo And Redo Swapping functions
 	void AddtoRedo();
 	void AddtoUndo();
 
 	void UndoIT();
 	void RedoIT();
+
+	void CreateInUndo(Action* x);
+
+	void SetUndoRecordState(bool x);
 	//Functions for managing reading parameters
 	bool IsRead();
 	void SettoRead();

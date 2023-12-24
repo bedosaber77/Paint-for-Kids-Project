@@ -30,6 +30,7 @@ void DeleteFigureAction::Execute()
 		pManager->SetSelectedFig(NULL);
 		pManager->RemoveFigure(Figure);
 		Figure = NULL;
+		pManager->CreateInUndo(this);
 	}
 }
 

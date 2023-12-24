@@ -57,7 +57,7 @@ void AddCircAction::Execute()
 	//Add the circle to the list of figures
 	pManager->AddFigure(C);
 	pOut->PrintMessage("A Circle has been succesfully Added");
-
+	pManager->CreateInUndo(this);
 }
 
 void AddCircAction::undo()

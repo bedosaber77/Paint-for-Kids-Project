@@ -58,8 +58,8 @@ void ChangeColorAction::Execute()
 
 			FigurePt->PrintInfo(pOut); // Update Info On status Bar
 			pOut->CreateDrawToolBar();
-
 	}
+	pManager->CreateInUndo(this);
 }
 	
 void ChangeColorAction::undo()

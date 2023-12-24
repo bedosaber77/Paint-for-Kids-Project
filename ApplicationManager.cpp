@@ -75,36 +75,25 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		// ########################## Save Figures ##########################
 		case SAVE_GRAPH:
 			pAct = new SaveAction(this);
-			toDelete = 1;
 			break;
 		// ########################## Load Figures ##########################
 		case LOAD:
 			pAct = new LoadAction(this);
-			toDelete = 1;
 			break;
 		// ########################## Delete Figure ##########################
 
 		case ERASE:
 			pAct = new DeleteFigureAction(this);
-			UndoActs->push(pAct);
-			toDelete = 0;
-			RedoActs->clear();
 			break;
 
 		// ########################## Move Figure ##########################
 
 		case MOVE:
 			pAct = new MoveFigureByPoint(this);
-			UndoActs->push(pAct);
-			toDelete = 0;
-			RedoActs->clear();
 			break;
 
 		case MOVEBYDRAGGING:
 			pAct = new MoveByDragging(this);
-			UndoActs->push(pAct);
-			toDelete = 0;
-			RedoActs->clear();
 			break;
 		case RESIZE:
 			pAct = new ResizeAction(this);
@@ -113,116 +102,84 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case FILL_COLOR_PICK:
 			pAct = new ChangeColorAction(this,'F');
-			toDelete = 0;
-			UndoActs->push(pAct);
-			RedoActs->clear();
 			break;
 
 		case BORDER_COLOR_PICK:
 			pAct = new ChangeColorAction(this,'D');
-			toDelete = 0;
-			UndoActs->push(pAct);
-			RedoActs->clear();
 			break;
 
 
 			// ########################## Add Figure ##########################
 		case DRAW_RECT:
 			pAct = new AddRectAction(this);
-			toDelete = 0;
-			UndoActs->push(pAct);
-			RedoActs->clear();
 			break;
 
 		case DRAW_HEX:
 			pAct = new AddHexAction(this);
-			toDelete = 0;
-			UndoActs->push(pAct);
-			RedoActs->clear();
 			break;
 
 		case DRAW_SQU:
 			pAct = new AddSquAction(this);
-			toDelete = 0;
-			UndoActs->push(pAct);
-			RedoActs->clear();
 			break;
 
 		case DRAW_TRI:
 			pAct = new AddTriAction(this);
-			toDelete = 0;
-			UndoActs->push(pAct);
-			RedoActs->clear();
 			break;
 
 		case DRAW_CIRC:
 			pAct = new AddCircAction(this);
-			toDelete = 0;
-			UndoActs->push(pAct);
-			RedoActs->clear();
 			break;
 
 		case CLEARALL:
 			pAct = new ClearAllAction(this);
-			toDelete = 1;
 			break;
 
 		// ########################## Recording ##########################
 			
 		case START_REC:
 			pAct = new StartRecordAction(this);
-			toDelete = 1;
 			break;
 
 		case STOP_REC:
 			pAct = new StopRecordAction(this);
-			toDelete = 1;
 			break;
 
 		case PLAY_REC:
 			pAct = new PlayRecordAction(this);
-			toDelete = 1;
 			break;
 
 			// ########################## PICK & HIDE ##########################
 
 		case SHAPE_PLAY_PICK:
 			pAct = new PickByShapeAction(this);
-			toDelete = 1;
 			break;
 
 		case COLOR_PLAY_PICK:
 			pAct = new PickByColorAction(this);
-			toDelete = 1;
 			break;
 
 		case COLORED_SHAPE_PLAY_PICK:
 			pAct = new PickByColoredShapesAction(this);
-			toDelete = 1;
 			break;
 
 		case RESTART_PLAY:
 			pAct = new class RestartGame(this);
-			toDelete = 1;
 			break;
 
 			///////////////////////////////////////////////////////////////////
 
 		case SELECT:
 			pAct = new SelectFigureAction(this);
-			toDelete = 1;
 			break;
 
 			// ########################## Undo & Redo ##########################
 
 		case UNDO:
 			pAct = new UndoAction(this);
-			toDelete = 1;
 			break;
 
 		case REDO:
 			pAct = new RedoAction(this);
-			toDelete = 1;
 			break;
 
 		case SHAPES_PICK :
@@ -239,11 +196,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case UNMUTE:
 			pAct = new Sound(this);
-			toDelete = 1;
 			break;
 		case MUTE:
 			pAct = new MuteAction(this);
-			toDelete = 1;
 			break;
 		case EXIT:
 			///create ExitAction here
@@ -261,28 +216,38 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	if (pAct != NULL)
 	{
 		pAct->Execute();	//Execute
-		if (IsRecording())
+		switch (ActType)
 		{
-			switch (ActType)
-			{
-			case START_REC:
-			case PLAY_REC:
-			case SAVE_GRAPH:
-			case LOAD:
-			case TO_PLAY:
-			case EXIT:
-				break;
-
-			default:
-				if (IsRecording() && GetRecActCount() < GetMaxRecCount() && ActType != START_REC)
-					RecordAction(pAct);
-			}
-		}
-
-		if (!IsRecording() && toDelete)
-		{
-			delete pAct;	//You may need to change this line depending to your implementation of undo and redo
+		case START_REC:
+		case PLAY_REC:
+		case STOP_REC:
+		case CLEARALL:
+		case SHAPE_PLAY_PICK:
+		case COLOR_PLAY_PICK:
+		case RESTART_PLAY:
+		case COLORED_SHAPE_PLAY_PICK:
+		case SAVE_GRAPH:
+		case LOAD:
+		case TO_PLAY:
+		case EXIT:
+			delete pAct;
 			pAct = NULL;
+			break;
+
+		default:
+			if (IsRecording() && GetRecActCount() < GetMaxRecCount() && ActType != START_REC)
+				RecordAction(pAct);
+			else
+			{
+				switch (ActType)
+				{
+				case SELECT:
+				case UNDO:
+				case REDO:
+					delete pAct;
+					pAct = NULL;
+				}
+			}
 		}
 	}
 }
@@ -685,6 +650,18 @@ void ApplicationManager::RedoIT()
 		RedoActs->Top()->redo();
 		RedoActs->pop();
 	}
+}
+
+void ApplicationManager::CreateInUndo(Action* x)
+{
+	UndoActs->push(x);
+	RedoActs->clear();
+}
+
+void ApplicationManager::SetUndoRecordState(bool x)
+{
+	UndoActs->SetIsRec(x);
+	RedoActs->SetIsRec(x);
 }
 
 bool ApplicationManager::IsRead()

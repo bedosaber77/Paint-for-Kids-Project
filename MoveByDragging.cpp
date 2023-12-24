@@ -60,6 +60,7 @@ void MoveByDragging::Execute()
 
 	}
 	NewCenter = SelectedFig->GetCenter();
+	pManager->CreateInUndo(this);
 }
 
 void MoveByDragging::undo()
