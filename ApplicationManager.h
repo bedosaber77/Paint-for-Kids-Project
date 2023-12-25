@@ -23,12 +23,14 @@ private:
 	CFigure* RecycleBin[MaxFigCount]; //List of All deleted figures
 	CFigure* SelectedFig; //Pointer to the selected figure   // Needs Setter and Getter ANAS IBRAHEM
 	
-	CFigure* PickingFig; //Randomed figure type
+	CFigure* PickingFig; //Randomed Shape
 	color PickingClr;	//Randomed color
-	int PickingShapeCount = 0;	//Number of shapes
-	int PickingColorCount = 0;
-	int PickingColoredShapeCount = 0;
-	
+	int PickingShapeCount = 0;	//Number of shaped figures to be PICKED
+	int PickingColorCount = 0;	//Number of colored figures to be PICKED
+	int PickingColoredShapeCount = 0;	//Number of colored shaped figures to be PICKED
+	int CorrectPicks = 0;		
+	int WrongPicks = 0;
+
 	Action* RecordActionList[MaxRecActCount]; //List of Recorded Actions
 	int RecActCount = 0; //No. of Recorded Actions
 	

@@ -220,7 +220,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct->Execute();	//Execute
 		switch (ActType)
 		{
-		
 		case PLAY_REC:
 		case START_REC:
 		case STOP_REC:
@@ -461,8 +460,28 @@ void ApplicationManager::PickRand()
 
 void ApplicationManager::RestartGame()
 {
+	PickingShapeCount = 0;
+	PickingColorCount = 0;
+	PickingColoredShapeCount = 0;
+	CorrectPicks = 0;
+	WrongPicks = 0;
+	
+	pOut->PrintMessage("Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
+
 	for (int i = 0; i < FigCount; i++)
+	{
 		FigList[i]->SetHidden(false);
+
+		if (PickingFig->GetShape() == FigList[i]->GetShape())
+			PickingShapeCount++;
+
+		if (PickingFig->GetColor() == FigList[i]->GetColor())
+			PickingColorCount++;
+
+		if (PickingFig->GetColor() == FigList[i]->GetColor() && PickingFig->GetShape() == FigList[i]->GetShape())
+			PickingColoredShapeCount++;
+	}
+
 	UpdateInterface();
 }
 
@@ -470,49 +489,47 @@ void ApplicationManager::RestartGame()
 void ApplicationManager::PickByShape()
 {
 	pOut->PrintMessage("Pick all " + ShapeString(PickingFig) + " Shapes.");
+
 	ActionType Act;
 
 	bool cont = 1;
-	int CorrectPicks = 0;
-	int WrongPicks = 0;
+
 	while (cont)
 	{
-
 		Point PickPoint;
 		pIn->GetPointClicked(PickPoint.x, PickPoint.y);
 		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
 
 		if (PickedFig != NULL)
+		{
+			if (!PickedFig->GetHidden())
+				if (PickingFig->GetShape() == PickedFig->GetShape()) CorrectPicks++;
+				else WrongPicks++;
 			PickedFig->SetHidden(1);
+		}
 		else
 		{
-			Act = TO_PLAY;
-			switch (Act = GetUserAction())
+			Act = GetUserAction();
+			
+			switch (Act)
 			{
-			case SHAPE_PLAY_PICK:
-			case COLORED_SHAPE_PLAY_PICK:
-			case COLOR_PLAY_PICK:
 			case RESTART_PLAY:
-			case TO_DRAW:
-				cont = 0;
-				RestartGame();
 				ExecuteAction(Act);
+				pOut->PrintMessage("Pick all " + ShapeString(PickingFig) + " Shapes.");
 				break;
+			
 			case DRAWING_AREA:
-				return;
 				break;
 			}
 		}
-		if (PickedFig != NULL)
-			if (PickingFig->GetShape() == PickedFig->GetShape()) CorrectPicks++;
-			else WrongPicks++;
 
 		if (CorrectPicks == PickingShapeCount)
 		{
-			pOut->PrintMessage("Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
+			pOut->PrintMessage("Final Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
 			cont = 0;
-			RestartGame();
 		}
+		else
+			pOut->PrintMessage("Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
 
 		UpdateInterface();
 
@@ -521,13 +538,10 @@ void ApplicationManager::PickByShape()
 
 void ApplicationManager::PickByColor()
 {
-	RestartGame();
 	pOut->PrintMessage("Pick all " + pOut->ColorString(PickingClr) + " filled Shapes.");
 	ActionType Act;
 
 	bool cont = 1;
-	int CorrectPicks = 0;
-	int WrongPicks = 0;
 
 	while (cont)
 	{
@@ -536,36 +550,35 @@ void ApplicationManager::PickByColor()
 		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
 
 		if (PickedFig != NULL)
+		{
+			if(!PickedFig->GetHidden())
+				if (PickingFig->GetColor() == PickedFig->GetColor()) CorrectPicks++;
+				else WrongPicks++;
 			PickedFig->SetHidden(1);
+		}
 		else
 		{
-			Act = TO_PLAY;
-			switch (Act = GetUserAction())
+			Act = GetUserAction();
+			
+			switch (Act)
 			{
-			case SHAPE_PLAY_PICK:
-			case COLORED_SHAPE_PLAY_PICK:
-			case COLOR_PLAY_PICK:
 			case RESTART_PLAY:
-			case TO_DRAW:
-				cont = 0;
-				RestartGame();
 				ExecuteAction(Act);
+				pOut->PrintMessage("Pick all " + pOut->ColorString(PickingClr) + " filled Shapes.");
 				break;
+
 			case DRAWING_AREA:
-				return;
 				break;
 			}
 		}
-
-		if (PickingFig->GetColor() == PickedFig->GetColor()) CorrectPicks++;
-		else WrongPicks++;
-
+		
 		if (CorrectPicks == PickingColorCount)
 		{
-			pOut->PrintMessage("Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
+			pOut->PrintMessage("Final Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
 			cont = 0;
-			RestartGame();
 		}
+		else
+			pOut->PrintMessage("Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
 
 		UpdateInterface();
 
@@ -574,13 +587,11 @@ void ApplicationManager::PickByColor()
 
 void ApplicationManager::PickByColoredShapes()
 {
-	RestartGame();
 	pOut->PrintMessage("Pick all " + pOut->ColorString(PickingClr) + " filled " + ShapeString(PickingFig) + " Shapes.");
+
 	ActionType Act;
 
 	bool cont = 1;
-	int CorrectPicks = 0;
-	int WrongPicks = 0;
 
 	while (cont)
 	{
@@ -589,37 +600,35 @@ void ApplicationManager::PickByColoredShapes()
 		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
 
 		if (PickedFig != NULL)
+		{
+			if(!PickedFig->GetHidden())
+				if (PickingFig->GetColor() == PickedFig->GetColor() && PickingFig->GetShape() == PickedFig->GetShape()) CorrectPicks++;
+				else WrongPicks++;
 			PickedFig->SetHidden(1);
+		}
 		else
 		{
-			Act = TO_PLAY;
-			switch (Act = GetUserAction())
+			Act = GetUserAction();
+		
+			switch (Act)
 			{
-			case SHAPE_PLAY_PICK:
-			case COLORED_SHAPE_PLAY_PICK:
-			case COLOR_PLAY_PICK:
 			case RESTART_PLAY:
-			case TO_DRAW:
-				cont = 0;
-				RestartGame();
 				ExecuteAction(Act);
+				pOut->PrintMessage("Pick all " + pOut->ColorString(PickingClr) + " filled " + ShapeString(PickingFig) + " Shapes.");
 				break;
+
 			case DRAWING_AREA:
-				return;
 				break;
 			}
 		}
 
-		if (PickedFig != NULL)
-			if (PickingFig->GetColor() == PickedFig->GetColor() && PickingFig->GetShape() == PickedFig->GetShape()) CorrectPicks++;
-			else WrongPicks++;
-
 		if (CorrectPicks == PickingColoredShapeCount)
 		{
-			pOut->PrintMessage("Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
+			pOut->PrintMessage("Final Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
 			cont = 0;
-			RestartGame();
 		}
+		else
+			pOut->PrintMessage("Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
 
 		UpdateInterface();
 
