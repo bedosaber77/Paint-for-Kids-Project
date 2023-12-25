@@ -4,6 +4,7 @@
 stack::stack(): topelement(0)
 {
 	IsRec = 0;
+	IsPlaying = 0;
 	for (int i = 0; i < 5; i++) {
 		ActListPtr[i] = NULL;
 	}
@@ -22,7 +23,7 @@ bool stack::isEmpty()
 void stack::push(Action* x)
 {
 	if (isFilled()) {
-		if(!IsRec)
+		if(!IsRec && !IsPlaying)
 			delete ActListPtr[0];
 		for (int i = 1; i < 5; i++) {
 			ActListPtr[i - 1] = ActListPtr[i];
@@ -39,6 +40,11 @@ void stack::push(Action* x)
 void stack::SetIsRec(bool x)
 {
 	IsRec = x;
+}
+
+void stack::SetIsPlaying(bool x)
+{
+	IsPlaying = x;
 }
 
 void stack::Destruct()

@@ -223,6 +223,14 @@
     <ClCompile Include="Sound.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="MoveByDragging.cpp" />
+    <ClCompile Include="PickByColorAction.cpp" />
+    <ClCompile Include="PickByColoredShapes.cpp" />
+    <ClCompile Include="ResizeAction.cpp" />
+    <ClCompile Include="RestartGame.cpp" />
+    <ClCompile Include="ExitAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -380,6 +388,14 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Sound.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveByDragging.h" />
+    <ClInclude Include="PickByColorAction.h" />
+    <ClInclude Include="PickByColoredShapes.h" />
+    <ClInclude Include="ResizeAction.h" />
+    <ClInclude Include="RestartGame.h" />
+    <ClInclude Include="ExitAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

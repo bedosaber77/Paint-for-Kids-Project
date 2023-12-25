@@ -12,12 +12,21 @@ void PlayRecordAction::ReadActionParameters()
 	}
 	else
 	{
-	// do ClearAll
-	pManager->SetPlayingRecordState(true);
-	pManager->PlayRecord();
-	pManager->SetPlayingRecordState(false);
-	pManager->SetUndoRecordState(false);
-	pOut->PrintMessage("Playing Record has ended.");
+	if (!pManager->IsRecording()){
+		//Clear First
+		pOut->ClearDrawArea();
+		pManager->ClearFigures();
+		//to not re reading paramaters
+		pManager->SetPlayingRecordState(true);
+		pManager->PlayRecord();
+		pManager->SetPlayingRecordState(false);
+		//to prevent undo And redo stacks from deleting
+		pManager->SetUndoRecordState(false);
+		pOut->PrintMessage("Playing Record has ended.");
+	}
+	else
+		pOut->PrintMessage("Stop Record First");
+
 	}
 }
 

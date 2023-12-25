@@ -2,6 +2,7 @@
 #include "..\ApplicationManager.h"
 ClearAllAction::ClearAllAction(ApplicationManager* pApp) :Action(pApp)
 {
+	pOut = pManager->GetOutput();
 }
 //No Parameters for this action
 void ClearAllAction::ReadActionParameters()
@@ -11,8 +12,11 @@ void ClearAllAction::ReadActionParameters()
 void ClearAllAction::Execute()
 {
 	pManager->ClearFigures();
-	pOut = pManager->GetOutput();
-	pManager->SetUndoRecordState(false);
+	if (!pManager->IsRecording() && !pManager->IsPlayingRecord()) {
+		pManager->ClearRecord();
+	}
+	
+	//pManager->SetUndoRecordState(false);
 	pOut->PrintMessage("All cleared, Back to initial state");
 }
 

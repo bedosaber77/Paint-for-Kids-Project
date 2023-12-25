@@ -24,6 +24,7 @@
 #include "MoveFigureByPoint.h"
 #include "MoveByDragging.h"
 #include "ResizeAction.h"
+#include "ExitAction.h"
 #include "GUI/Output.h"
 
 
@@ -194,6 +195,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			if(!IsRecording())
 				pOut->CreatePlayToolBar();
 			break;
+
 		case UNMUTE:
 			pAct = new Sound(this);
 			break;
@@ -201,7 +203,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new MuteAction(this);
 			break;
 		case EXIT:
-			///create ExitAction here
+			pAct = new ExitAction(this);
 			break;
 
 		case DRAWING_AREA:
@@ -218,25 +220,28 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct->Execute();	//Execute
 		switch (ActType)
 		{
-		case START_REC:
+		
 		case PLAY_REC:
+		case START_REC:
 		case STOP_REC:
-		case CLEARALL:
 		case SHAPE_PLAY_PICK:
 		case COLOR_PLAY_PICK:
 		case RESTART_PLAY:
-		case COLORED_SHAPE_PLAY_PICK:
 		case SAVE_GRAPH:
 		case LOAD:
-		case TO_PLAY:
+		case COLORED_SHAPE_PLAY_PICK:
 		case EXIT:
 			delete pAct;
 			pAct = NULL;
 			break;
 
 		default:
-			if (IsRecording() && GetRecActCount() < GetMaxRecCount() && ActType != START_REC)
+			if (IsRecording() /*&& ActType != START_REC*/)
+			{
 				RecordAction(pAct);
+				if (GetRecActCount() == GetMaxRecCount())
+					ExecuteAction(STOP_REC);
+			}
 			else
 			{
 				switch (ActType)
@@ -358,7 +363,7 @@ void ApplicationManager::ClearFigures()
 	FigCount = 0;
 	DelFigCount = 0;
 	SelectedFig = NULL;
-	ClearRecord();
+	//ClearRecord();
 	pOut->ResetColors();//Anas Magdy: Ask if this is the right Place or Not
 }
 
@@ -389,6 +394,7 @@ void ApplicationManager::ClearRecord()
 		delete RecordActionList[i];
 		RecordActionList[i] = NULL;
 	}
+	RecActCount = 0;
 }
 
 void ApplicationManager::SetPlayingRecordState(bool PRState)
@@ -403,12 +409,8 @@ bool ApplicationManager::IsPlayingRecord()
 
 void ApplicationManager::PlayRecord()
 {
-	pOut->ClearDrawArea();
-
-	//ClearAll Alter ..do it in playrec class
-	for (int i = 0; i < FigCount; i++)
-		FigList[i] = NULL;
-
+	UndoActs->SetIsPlaying(true);
+	RedoActs->SetIsPlaying(true);
 		for (int i = 0; i < RecActCount; i++)
 		{
 			Sleep(1000);
@@ -416,6 +418,8 @@ void ApplicationManager::PlayRecord()
 				RecordActionList[i]->Execute();
 			UpdateInterface();
 		}
+		UndoActs->SetIsPlaying(false);
+		RedoActs->SetIsPlaying(false);
 }
 
 int ApplicationManager::GetRecActCount()
