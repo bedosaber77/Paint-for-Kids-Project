@@ -12,15 +12,7 @@ MoveByDragging::MoveByDragging(ApplicationManager* pApp) :Action(pApp)
 
 void MoveByDragging::ReadActionParameters()
 {
-	
-	
 	SelectedFig = pManager->GetSelectedFig();
-	if (SelectedFig == NULL)
-	{
-		pOut->PrintMessage("Select A Figure First");
-		return ;
-	}
-
 	pOut->PrintMessage("Click on Selected Figure To Start Moving By Dragging");
 	pIn->WaitMouseClick(Cursor);
 	pOut->ClearStatusBar();
@@ -33,7 +25,11 @@ void MoveByDragging::Execute()
 	pIn = pManager->GetInput();
 	ReadActionParameters();
 
-
+	if (SelectedFig == NULL)
+	{
+		pOut->PrintMessage("Select A Figure First");
+		return;
+	}
 
 	if (SelectedFig != NULL)
 	{
@@ -74,5 +70,3 @@ void MoveByDragging::redo()
 	SelectedFig->Moveto(NewCenter);
 	pOut->PrintMessage("Moving By Dragging Has Successfully Redone");
 }
-
-

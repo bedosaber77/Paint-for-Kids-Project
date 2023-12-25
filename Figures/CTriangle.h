@@ -6,8 +6,7 @@ class CTriangle :
 
 private:
 	Point Corner1 ,Corner2 ,Corner3 ,Center;
-	int idx; //index used in resizing
-
+	int CornerNumResize;
 public:
 	CTriangle(Point, Point, Point, GfxInfo FigureGfxInfo);
 	CTriangle(int);
