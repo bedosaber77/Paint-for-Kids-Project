@@ -117,34 +117,6 @@ void CTriangle::Moveto(Point NewCenter)
 
 void CTriangle::Resize(Point Cursor)
 {
-	char PosX[3];
-	char PosY[3];
-	Point Corners[3];
-	Corners[0] = Corner1;
-	Corners[1] = Corner2;
-	Corners[2] = Corner3;
-	double Diff = sqrt(pow(Cursor.x - Corners[CornerNumResize].x, 2) + pow(Cursor.y - Corners[CornerNumResize].y, 2))
-		* (IsInclude(Cursor) == 1) ? 1 : -1;
-	double Sin = abs(Corners[CornerNumResize].y - Cursor.y ) / Diff ;
-	double Cos = abs(Corners[CornerNumResize].x - Cursor.x)  / Diff;
-
-	for (int i = 0; i < 3; i++)
-	{
-		PosX[i] = (Corners[i].x >= Center.x) ? 'R' : 'L';
-		PosY[i] = (Corners[i].y >= Center.y) ? 'D' : 'U';
-	}
-
-	for (int i = 0; i < 3; i++)
-	{
-		Corners[i].x += Diff * Cos * (PosX[i] == 'R') ? 1 : -1 ;
-		Corners[i].y += Diff * Sin * (PosY[i] == 'D') ? 1 : -1 ;
-
-	}
-
-	Corner1 = Corners[0];
-	Corner2 = Corners[1];
-	Corner3 = Corners[2];
-
 }
 
 bool CTriangle::isOnCorner(Point p)
@@ -159,7 +131,7 @@ bool CTriangle::isOnCorner(Point p)
 		if (Corners[i].x <= p.x + 8 && Corners[i].x >= p.x - 8 && Corners[i].y <= p.y + 8 && Corners[i].y >= p.y - 8)
 		{
 			isOnCorner = true;
-			CornerNumResize = i ; // 
+			idx=i;
 		}
 	}
 	return isOnCorner;

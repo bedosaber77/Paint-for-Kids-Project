@@ -114,26 +114,8 @@ void CRectangle::Resize(Point Cursor)
 
 bool CRectangle::isOnCorner(Point p)
 {
-	Point Corner3, Corner4;
-	Corner3.x = Corner2.x;
-	Corner3.y = Corner1.y;
-	Corner4.x = Corner1.x;
-	Corner4.y = Corner2.y;
-
-
-	return (
-		
-		 // Checking all 4 Corners
-		
-		
-			(((p.x <= Corner1.x + 8) && (p.x >= Corner1.x - 8)) && ((p.y <= Corner1.y + 8) && (p.y >= Corner1.y - 8))) ||
-			(((p.x <= Corner2.x + 8) && (p.x >= Corner2.x - 8)) && ((p.y <= Corner2.y + 8) && (p.y >= Corner2.y - 8))) ||
-			(((p.x <= Corner3.x + 8) && (p.x >= Corner3.x - 8)) && ((p.y <= Corner3.y + 8) && (p.y >= Corner3.y - 8))) ||
-			(((p.x <= Corner4.x + 8) && (p.x >= Corner4.x - 8)) && ((p.y <= Corner4.y + 8) && (p.y >= Corner4.y - 8)))
-		
-		
-		
-		);
+	return ((((p.x <= Corner1.x + 8) && (p.x >= Corner1.x - 8)) && ((p.y <= Corner1.y + 8) && (p.y >= Corner1.y - 8))) ||
+		(((p.x <= Corner2.x + 8) && (p.x >= Corner2.x - 8)) && ((p.y <= Corner2.y + 8) && (p.y >= Corner2.y - 8))));
 	
 }
 

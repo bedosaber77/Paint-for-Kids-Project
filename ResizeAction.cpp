@@ -30,10 +30,9 @@ void ResizeAction::Execute()
 		return;
 	}
 	else
-		pOut->PrintMessage("Click And Hold On Corner To Resize");
 	do
 	{
-		pOut->PrintMessage("Resizing");
+		pOut->PrintMessage("Click And Hold To Resizing");
 		while (pIn->GetButtonStateLeftButton(Cursor)==BUTTON_DOWN)
 		{
 			if (!ReadOnce) {

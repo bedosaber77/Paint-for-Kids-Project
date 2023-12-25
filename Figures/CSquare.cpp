@@ -5,13 +5,14 @@ using namespace std;
 CSquare::CSquare(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
-	L = 180; // Defualt Length
+	L = 180;
 	S = SQUARE;
 }
 
 CSquare::CSquare(int id) :CFigure(id)
 {
-	L = 180; // Defualt Length
+	L = 180;
+	S = SQUARE;
 }
 
 
@@ -23,7 +24,7 @@ void CSquare::Draw(Output* pOut) const
 bool CSquare::IsInclude(Point P) const
 {
 	return (P.y <= Center.y + L / 2 && P.y >= Center.y - L / 2) &&
-		(P.x <= Center.x + L / 2 && P.x >= Center.x - L / 2);
+		   (P.x <= Center.x + L / 2 && P.x >= Center.x - L / 2);
 }
 
 void CSquare::PrintInfo(Output* pOut)
@@ -40,7 +41,7 @@ void CSquare::PrintInfo(Output* pOut)
 void CSquare::Save(ofstream& OutFile)
 {
 	OutFile << "SQUARE\t" << ID << '\t' << Center.x << '\t' << Center.y << '\t'
-		<< Output::ColorString(FigGfxInfo.DrawClr) << '\t';
+		<< Output::ColorString(FigGfxInfo.DrawClr)<<'\t';
 	if (FigGfxInfo.isFilled) {
 		OutFile << Output::ColorString(FigGfxInfo.FillClr) << '\n';
 	}
@@ -82,18 +83,13 @@ void CSquare::Resize(Point Cursor)
 	double x, y;
 	x = pow((Cursor.x - Center.x), 2);
 	y = pow((Cursor.y - Center.y), 2);
-	L = sqrt(x + y) * 2 / pow(2, 0.5); // Updating Side Length
+	L = sqrt(x + y)*2/pow(2,0.5);
 }
 
 bool CSquare::isOnCorner(Point p)
 {
-	return (
-
-		// Checking all 4 Corners
-		((Center.x + L / 2 <= p.x + 8 && Center.x + L / 2 >= p.x - 8) && ((Center.y + L / 2 <= p.y + 8 && Center.y + L / 2 >= p.y - 8))) ||
-		((Center.x + L / 2 <= p.x + 8 && Center.x + L / 2 >= p.x - 8) && ((Center.y - L / 2 <= p.y + 8 && Center.y - L / 2 >= p.y - 8))) ||
-		((Center.x - L / 2 <= p.x + 8 && Center.x - L / 2 >= p.x - 8) && ((Center.y + L / 2 <= p.y + 8 && Center.y + L / 2 >= p.y - 8))) ||
-		((Center.x - L / 2 <= p.x + 8 && Center.x - L / 2 >= p.x - 8) && ((Center.y - L / 2 <= p.y + 8 && Center.y - L / 2 >= p.y - 8)))
-
-		);
+	return (((Center.x + L / 2 <= p.x + 8 && Center.x + L / 2 >= p.x - 8) && ((Center.y + L / 2 <= p.y + 8 && Center.y + L / 2 >= p.y - 8)))||
+		((Center.x - L / 2 <= p.x + 8 && Center.x - L / 2 >= p.x - 8) && ((Center.y - L / 2 <= p.y + 8 && Center.y - L / 2 >= p.y - 8))));
 }
+
+
