@@ -503,7 +503,7 @@ void ApplicationManager::PickByShape()
 				break;
 			}
 		}
-		if (PickingFig != NULL)
+		if (PickedFig != NULL)
 			if (PickingFig->GetShape() == PickedFig->GetShape()) CorrectPicks++;
 			else WrongPicks++;
 
@@ -588,7 +588,7 @@ void ApplicationManager::PickByColoredShapes()
 		pIn->GetPointClicked(PickPoint.x, PickPoint.y);
 		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
 
-		if (PickingFig != NULL)
+		if (PickedFig != NULL)
 			PickedFig->SetHidden(1);
 		else
 		{
@@ -610,8 +610,9 @@ void ApplicationManager::PickByColoredShapes()
 			}
 		}
 
-		if (PickingFig->GetColor() == PickedFig->GetColor() && PickingFig->GetShape() == PickedFig->GetShape()) CorrectPicks++;
-		else WrongPicks++;
+		if (PickedFig != NULL)
+			if (PickingFig->GetColor() == PickedFig->GetColor() && PickingFig->GetShape() == PickedFig->GetShape()) CorrectPicks++;
+			else WrongPicks++;
 
 		if (CorrectPicks == PickingColoredShapeCount)
 		{

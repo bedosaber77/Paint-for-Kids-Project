@@ -3,16 +3,22 @@
 PickByColoredShapesAction::PickByColoredShapesAction(ApplicationManager* pApp) :Action(pApp)
 {
 	pOut = pManager->GetOutput();
-	pManager->PickRand();
 }
 
 void PickByColoredShapesAction::ReadActionParameters()
 {
+	if (pManager->GetFigCount() != 0)
+		pManager->PickRand();
+	else
+		pOut->PrintMessage("No Figures to start Play");
 }
 
 void PickByColoredShapesAction::Execute()
 {
-	pManager->PickByColoredShapes();
+	ReadActionParameters();
+
+	if (pManager->GetFigCount() != 0)
+		pManager->PickByColoredShapes();
 }
 
 void PickByColoredShapesAction::undo()
