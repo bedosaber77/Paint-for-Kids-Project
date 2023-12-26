@@ -14,9 +14,9 @@ void PickByColorAction::Execute()
 {
 	if (pManager->GetFigCount() != 0)
 	{
-		pManager->RestartGame();
 		pManager->PickRand();
 		pManager->SetGameMode(true);
+		pManager->RestartGame();
 
 		Restart:
 		pOut->PrintMessage("Pick all " + pOut->ColorString(pManager->GetPickingColor()) + " filled Shapes.");

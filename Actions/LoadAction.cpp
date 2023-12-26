@@ -81,6 +81,8 @@ void LoadAction::Execute()
 			}
 			pManager->AddFigure(NewFig);
 		}
+	
+		pOut->PrintMessage("File " + File_Name + " Done Loaded  ");
 	}
 }
 
