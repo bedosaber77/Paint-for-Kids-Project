@@ -24,8 +24,8 @@ void ResizeAction::ReadActionParameters()
 
 void ResizeAction::Execute()
 {
-	pOut = pManager->GetOutput();
-	pIn = pManager->GetInput();
+	pOut = pManager->GetOutput(); // Should Actually be done in ReadActionParameters (Delete ya Ali :D)
+	pIn = pManager->GetInput();  // Should Actually be done in ReadActionParameters (Delete ya Ali :D)
 	ReadActionParameters();
 	if (SelectedFig == NULL)
 	{
@@ -45,7 +45,7 @@ void ResizeAction::Execute()
 			SelectedFig->Resize(Cursor);
 			pManager->UpdateInterface();
 		}
-		pOut->PrintMessage("Leave Corner To Finish, Click And Hold on Corner To Resize Figure Again");
+		pOut->PrintMessage("Leave Corner To Finish, Click And Hold on Corner To Resize Figure");
 
 		while (SelectedFig->isOnCorner(Cursor) == 1 && pIn->GetButtonStateLeftButton(Cursor) != BUTTON_DOWN)
 		{

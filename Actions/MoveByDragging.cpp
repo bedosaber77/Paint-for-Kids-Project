@@ -31,8 +31,8 @@ void MoveByDragging::ReadActionParameters()
 void MoveByDragging::Execute()
 {
 
-	pOut = pManager->GetOutput();
-	pIn = pManager->GetInput();
+	pOut = pManager->GetOutput(); // Should Actually be done in ReadActionParameters (Delete ya Ali :D)
+	pIn = pManager->GetInput(); // Should Actually be done in ReadActionParameters (Delete ya Ali :D)
 	ReadActionParameters();
 
 
@@ -40,7 +40,6 @@ void MoveByDragging::Execute()
 	if (SelectedFig != NULL)
 	{
 		PrevCenter = SelectedFig->GetCenter();
-		pOut->PrintMessage("Click And Hold To Drag Figure , Release Figure To Stop");
 		do
 		{
 			pOut->PrintMessage("Moving");
@@ -50,7 +49,7 @@ void MoveByDragging::Execute()
 				pManager->UpdateInterface();
 			}
 
-			pOut->PrintMessage("Leave Figure To Finish, Click And Hold To Drag Figure Again");
+			pOut->PrintMessage("Leave Figure To Finish, Click And Hold To Drag Figure");
 			// Wait Until User Releases Mouse Button
 			while (SelectedFig->IsInclude(Cursor) == 1 && pIn->GetButtonStateLeftButton(Cursor) != BUTTON_DOWN)
 			{
