@@ -10,17 +10,17 @@
     <Filter Include="Figures Classes">
       <UniqueIdentifier>{4cc0cf48-df46-46a1-a59b-ffb63f7dd89f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Action Classes">
-      <UniqueIdentifier>{cc2f4f46-2b97-4337-b924-0771e382c57b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GUI Classes">
       <UniqueIdentifier>{03fd4e0d-92e0-4271-bb9b-d6e9f21ec35f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application Manager">
-      <UniqueIdentifier>{be3a4e10-d854-4bf8-9add-2f85904b4103}</UniqueIdentifier>
-    </Filter>
     <Filter Include="My Stack">
       <UniqueIdentifier>{72f99876-3bab-48d0-81eb-338aef3a52b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actions">
+      <UniqueIdentifier>{e8a78323-574c-40da-9084-7b1e94718a5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application Manager">
+      <UniqueIdentifier>{be3a4e10-d854-4bf8-9add-2f85904b4103}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -135,9 +135,6 @@
     <ClCompile Include="Figures\CRectangle.cpp">
       <Filter>Figures Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Actions\AddRectAction.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
     <ClCompile Include="GUI\Input.cpp">
       <Filter>GUI Classes</Filter>
     </ClCompile>
@@ -164,82 +161,88 @@
       <Filter>Figures Classes</Filter>
     </ClCompile>
     <ClCompile Include="Actions\AddCircAction.cpp">
-      <Filter>Action Classes</Filter>
+      <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Actions\AddHexAction.cpp">
-      <Filter>Action Classes</Filter>
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddRectAction.cpp">
+      <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Actions\AddSquAction.cpp">
-      <Filter>Action Classes</Filter>
+      <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Actions\AddTriAction.cpp">
-      <Filter>Action Classes</Filter>
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ChangeColorAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ClearAllAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\DeleteFigureAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ExitAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\mystack.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\MuteAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\MoveFigureByPoint.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\PickByColorAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\UndoAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\StopRecordAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\StartRecordAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\Sound.cpp">
+      <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Actions\SelectFigureAction.cpp">
-      <Filter>Action Classes</Filter>
+      <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="ChangeColorAction.cpp">
-      <Filter>Action Classes</Filter>
+    <ClCompile Include="Actions\SaveAction.cpp">
+      <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="DeleteFigureAction.cpp">
-      <Filter>Action Classes</Filter>
+    <ClCompile Include="Actions\RestartGame.cpp">
+      <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="SaveAction.cpp">
-      <Filter>Action Classes</Filter>
+    <ClCompile Include="Actions\ResizeAction.cpp">
+      <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="StartRecordAction.cpp">
-      <Filter>Action Classes</Filter>
+    <ClCompile Include="Actions\RedoAction.cpp">
+      <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="stack.cpp">
+    <ClCompile Include="Actions\PickByShapeAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\PlayRecordAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\PickByColoredShapes.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\LoadAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\MoveByDragging.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Stack\stack.cpp">
       <Filter>My Stack</Filter>
-    </ClCompile>
-    <ClCompile Include="UndoAction.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="RedoAction.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="MuteAction.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadAction.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="ClearAllAction.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveFigureByPoint.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="PickByShapeAction.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayRecordAction.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="StopRecordAction.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Sound.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="ExitAction.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveByDragging.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="RestartGame.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="ResizeAction.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="PickByColoredShapes.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="PickByColorAction.cpp">
-      <Filter>Action Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -309,12 +312,6 @@
     <ClInclude Include="Figures\CRectangle.h">
       <Filter>Figures Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Actions\Action.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\AddRectAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
     <ClInclude Include="GUI\Input.h">
       <Filter>GUI Classes</Filter>
     </ClInclude>
@@ -340,83 +337,92 @@
     <ClInclude Include="Figures\CCircle.h">
       <Filter>Figures Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Actions\Action.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
     <ClInclude Include="Actions\AddCircAction.h">
-      <Filter>Action Classes</Filter>
+      <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\AddHexAction.h">
-      <Filter>Action Classes</Filter>
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddRectAction.h">
+      <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\AddSquAction.h">
-      <Filter>Action Classes</Filter>
+      <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\AddTriAction.h">
-      <Filter>Action Classes</Filter>
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ChangeColorAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ClearAllAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\DeleteFigureAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ExitAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\MoveByDragging.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\PickByShapeAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\PickByColorAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\mystack.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\UndoAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\StopRecordAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\StartRecordAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\Sound.h">
+      <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\SelectFigureAction.h">
-      <Filter>Action Classes</Filter>
+      <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="ChangeColorAction.h">
-      <Filter>Action Classes</Filter>
+    <ClInclude Include="Actions\SaveAction.h">
+      <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="DeleteFigureAction.h">
-      <Filter>Action Classes</Filter>
+    <ClInclude Include="Actions\RestartGame.h">
+      <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="SaveAction.h">
-      <Filter>Action Classes</Filter>
+    <ClInclude Include="Actions\ResizeAction.h">
+      <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="StartRecordAction.h">
-      <Filter>Action Classes</Filter>
+    <ClInclude Include="Actions\RedoAction.h">
+      <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="stack.h">
+    <ClInclude Include="Actions\PickByColoredShapes.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\MuteAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\LoadAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\MoveFigureByPoint.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\PlayRecordAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack\stack.h">
       <Filter>My Stack</Filter>
-    </ClInclude>
-    <ClInclude Include="UndoAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="RedoAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveFigureByPoint.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="ClearAllAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="MuteAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="PickByShapeAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayRecordAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="StopRecordAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="ExitAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="RestartGame.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="ResizeAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="PickByColoredShapes.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="PickByColorAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveByDragging.h">
-      <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

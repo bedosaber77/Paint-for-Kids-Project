@@ -1,5 +1,5 @@
 #include "MoveFigureByPoint.h"
-#include "ApplicationManager.h"
+#include "..\ApplicationManager.h"
 
 MoveFigureByPoint::MoveFigureByPoint(ApplicationManager* pApp) :Action(pApp)
 {

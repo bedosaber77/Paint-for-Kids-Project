@@ -1,7 +1,7 @@
 #ifndef PLAY_RECORD_ACTION
 #define PLAY_RECORD_ACTION
 
-#include "Actions/Action.h"
+#include "Action.h"
 #include "..\ApplicationManager.h"
 
 class PlayRecordAction :public Action

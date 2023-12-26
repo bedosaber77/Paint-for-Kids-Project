@@ -1,7 +1,7 @@
 #include "MuteAction.h"
-#include "GUI//UI_Info.h"
-#include "GUI//Output.h"
-#include "ApplicationManager.h"
+#include "UI_Info.h"
+#include "Output.h"
+#include "..\ApplicationManager.h"
 MuteAction::MuteAction(ApplicationManager* pApp):Action(pApp)
 {
 }

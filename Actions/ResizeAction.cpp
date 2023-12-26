@@ -1,5 +1,5 @@
 #include "ResizeAction.h"
-#include "ApplicationManager.h"
+#include "..\ApplicationManager.h"
 
 ResizeAction::ResizeAction(ApplicationManager* pApp):Action(pApp)
 {

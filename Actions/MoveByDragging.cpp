@@ -1,5 +1,5 @@
 #include "MoveByDragging.h"
-#include "ApplicationManager.h"
+#include "..\ApplicationManager.h"
 
 
 MoveByDragging::MoveByDragging(ApplicationManager* pApp) :Action(pApp)
