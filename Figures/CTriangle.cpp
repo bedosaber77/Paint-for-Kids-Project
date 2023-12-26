@@ -5,13 +5,13 @@ using namespace std;
 CTriangle::CTriangle(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 
-
 	Corner1 = P1;
 	Corner2 = P2;
 	Corner3 = P3;
-	Center.x = (Corner1.x + Corner2.x + Corner3.x) / 3;
+	Center.x = (Corner1.x + Corner2.x + Corner3.x) / 3; 	//Calculating Center of Triangle
 	Center.y = (Corner1.y + Corner2.y + Corner3.y) / 3;
 	S = TRIANGLE;
+	CalcSinAndCos(); // Calculating Sin and Cos of Corners
 }
 
 CTriangle::CTriangle(int id) :CFigure(id)
@@ -111,28 +111,55 @@ void CTriangle::Moveto(Point NewCenter)
 	
 	//Updating Center
 	Center = NewCenter;
+	CalcSinAndCos(); // Updating Sin and Cos of Corners
 
 
 }
 
+
+void CTriangle::CalcSinAndCos()
+{
+	//Calculating Sin and Cos of Corners
+	SinCorners[0] = (Corner1.y - Center.y) / sqrt(pow(Corner1.x - Center.x, 2) + pow(Corner1.y - Center.y, 2));
+	SinCorners[1] = (Corner2.y - Center.y) / sqrt(pow(Corner2.x - Center.x, 2) + pow(Corner2.y - Center.y, 2));
+	SinCorners[2] = (Corner3.y - Center.y) / sqrt(pow(Corner3.x - Center.x, 2) + pow(Corner3.y - Center.y, 2));
+	CosCorners[0] = (Corner1.x - Center.x) / sqrt(pow(Corner1.x - Center.x, 2) + pow(Corner1.y - Center.y, 2));
+	CosCorners[1] = (Corner2.x - Center.x) / sqrt(pow(Corner2.x - Center.x, 2) + pow(Corner2.y - Center.y, 2));
+	CosCorners[2] = (Corner3.x - Center.x) / sqrt(pow(Corner3.x - Center.x, 2) + pow(Corner3.y - Center.y, 2));
+
+}
+
+
 void CTriangle::Resize(Point Cursor)
 {
+	// Calculating Shift Distance
+	double ShiftDistance = sqrt(pow(Cursor.x - Center.x, 2) + pow(Cursor.y - Center.y, 2));
+	// Shifting Corners
+	Corner1.x = Center.x + ShiftDistance * CosCorners[0];
+	Corner1.y = Center.y + ShiftDistance * SinCorners[0];
+	Corner2.x = Center.x + ShiftDistance * CosCorners[1];
+	Corner2.y = Center.y + ShiftDistance * SinCorners[1];
+	Corner3.x = Center.x + ShiftDistance * CosCorners[2];
+	Corner3.y = Center.y + ShiftDistance * SinCorners[2];
+
+
+
 }
 
 bool CTriangle::isOnCorner(Point p)
 {
+	//Checking if the point is on any of the Corners
 	Point Corners[3];
 	Corners[0] = Corner1;
 	Corners[1] = Corner2;
 	Corners[2] = Corner3;
-	bool isOnCorner=false;
 	for (int i = 0; i < 3; i++)
 	{
 		if (Corners[i].x <= p.x + 8 && Corners[i].x >= p.x - 8 && Corners[i].y <= p.y + 8 && Corners[i].y >= p.y - 8)
 		{
-			isOnCorner = true;
-			idx=i;
+			return true;
 		}
 	}
-	return isOnCorner;
+	//Checking if the point is on any of the sides
+	return false;
 }

@@ -5,13 +5,12 @@ using namespace std;
 CSquare::CSquare(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
-	L = 180;
+	L = 180; // Default Length
 	S = SQUARE;
 }
 
 CSquare::CSquare(int id) :CFigure(id)
 {
-	L = 180;
 	S = SQUARE;
 }
 
@@ -40,7 +39,7 @@ void CSquare::PrintInfo(Output* pOut)
 
 void CSquare::Save(ofstream& OutFile)
 {
-	OutFile << "SQUARE\t" << ID << '\t' << Center.x << '\t' << Center.y << '\t'
+	OutFile << "SQUARE\t" << ID << '\t' << Center.x << '\t' << Center.y << '\t' << L << '\t'
 		<< Output::ColorString(FigGfxInfo.DrawClr)<<'\t';
 	if (FigGfxInfo.isFilled) {
 		OutFile << Output::ColorString(FigGfxInfo.FillClr) << '\n';
@@ -52,7 +51,7 @@ void CSquare::Save(ofstream& OutFile)
 void CSquare::Load(ifstream& Infile)
 {
 	string DrwClr, FillClr;
-	Infile >> Center.x >> Center.y >> DrwClr >> FillClr;
+	Infile >> Center.x >> Center.y >> L >> DrwClr >> FillClr;
 	ChngDrawClr(Output::StringColor(DrwClr));
 	if (FillClr != "NO_FILL")
 	{
@@ -69,17 +68,13 @@ Point CSquare::GetCenter()
 
 void CSquare::Moveto(Point NewCenter)
 {
-
-
-
 	//Updating Center
 	Center = NewCenter;
-
-
 }
 
 void CSquare::Resize(Point Cursor)
 {
+	//Updating Length
 	double x, y;
 	x = pow((Cursor.x - Center.x), 2);
 	y = pow((Cursor.y - Center.y), 2);
@@ -88,8 +83,15 @@ void CSquare::Resize(Point Cursor)
 
 bool CSquare::isOnCorner(Point p)
 {
-	return (((Center.x + L / 2 <= p.x + 8 && Center.x + L / 2 >= p.x - 8) && ((Center.y + L / 2 <= p.y + 8 && Center.y + L / 2 >= p.y - 8)))||
-		((Center.x - L / 2 <= p.x + 8 && Center.x - L / 2 >= p.x - 8) && ((Center.y - L / 2 <= p.y + 8 && Center.y - L / 2 >= p.y - 8))));
+	return (
+
+		// Checking all 4 Corners
+		((Center.x + L / 2 <= p.x + 8 && Center.x + L / 2 >= p.x - 8) && ((Center.y + L / 2 <= p.y + 8 && Center.y + L / 2 >= p.y - 8))) ||
+		((Center.x + L / 2 <= p.x + 8 && Center.x + L / 2 >= p.x - 8) && ((Center.y - L / 2 <= p.y + 8 && Center.y - L / 2 >= p.y - 8))) ||
+		((Center.x - L / 2 <= p.x + 8 && Center.x - L / 2 >= p.x - 8) && ((Center.y + L / 2 <= p.y + 8 && Center.y + L / 2 >= p.y - 8))) ||
+		((Center.x - L / 2 <= p.x + 8 && Center.x - L / 2 >= p.x - 8) && ((Center.y - L / 2 <= p.y + 8 && Center.y - L / 2 >= p.y - 8)))
+
+		);
 }
 
 

@@ -18,7 +18,10 @@ void AddHexAction::ReadActionParameters()
 	pOut->PrintMessage("New Hexagon: Click at Center Point");
 
 	//Read Center and store in point P1
-	pIn->GetPointClicked(P1.x, P1.y);
+	while (!pIn->GetPointForDrawing(P1.x, P1.y)) { // loop until a valid point is entered
+		pOut->PrintMessage("Invalid Point Re-Choose Center Point");
+
+	}
 
 	HexGfxInfo.isFilled = UI.isFilled;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
@@ -64,6 +67,7 @@ void AddHexAction::undo()
 
 void AddHexAction::redo()
 {
+
 	H = tmp;
 	pManager->AddFigure(H);
 	pOut->PrintMessage("The Hexagon has been successfully Redone");

@@ -9,9 +9,6 @@ ChangeColorAction::ChangeColorAction(ApplicationManager* pApp , char c) : Action
 void ChangeColorAction::ReadActionParameters()
 {
 
-
-
-
 }
 
 void ChangeColorAction::Execute()
@@ -31,7 +28,7 @@ void ChangeColorAction::Execute()
 			wasFilled = FigurePt->IsFilled();
 
 			ColorPick = pManager->GetUserAction();
-	
+			//Change Color to the color picked by the user
 			switch (ColorPick) {
 			case  PICK_BLACK: { ColorPicked = BLACK;  } break;
 			case  PICK_BLUE: { ColorPicked = BLUE;   } break;
@@ -43,6 +40,7 @@ void ChangeColorAction::Execute()
 			}
 		}
 		
+		//Check if Fill or Draw
 			if (FillDraw == 'F')
 			{
 				UI.FillColor = ColorPicked;

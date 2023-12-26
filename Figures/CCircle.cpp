@@ -100,6 +100,6 @@ void CCircle::Moveto(Point NewCenter)
 
 void CCircle::Resize(Point Cursor)
 {
-	PointOnCircle.x = Cursor.x;
-	PointOnCircle.y = Cursor.y ;
+	//Updating Point On Circle
+	PointOnCircle = Cursor;
 }

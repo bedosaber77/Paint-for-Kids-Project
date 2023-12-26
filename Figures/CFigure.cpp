@@ -1,9 +1,8 @@
 #include "CFigure.h"
 #include "../ApplicationManager.h"
 
+int CFigure::id = 1; //initializing the id with 1
 
-
-int CFigure::id = 1;
 CFigure::CFigure(GfxInfo FigureGfxInfo)
 { 
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
@@ -24,10 +23,6 @@ void CFigure::SetSelected(bool s)
 bool CFigure::IsSelected() const
 {	return Selected; }
 
-bool CFigure::IsInclude(Point) const
-{
-	return false;
-}
 
 void CFigure::ChngDrawClr(color Dclr)
 {	FigGfxInfo.DrawClr = Dclr; }
@@ -53,14 +48,7 @@ CFigure::Shape CFigure::GetShape()
 	return this->S;
 }
 
-void CFigure::Resize(Point)
-{
-}
 
-bool CFigure::isOnCorner(Point)
-{
-	return false;
-}
 
 void CFigure::addToInfo(string s)
 {
@@ -88,6 +76,7 @@ bool CFigure::IsFilled()
 
 void CFigure::PrintInfo(Output* pOut)
 {
+	//Prints the Main Shared info of the figure on the status bar
 	Info += "ID : ";
 	Info += to_string(ID) + " | ";
 	Info += "D Color : ";

@@ -17,6 +17,7 @@ void LoadAction::ReadActionParameters()
 {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
+	// Ask user to enter file name
 	pOut->PrintMessage("Please Enter File Name");
 	File_Name = pIn->GetSrting(pOut);
 	File_Name += ".txt";
@@ -28,10 +29,13 @@ void LoadAction::Execute()
 	Output* pOut = pManager->GetOutput();
 	ReadActionParameters();
 	infile.open("Saves\\" + File_Name);
+	// Check if file is opened
+	// if not print error message
 	if (infile.fail()) {
-		pOut->PrintMessage("Failed To Load " + File_Name);
+		pOut->PrintMessage("Failed To Load " + File_Name +"   << Please Make Sure You Write File Name Correct >>   ");
 	}
 	else {
+
 		pManager->ClearFigures();
 		infile >> str;
 		UI.DrawColor = Output::StringColor(str);
@@ -44,7 +48,7 @@ void LoadAction::Execute()
 		infile >> n;
 		for (int i = 0; i < n; i++)
 		{
-			infile >>str>>id;
+			infile >> str >> id;
 			if (str == "RECT")
 			{
 				NewFig = new CRectangle(id);

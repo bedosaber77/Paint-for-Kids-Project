@@ -27,7 +27,7 @@ void CRectangle::Draw(Output* pOut) const
 
 bool CRectangle::IsInclude(Point P) const
 {
-
+	//Checking if the point is inside the rectangle
 	return (P.y >= min(Corner1.y, Corner2.y) && P.y <= max(Corner1.y, Corner2.y)) &&
 		   (P.x >= min(Corner1.x, Corner2.x) && P.x <= max(Corner1.x, Corner2.x));
 }
@@ -112,11 +112,32 @@ void CRectangle::Resize(Point Cursor)
 	Corner2.y = Cursor.y;
 }
 
+
 bool CRectangle::isOnCorner(Point p)
 {
-	return ((((p.x <= Corner1.x + 8) && (p.x >= Corner1.x - 8)) && ((p.y <= Corner1.y + 8) && (p.y >= Corner1.y - 8))) ||
-		(((p.x <= Corner2.x + 8) && (p.x >= Corner2.x - 8)) && ((p.y <= Corner2.y + 8) && (p.y >= Corner2.y - 8))));
-	
+	//Getting the Other 2 Corners of the Rectangle
+	Point Corner3, Corner4;
+	Corner3.x = Corner2.x;
+	Corner3.y = Corner1.y;
+	Corner4.x = Corner1.x;
+	Corner4.y = Corner2.y;
+
+
+	return (
+
+		// Checking all 4 Corners
+
+
+		(((p.x <= Corner1.x + 8) && (p.x >= Corner1.x - 8)) && ((p.y <= Corner1.y + 8) && (p.y >= Corner1.y - 8))) ||
+		(((p.x <= Corner2.x + 8) && (p.x >= Corner2.x - 8)) && ((p.y <= Corner2.y + 8) && (p.y >= Corner2.y - 8))) ||
+		(((p.x <= Corner3.x + 8) && (p.x >= Corner3.x - 8)) && ((p.y <= Corner3.y + 8) && (p.y >= Corner3.y - 8))) ||
+		(((p.x <= Corner4.x + 8) && (p.x >= Corner4.x - 8)) && ((p.y <= Corner4.y + 8) && (p.y >= Corner4.y - 8)))
+
+
+
+		);
+
 }
+
 
 

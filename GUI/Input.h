@@ -17,7 +17,7 @@ public:
 	string GetSrting(Output* pO) const ;	 //Returns a string entered by the user
 
 	ActionType GetUserAction() const; //Read the user click and map to an action
-
+	bool GetPointForDrawing(int& x, int& y) const;//Get coordinate where user clicks
 
 
 

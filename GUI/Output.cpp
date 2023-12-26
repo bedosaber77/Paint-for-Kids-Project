@@ -62,7 +62,7 @@ void Output::CreateStatusBar() const
 void Output::RedrawStatusBar()
 {
 	CreateStatusBar();
-	PrintMessage(lastmsg);
+	PrintMessage(lastmsg);//Redraw Last Message
 	
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -239,7 +239,7 @@ void Output::ResetColors()
 void Output::PrintMessage(string msg)	//Prints a message on status bar
 {
 	ClearStatusBar();	//First clear the status bar
-	lastmsg = msg;
+	lastmsg = msg; //Save Last Message
 	pWind->SetPen(UI.MsgColor, 50);
 	pWind->SetFont(20, BOLD , BY_NAME, "Arial");   
 	pWind->DrawString(10, UI.height - (int)(UI.StatusBarHeight/1), msg);

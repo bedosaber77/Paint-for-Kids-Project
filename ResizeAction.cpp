@@ -7,6 +7,9 @@ ResizeAction::ResizeAction(ApplicationManager* pApp):Action(pApp)
 
 void ResizeAction::ReadActionParameters()
 {
+	pOut = pManager->GetOutput();
+	pIn = pManager->GetInput();
+
 	SelectedFig = pManager->GetSelectedFig();
 	if (SelectedFig == NULL)
 	{
@@ -14,7 +17,7 @@ void ResizeAction::ReadActionParameters()
 		return;
 	}
 
-	pOut->PrintMessage("Click on Selected Figure To Start Resizing");
+	pOut->PrintMessage("Click on Corner of Selected Figure To Start Resizing");
 	pIn->WaitMouseClick(Cursor);
 	pOut->ClearStatusBar();
 }
@@ -32,7 +35,7 @@ void ResizeAction::Execute()
 	else
 	do
 	{
-		pOut->PrintMessage("Click And Hold To Resizing");
+		pOut->PrintMessage("Resizing");
 		while (pIn->GetButtonStateLeftButton(Cursor)==BUTTON_DOWN)
 		{
 			if (!ReadOnce) {
@@ -42,7 +45,7 @@ void ResizeAction::Execute()
 			SelectedFig->Resize(Cursor);
 			pManager->UpdateInterface();
 		}
-		pOut->PrintMessage("Leave Figure To Finish, Click And Hold To Drag Figure Again");
+		pOut->PrintMessage("Leave Corner To Finish, Click And Hold on Corner To Resize Figure Again");
 
 		while (SelectedFig->isOnCorner(Cursor) == 1 && pIn->GetButtonStateLeftButton(Cursor) != BUTTON_DOWN)
 		{

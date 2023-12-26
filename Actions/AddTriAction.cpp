@@ -23,17 +23,26 @@ void AddTriAction::ReadActionParameters()
 	pOut->PrintMessage("New Triangle: Click at first corner");
 
 	//Read 1st corner and store in point P1
-	pIn->GetPointClicked(P1.x, P1.y);
+	while (!pIn->GetPointForDrawing(P1.x, P1.y)) { // loop until a valid point is entered
+		pOut->PrintMessage("Invalid Point Re-Choose Corner 1 Point");
+
+	}
 
 	pOut->PrintMessage("New Triangle: Click at second corner");
 
 	//Read 2nd corner and store in point P2
-	pIn->GetPointClicked(P2.x, P2.y);
+	while (!pIn->GetPointForDrawing(P2.x, P2.y)) { // loop until a valid point is entered
+		pOut->PrintMessage("Invalid Point Re-Choose Corner 2 Point");
+
+	}
 
 	pOut->PrintMessage("New Triangle: Click at third corner");
 
 	//Read 3rd corner and store in point P3
-	pIn->GetPointClicked(P3.x, P3.y);
+	while (!pIn->GetPointForDrawing(P3.x, P3.y)) { // loop until a valid point is entered
+		pOut->PrintMessage("Invalid Point Re-Choose Corner 3 Point");
+
+	}
 
 	TriGfxInfo.isFilled = UI.isFilled;	//default is not filled
 	//get drawing, filling colors and pen width from the interface

@@ -12,7 +12,8 @@ MoveFigureByPoint::MoveFigureByPoint(ApplicationManager* pApp) :Action(pApp)
 void MoveFigureByPoint::ReadActionParameters()
 {
 	Input* pIn = pManager->GetInput();
-
+	pOut = pManager->GetOutput();
+	//Print Action Message
 	pOut->PrintMessage("Click at Point Move the figure to ");
 	pIn->GetPointClicked(NewCenter.x, NewCenter.y);
 	pOut->ClearStatusBar();
@@ -38,7 +39,7 @@ void MoveFigureByPoint::Execute()
 			ReadActionParameters();
 		}
 		PrevCenter = SelectedFig->GetCenter(); // Use It For Recording And Undo
-		SelectedFig->Moveto(NewCenter);
+		SelectedFig->Moveto(NewCenter); // Move The Figure To The New Center
 		SelectedFig->PrintInfo(pOut); // Update Info On status Bar
 
 	}
@@ -49,13 +50,13 @@ void MoveFigureByPoint::Execute()
 void MoveFigureByPoint::undo()
 {
 	SelectedFig->Moveto(PrevCenter);
-	pOut->PrintMessage("The Moved figure has been successfully back to his previous position");
+	pOut->PrintMessage("The Moved figure has been successfully back to his Previous position");
 }
 
 void MoveFigureByPoint::redo()
 {
 	SelectedFig->Moveto(NewCenter);
-	pOut->PrintMessage("The Moved figure has been successfully back to his new position");
+	pOut->PrintMessage("The Moved figure has been successfully back to his New position");
 }
 
 

@@ -96,9 +96,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case MOVEBYDRAGGING:
 			pAct = new MoveByDragging(this);
 			break;
+		// ########################## Resize Figure ##########################
+
 		case RESIZE:
 			pAct = new ResizeAction(this);
 			break;
+
 		// ########################## Change Color ##########################
 
 		case FILL_COLOR_PICK:
@@ -701,6 +704,7 @@ void ApplicationManager::UpdateInterface() const
 		if (FigList[i] != NULL && !(FigList[i]->GetHidden()))
 		 FigList[i]->Draw(pOut);	
 
+	//Redraw the toolbar and the status bar To Avoid Shapes On Thems
 	pOut->RedrawStatusBar();
 	pOut->ClearToolBar();
 	switch (UI.InterfaceMode)

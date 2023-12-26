@@ -17,12 +17,18 @@ void AddCircAction::ReadActionParameters()
 	pOut->PrintMessage("New Circle: Click at Center Point");
 
 	//Read Center and store in point P1
-	pIn->GetPointClicked(P1.x, P1.y);
+
+	while (!pIn->GetPointForDrawing(P1.x,P1.y) ){ // loop until a valid point is entered
+		pOut->PrintMessage("Invalid Point Re-Choose Center Point");
+
+	}
 
 	pOut->PrintMessage("New Circle: Click at a Point On The Circle");
 	
 	//Read The Point On Circle and store in point P2
-	pIn->GetPointClicked(P2.x, P2.y);
+	while(!pIn->GetPointForDrawing(P2.x,P2.y)){ // loop until a valid point is entered
+		pOut->PrintMessage("Invalid Point Re-Choose a Point On The Circle");
+	}
 
 	CircGfxInfo.isFilled = UI.isFilled;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
@@ -62,6 +68,7 @@ void AddCircAction::Execute()
 
 void AddCircAction::undo()
 {
+	//remove the circle from the list of figures
 	if (C != NULL) {
 		pManager->RemoveFigure(C);
 		pOut->PrintMessage("The Circle has been successfully Undone");
@@ -70,6 +77,7 @@ void AddCircAction::undo()
 
 void AddCircAction::redo()
 {
+	//Add the circle to the list of figures
 	C = tmp;
 	pManager->AddFigure(C);
 	pOut->PrintMessage("The Circle has been successfully Redone");

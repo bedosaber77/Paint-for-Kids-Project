@@ -13,7 +13,9 @@ MoveByDragging::MoveByDragging(ApplicationManager* pApp) :Action(pApp)
 void MoveByDragging::ReadActionParameters()
 {
 	
-	
+	pOut = pManager->GetOutput();
+	pIn = pManager->GetInput();
+
 	SelectedFig = pManager->GetSelectedFig();
 	if (SelectedFig == NULL)
 	{
@@ -34,7 +36,7 @@ void MoveByDragging::Execute()
 	ReadActionParameters();
 
 
-
+	// Check If Selected Figure Is NULL
 	if (SelectedFig != NULL)
 	{
 		PrevCenter = SelectedFig->GetCenter();
@@ -43,12 +45,13 @@ void MoveByDragging::Execute()
 		{
 			pOut->PrintMessage("Moving");
 			while (pIn->GetButtonStateLeftButton(Cursor) == BUTTON_DOWN) {
+				// Update Position Of Selected Figure
 				SelectedFig->Moveto(Cursor);
 				pManager->UpdateInterface();
 			}
 
 			pOut->PrintMessage("Leave Figure To Finish, Click And Hold To Drag Figure Again");
-
+			// Wait Until User Releases Mouse Button
 			while (SelectedFig->IsInclude(Cursor) == 1 && pIn->GetButtonStateLeftButton(Cursor) != BUTTON_DOWN)
 			{
 			}

@@ -6,7 +6,7 @@ class Output	//The application manager should have a pointer to this class
 {
 private:	
 	window* pWind;	//Pointer to the Graphics Window
-	string lastmsg;
+	string lastmsg; // last message printed on the status bar
 public:
 	Output();		
 
@@ -16,7 +16,7 @@ public:
 	void CreateShapesToolBar() const;
 	void CreateColorToolBar()  const;
 	void CreateStatusBar() const;	//create the status bar
-	void RedrawStatusBar();
+	void RedrawStatusBar();    // Redraw status bar With Same Last Printed Message
 	Input* CreateInput() const; //creates a pointer to the Input object	
 	void ClearStatusBar() const;	//Clears the status bar
 	void ClearToolBar() const;      //Clears the Tool Bar

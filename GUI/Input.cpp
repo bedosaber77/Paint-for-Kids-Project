@@ -200,6 +200,21 @@ ActionType Input::GetUserAction() const
 	//}	done
 
 }
+bool Input::GetPointForDrawing(int& x, int& y) const
+{
+
+	pWind->WaitMouseClick(x, y); //Get the coordinates of the user click
+	if (y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight) //Check if the user clicked on the drawing area
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
 clicktype Input::GetMouseClick(Point &Clicked)
 {
 	return 	  pWind->GetMouseClick(Clicked.x, Clicked.y);

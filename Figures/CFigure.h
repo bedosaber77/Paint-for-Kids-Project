@@ -26,7 +26,7 @@ public:
 	bool IsSelected() const;	//check whether fig is selected
 
 	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
-	virtual bool IsInclude(Point) const; //make it pure Anas Ibrahem
+	virtual bool IsInclude(Point) const = 0; //make it pure Anas Ibrahem
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	color getDrawClr();
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
@@ -42,8 +42,8 @@ public:
 	Shape GetShape();
 	virtual Point GetCenter()  = 0 ;
 	virtual void  Moveto(Point) = 0;
-	virtual void Resize(Point);
-	virtual bool isOnCorner(Point);
+	virtual void Resize(Point) = 0;
+	virtual bool isOnCorner(Point) = 0;
 	void addToInfo(string s);
 
 
