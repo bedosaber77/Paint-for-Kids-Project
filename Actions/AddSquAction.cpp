@@ -41,11 +41,10 @@ void AddSquAction::Execute()
 	}
 
 
-	if (!pManager->IsPlayingRecord() || !pManager->IsRead())
+	if (!pManager->IsPlayingRecord())
 	{
 		//This action needs to read some parameters first
 		ReadActionParameters();
-		pManager->SettoRead();
 	}
 
 	//Create a square with the parameters read from the user or Saved while Recording.

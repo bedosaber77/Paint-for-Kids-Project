@@ -60,7 +60,6 @@ void AddTriAction::Execute()
 	{
 		//This action needs to read some parameters first
 		ReadActionParameters();
-		pManager->SettoRead();
 	}
 
 	//Create a triangle with the parameters read from the user or Saved while Recording.

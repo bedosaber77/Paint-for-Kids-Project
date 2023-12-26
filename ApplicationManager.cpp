@@ -365,7 +365,6 @@ void ApplicationManager::ClearFigures()
 	FigCount = 0;
 	DelFigCount = 0;
 	SelectedFig = NULL;
-	//ClearRecord();
 	pOut->ResetColors();//Anas Magdy: Ask if this is the right Place or Not
 }
 
@@ -639,6 +638,12 @@ void ApplicationManager::PickByColoredShapes()
 }
 
 
+//==================================================================================//
+//							    Undo & Redo Functions     							//
+//==================================================================================//
+
+
+
 void ApplicationManager::AddtoRedo()
 {
 	if(!UndoActs->isEmpty())
@@ -679,16 +684,6 @@ void ApplicationManager::SetUndoRecordState(bool x)
 {
 	UndoActs->SetIsRec(x);
 	RedoActs->SetIsRec(x);
-}
-
-bool ApplicationManager::IsRead()
-{
-	return Isread;
-}
-
-void ApplicationManager::SettoRead()
-{
-	Isread = true;
 }
 
 
@@ -775,7 +770,8 @@ Output *ApplicationManager::GetOutput() const
 //Destructor
 ApplicationManager::~ApplicationManager()
 {
-	ClearFigures();
+	delete UndoActs;
+	delete RedoActs;
 	delete pIn;
 	delete pOut;
 	

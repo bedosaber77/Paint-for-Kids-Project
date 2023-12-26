@@ -17,55 +17,58 @@ void MoveByDragging::ReadActionParameters()
 	pIn = pManager->GetInput();
 
 	SelectedFig = pManager->GetSelectedFig();
-	if (SelectedFig == NULL)
-	{
-		pOut->PrintMessage("Select A Figure First");
-		return ;
-	}
+	if (!pManager->IsPlayingRecord()) {
+		if (SelectedFig == NULL)
+		{
+			pOut->PrintMessage("Select A Figure First");
+			return;
+		}
 
-	pOut->PrintMessage("Click on Selected Figure To Start Moving By Dragging");
-	pIn->WaitMouseClick(Cursor);
+		pOut->PrintMessage("Click on Selected Figure To Start Moving By Dragging");
+		pIn->WaitMouseClick(Cursor);
+	}
 	pOut->ClearStatusBar();
 }
 
 void MoveByDragging::Execute()
 {
+		ReadActionParameters();
+	if (pManager->IsPlayingRecord())
+		redo();
+	else {
 
-	pOut = pManager->GetOutput(); // Should Actually be done in ReadActionParameters (Delete ya Ali :D)
-	pIn = pManager->GetInput(); // Should Actually be done in ReadActionParameters (Delete ya Ali :D)
-	ReadActionParameters();
 
-
-	// Check If Selected Figure Is NULL
-	if (SelectedFig != NULL)
-	{
-		PrevCenter = SelectedFig->GetCenter();
-		do
+		// Check If Selected Figure Is NULL
+		if (SelectedFig != NULL)
 		{
-			while (pIn->GetButtonStateLeftButton(Cursor) == BUTTON_DOWN) 
+			PrevCenter = SelectedFig->GetCenter();
+			do
 			{
-				
-				if (Cursor.y >= UI.ToolBarHeight && Cursor.y < UI.height - UI.StatusBarHeight && Cursor.x >= 0 && Cursor.x <= UI.width) // Check If Cursor Is In Drawing Area
-				{	
-					// Update Position Of Selected Figure
-					SelectedFig->Moveto(Cursor);
-					pOut->PrintMessage("Moving");
+				while (pIn->GetButtonStateLeftButton(Cursor) == BUTTON_DOWN)
+				{
 
-					pManager->UpdateInterface();
+					if (Cursor.y >= UI.ToolBarHeight && Cursor.y < UI.height - UI.StatusBarHeight && Cursor.x >= 0 && Cursor.x <= UI.width) // Check If Cursor Is In Drawing Area
+					{
+						// Update Position Of Selected Figure
+						SelectedFig->Moveto(Cursor);
+						pOut->PrintMessage("Moving");
+
+						pManager->UpdateInterface();
+					}
+					else pOut->PrintMessage("Out Of Bounds , Please Move Cursor To Drawing Area");
 				}
-				else pOut->PrintMessage("Out Of Bounds , Please Move Cursor To Drawing Area");
-			}
 
-			pOut->PrintMessage("Leave Figure To Finish, Click And Hold To Drag Figure");
+				pOut->PrintMessage("Leave Figure To Finish, Click And Hold To Drag Figure");
 
-		} while (SelectedFig->IsInclude(Cursor) == 1);
+			} while (SelectedFig->IsInclude(Cursor) == 1);
 
-		SelectedFig->PrintInfo(pOut); // Update Info On status Bar
+			SelectedFig->PrintInfo(pOut); // Update Info On status Bar
 
+		}
+
+		NewCenter = SelectedFig->GetCenter();
 	}
-
-	NewCenter = SelectedFig->GetCenter();
-	pManager->CreateInUndo(this);
+		pManager->CreateInUndo(this);
 }
 
 void MoveByDragging::undo()

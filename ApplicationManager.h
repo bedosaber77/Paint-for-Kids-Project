@@ -37,7 +37,6 @@ private:
 	bool IsRec = 0;
 	bool IsPlayingRec = 0;
 	bool IsSoundOn;
-	bool Isread = 0;
 	
 	//Pointers to Input and Output classes
 	Input *pIn;
@@ -47,8 +46,6 @@ private:
 	stack* UndoActs;
 	stack* RedoActs;
 
-	//boolean variable to delete pAct
-	bool toDelete =0;
 
 public:	
 	ApplicationManager(); 
@@ -103,9 +100,7 @@ public:
 	void CreateInUndo(Action* x);
 
 	void SetUndoRecordState(bool x);
-	//Functions for managing reading parameters
-	bool IsRead();
-	void SettoRead();
+
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output

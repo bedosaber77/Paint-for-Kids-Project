@@ -40,11 +40,10 @@ void AddHexAction::Execute()
 		PlaySound("Sounds\\hexagon.wav", NULL, SND_ASYNC);
 	}
 
-	if (!pManager->IsPlayingRecord() || !pManager->IsRead())
+	if (!pManager->IsPlayingRecord())
 	{
 		//This action needs to read some parameters first
 		ReadActionParameters();
-		pManager->SettoRead();
 	}
 
 	//Create a hexagon with the parameters read from the user or Saved while Recording.
