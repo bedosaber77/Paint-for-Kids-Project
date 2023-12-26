@@ -75,6 +75,8 @@ void ResizeAction::undo()
 
 void ResizeAction::redo()
 {
-	SelectedFig->Resize(newPoint);
-	pOut->PrintMessage("Resizing Figure has been successfully Redo");
+	if (SelectedFig != NULL) {
+		SelectedFig->Resize(newPoint);
+		pOut->PrintMessage("Resizing Figure has been successfully Redo");
+	}
 }

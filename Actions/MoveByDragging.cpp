@@ -86,8 +86,11 @@ void MoveByDragging::undo()
 
 void MoveByDragging::redo()
 {
-	SelectedFig->Moveto(NewCenter);
-	pOut->PrintMessage("Moving By Dragging Has Successfully Redone");
-}
+	if (SelectedFig != NULL)
+	{
+		SelectedFig->Moveto(NewCenter);
+		pOut->PrintMessage("Moving By Dragging Has Successfully Redone");
 
+	}
+}
 
