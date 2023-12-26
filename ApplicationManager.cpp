@@ -60,7 +60,7 @@ ApplicationManager::ApplicationManager()
 ActionType ApplicationManager::GetUserAction() const
 {
 	//Ask the input to get the action from the user.
-	return pIn->GetUserAction();		
+	return pIn->GetUserAction(0,0,0);		
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Creates an action and executes it
@@ -195,8 +195,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case TO_PLAY:
-			if(!IsRecording())
-				pOut->CreatePlayToolBar();
+			pOut->CreatePlayToolBar();
 			break;
 
 		case UNMUTE:
@@ -226,12 +225,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case PLAY_REC:
 		case START_REC:
 		case STOP_REC:
+
 		case SHAPE_PLAY_PICK:
 		case COLOR_PLAY_PICK:
+		case COLORED_SHAPE_PLAY_PICK:
 		case RESTART_PLAY:
+
 		case SAVE_GRAPH:
 		case LOAD:
-		case COLORED_SHAPE_PLAY_PICK:
+
 		case EXIT:
 			delete pAct;
 			pAct = NULL;
@@ -419,6 +421,7 @@ void ApplicationManager::PlayRecord()
 				RecordActionList[i]->Execute();
 			UpdateInterface();
 		}
+		Sleep(1000);
 		UndoActs->SetIsPlaying(false);
 		RedoActs->SetIsPlaying(false);
 }
@@ -436,6 +439,26 @@ int ApplicationManager::GetMaxRecCount()
 bool ApplicationManager::GetSoundStatues()
 {
 	return UI.isSoundON;
+}
+
+CFigure* ApplicationManager::GetPickingFig()
+{
+	return PickingFig;
+}
+
+color ApplicationManager::GetPickingColor()
+{
+	return PickingClr;
+}
+
+void ApplicationManager::SetGameMode(bool p)
+{
+	IsPicking = p;
+}
+
+bool ApplicationManager::GetGameMode()
+{
+	return IsPicking;
 }
 
 void ApplicationManager::PickRand()
@@ -467,8 +490,6 @@ void ApplicationManager::RestartGame()
 	PickingColoredShapeCount = 0;
 	CorrectPicks = 0;
 	WrongPicks = 0;
-	
-	pOut->PrintMessage("Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
 
 	for (int i = 0; i < FigCount; i++)
 	{
@@ -488,153 +509,40 @@ void ApplicationManager::RestartGame()
 }
 
 
-void ApplicationManager::PickByShape()
+
+int ApplicationManager::GetCorrectPicks()
 {
-	pOut->PrintMessage("Pick all " + ShapeString(PickingFig) + " Shapes.");
-
-	ActionType Act;
-
-	bool cont = 1;
-
-	while (cont)
-	{
-		Point PickPoint;
-		pIn->GetPointClicked(PickPoint.x, PickPoint.y);
-		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
-
-		if (PickedFig != NULL)
-		{
-			if (!PickedFig->GetHidden())
-				if (PickingFig->GetShape() == PickedFig->GetShape()) CorrectPicks++;
-				else WrongPicks++;
-			PickedFig->SetHidden(1);
-		}
-		else
-		{
-			Act = GetUserAction();
-			
-			switch (Act)
-			{
-			case RESTART_PLAY:
-				ExecuteAction(Act);
-				pOut->PrintMessage("Pick all " + ShapeString(PickingFig) + " Shapes.");
-				break;
-			
-			case DRAWING_AREA:
-				break;
-			}
-		}
-
-		if (CorrectPicks == PickingShapeCount)
-		{
-			pOut->PrintMessage("Final Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
-			cont = 0;
-		}
-		else
-			pOut->PrintMessage("Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
-
-		UpdateInterface();
-
-	}
+	return CorrectPicks;
 }
 
-void ApplicationManager::PickByColor()
+int ApplicationManager::GetWrongPicks()
 {
-	pOut->PrintMessage("Pick all " + pOut->ColorString(PickingClr) + " filled Shapes.");
-	ActionType Act;
-
-	bool cont = 1;
-
-	while (cont)
-	{
-		Point PickPoint;
-		pIn->GetPointClicked(PickPoint.x, PickPoint.y);
-		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
-
-		if (PickedFig != NULL)
-		{
-			if(!PickedFig->GetHidden())
-				if (PickingFig->GetColor() == PickedFig->GetColor()) CorrectPicks++;
-				else WrongPicks++;
-			PickedFig->SetHidden(1);
-		}
-		else
-		{
-			Act = GetUserAction();
-			
-			switch (Act)
-			{
-			case RESTART_PLAY:
-				ExecuteAction(Act);
-				pOut->PrintMessage("Pick all " + pOut->ColorString(PickingClr) + " filled Shapes.");
-				break;
-
-			case DRAWING_AREA:
-				break;
-			}
-		}
-		
-		if (CorrectPicks == PickingColorCount)
-		{
-			pOut->PrintMessage("Final Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
-			cont = 0;
-		}
-		else
-			pOut->PrintMessage("Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
-
-		UpdateInterface();
-
-	}
+	return WrongPicks;
 }
 
-void ApplicationManager::PickByColoredShapes()
+int ApplicationManager::GetPickingShapeCount()
 {
-	pOut->PrintMessage("Pick all " + pOut->ColorString(PickingClr) + " filled " + ShapeString(PickingFig) + " Shapes.");
+	return PickingShapeCount;
+}
 
-	ActionType Act;
+int ApplicationManager::GetPickingColorCount()
+{
+	return PickingColorCount;
+}
 
-	bool cont = 1;
+int ApplicationManager::GetPickingColoredShapeCount()
+{
+	return PickingColoredShapeCount;
+}
 
-	while (cont)
-	{
-		Point PickPoint;
-		pIn->GetPointClicked(PickPoint.x, PickPoint.y);
-		CFigure* PickedFig = GetFigure(PickPoint.x, PickPoint.y);
+void ApplicationManager::IncrementCorrectPicks()
+{
+	CorrectPicks++;
+}
 
-		if (PickedFig != NULL)
-		{
-			if(!PickedFig->GetHidden())
-				if (PickingFig->GetColor() == PickedFig->GetColor() && PickingFig->GetShape() == PickedFig->GetShape()) CorrectPicks++;
-				else WrongPicks++;
-			PickedFig->SetHidden(1);
-		}
-		else
-		{
-			Act = GetUserAction();
-		
-			switch (Act)
-			{
-			case RESTART_PLAY:
-				ExecuteAction(Act);
-				pOut->PrintMessage("Pick all " + pOut->ColorString(PickingClr) + " filled " + ShapeString(PickingFig) + " Shapes.");
-				break;
-
-			case DRAWING_AREA:
-				break;
-			}
-		}
-
-		if (CorrectPicks == PickingColoredShapeCount)
-		{
-			pOut->PrintMessage("Final Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
-			cont = 0;
-		}
-		else
-			pOut->PrintMessage("Score: " + to_string(CorrectPicks) + " correct picks, " + to_string(WrongPicks) + " wrong picks.");
-
-		UpdateInterface();
-
-	}
+void ApplicationManager::IncrementWrongPicks()
+{
+	WrongPicks++;
 }
 
 

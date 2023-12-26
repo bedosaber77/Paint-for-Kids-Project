@@ -8,6 +8,7 @@
 class PickByColoredShapesAction :public Action
 {
 	Output* pOut;
+	Input* pIn;
 public:
 	PickByColoredShapesAction(ApplicationManager*);
 	virtual void ReadActionParameters();

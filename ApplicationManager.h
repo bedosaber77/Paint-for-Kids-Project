@@ -23,14 +23,19 @@ private:
 	CFigure* RecycleBin[MaxFigCount]; //List of All deleted figures
 	CFigure* SelectedFig; //Pointer to the selected figure   // Needs Setter and Getter ANAS IBRAHEM
 	
+	//-------------------PICK&HIDE-------------------
 	CFigure* PickingFig; //Randomed Shape
 	color PickingClr;	//Randomed color
+
 	int PickingShapeCount = 0;	//Number of shaped figures to be PICKED
 	int PickingColorCount = 0;	//Number of colored figures to be PICKED
 	int PickingColoredShapeCount = 0;	//Number of colored shaped figures to be PICKED
 	int CorrectPicks = 0;		
 	int WrongPicks = 0;
 
+	bool IsPicking = 0;
+	
+	//-------------------RECORDING-------------------
 	Action* RecordActionList[MaxRecActCount]; //List of Recorded Actions
 	int RecActCount = 0; //No. of Recorded Actions
 	
@@ -83,13 +88,26 @@ public:
 	bool GetSoundStatues();
 
 	// -- Pick & Hide Functions
-	//set & get Picking shape or color
+	CFigure* GetPickingFig();
+	color GetPickingColor();
+	void SetGameMode(bool);
+	bool GetGameMode();
 	void PickRand();
 	void RestartGame();
 	void PickByShape();
 	void PickByColor();
 	void PickByColoredShapes();
-	//--------------------------Undo & Redo-----------------------------
+	
+	int GetCorrectPicks();
+	int GetWrongPicks();
+	int GetPickingShapeCount();
+	int GetPickingColorCount();
+	int GetPickingColoredShapeCount();
+
+	void IncrementCorrectPicks();
+	void IncrementWrongPicks();
+
+//--------------------------Undo & Redo-----------------------------
 	// -- Undo And Redo Swapping functions
 	void AddtoRedo();
 	void AddtoUndo();
