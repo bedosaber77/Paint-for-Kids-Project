@@ -204,7 +204,7 @@ bool Input::GetPointForDrawing(int& x, int& y) const
 {
 
 	pWind->WaitMouseClick(x, y); //Get the coordinates of the user click
-	if (y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight) //Check if the user clicked on the drawing area
+	if (y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight ) //Check if the user clicked on the drawing area
 	{
 		return true;
 	}

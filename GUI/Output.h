@@ -31,7 +31,7 @@ public:
 	void DrawHex(Point P, double L, GfxInfo HexaGfxInfo, bool selected) const; //Draw a hexagon
 	///Make similar functions for drawing all other figure types.
 	
-	void PrintMessage(string msg) ;	//Print a message on Status bar
+	void PrintMessage(string msg , bool redraw = 0) ;	//Print a message on Status bar
 
 	color getCrntDrawColor() const;	//get current drwawing color
 	color getCrntFillColor() const;	//get current filling color

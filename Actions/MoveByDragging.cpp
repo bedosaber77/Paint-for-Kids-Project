@@ -42,25 +42,28 @@ void MoveByDragging::Execute()
 		PrevCenter = SelectedFig->GetCenter();
 		do
 		{
-			pOut->PrintMessage("Moving");
-			while (pIn->GetButtonStateLeftButton(Cursor) == BUTTON_DOWN) {
-				// Update Position Of Selected Figure
-				SelectedFig->Moveto(Cursor);
-				pManager->UpdateInterface();
+			while (pIn->GetButtonStateLeftButton(Cursor) == BUTTON_DOWN) 
+			{
+				
+				if (Cursor.y >= UI.ToolBarHeight && Cursor.y < UI.height - UI.StatusBarHeight && Cursor.x >= 0 && Cursor.x <= UI.width) // Check If Cursor Is In Drawing Area
+				{	
+					// Update Position Of Selected Figure
+					SelectedFig->Moveto(Cursor);
+					pOut->PrintMessage("Moving");
+
+					pManager->UpdateInterface();
+				}
+				else pOut->PrintMessage("Out Of Bounds , Please Move Cursor To Drawing Area");
 			}
 
 			pOut->PrintMessage("Leave Figure To Finish, Click And Hold To Drag Figure");
-			// Wait Until User Releases Mouse Button
-			while (SelectedFig->IsInclude(Cursor) == 1 && pIn->GetButtonStateLeftButton(Cursor) != BUTTON_DOWN)
-			{
-			}
-
 
 		} while (SelectedFig->IsInclude(Cursor) == 1);
 
 		SelectedFig->PrintInfo(pOut); // Update Info On status Bar
 
 	}
+
 	NewCenter = SelectedFig->GetCenter();
 	pManager->CreateInUndo(this);
 }

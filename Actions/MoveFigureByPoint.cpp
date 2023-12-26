@@ -15,7 +15,11 @@ void MoveFigureByPoint::ReadActionParameters()
 	pOut = pManager->GetOutput();
 	//Print Action Message
 	pOut->PrintMessage("Click at Point Move the figure to ");
-	pIn->GetPointClicked(NewCenter.x, NewCenter.y);
+
+	while (!pIn->GetPointForDrawing(NewCenter.x, NewCenter.y)) { // loop until a valid point is entered
+		pOut->PrintMessage("Invalid Point Re-Choose Point to move");
+
+	}
 	pOut->ClearStatusBar();
 }
 

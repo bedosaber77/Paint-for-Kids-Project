@@ -2,7 +2,7 @@
 #include <cmath>
 #include <string>
 
-Output::Output() : lastmsg(" ")
+Output::Output() : lastmsg("")
 {
 	//Initialize user interface parameters (Defualts)
 	UI.InterfaceMode = MODE_DRAW;
@@ -59,10 +59,10 @@ void Output::CreateStatusBar() const
 	pWind->SetBrush(UI.StatusBarColor);
 	pWind->DrawRectangle(0, UI.height - UI.StatusBarHeight, UI.width, UI.height);
 }
-void Output::RedrawStatusBar()
+void Output::RedrawStatusBar() 
 {
 	CreateStatusBar();
-	PrintMessage(lastmsg);//Redraw Last Message
+	PrintMessage(lastmsg , true); //Redraw Last Message //Update Interface Case
 	
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -213,6 +213,7 @@ void Output::CreateColorToolBar() const
 
 
 
+
 	//Draw a line under the toolbar
 	pWind->SetPen(PURPLE, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
@@ -236,13 +237,16 @@ void Output::ResetColors()
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
-void Output::PrintMessage(string msg)	//Prints a message on status bar
+void Output::PrintMessage(string msg, bool redraw)	//Prints a message on status bar
 {
-	ClearStatusBar();	//First clear the status bar
-	lastmsg = msg; //Save Last Message
-	pWind->SetPen(UI.MsgColor, 50);
-	pWind->SetFont(20, BOLD , BY_NAME, "Arial");   
-	pWind->DrawString(10, UI.height - (int)(UI.StatusBarHeight/1), msg);
+	if  (lastmsg != msg || redraw)  // To Avoid Redrawing The Same Message In Loops Excpet If Redraw Flag Is True (Update Interface)
+	{
+		ClearStatusBar();	//First clear the status bar
+		pWind->SetPen(UI.MsgColor, 50);
+		pWind->SetFont(20, BOLD, BY_NAME, "Arial");
+		pWind->DrawString(10, UI.height - (int)(UI.StatusBarHeight / 1), msg);
+		lastmsg = msg; //Save Last Message}
+	}
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
