@@ -76,7 +76,9 @@ void AddTriAction::Execute()
 void AddTriAction::undo()
 {
 	if (T != NULL) {
+		tmp = T;
 		pManager->RemoveFigure(T);
+		T = NULL;
 		pOut->PrintMessage("The Triangle has been successfully Undone");
 	}
 }
@@ -85,5 +87,12 @@ void AddTriAction::redo()
 {
 	T = tmp;
 	pManager->AddFigure(T);
+	tmp = NULL;
 	pOut->PrintMessage("The Triangle has been successfully Redone");
+}
+
+AddTriAction::~AddTriAction()
+{
+	if (tmp != NULL)
+		delete tmp;
 }

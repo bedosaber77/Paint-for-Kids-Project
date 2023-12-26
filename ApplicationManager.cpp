@@ -40,11 +40,8 @@ ApplicationManager::ApplicationManager()
 	UndoActs = new stack();
 	RedoActs = new stack();
 
-
 	FigCount = 0;
-	DelFigCount = 0;
 
-		
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
@@ -265,20 +262,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 //Add a figure to the list of figures
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
-	bool found = 0;
-	int i = 0;
-	while (i < DelFigCount && !found) {
-		if (pFig == RecycleBin[i]) {
-			found = 1;
-			for (int j = i; j < DelFigCount - 1; j++)
-			{
-				RecycleBin[j] = RecycleBin[j + 1]; // Shifting All Remaining Figures
-			}
-			RecycleBin[DelFigCount - 1] = NULL;
-			DelFigCount--;
-		}
-		i++;
-	}
 	if (FigCount < MaxFigCount)
 		FigList[FigCount++] = pFig;
 }
@@ -303,8 +286,6 @@ void ApplicationManager::RemoveFigure(CFigure* pFig)
 		i++;
 
 	}
-	if (DelFigCount < MaxFigCount)
-		RecycleBin[DelFigCount++] = pFig;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -357,13 +338,12 @@ void ApplicationManager::ClearFigures()
 {
 	UndoActs->clear();
 	RedoActs->clear();
-	for (int i = 0; i < DelFigCount; i++)
-		delete RecycleBin[i];
+	
 	for (int i = 0; i < FigCount; i++) {
 		delete FigList[i];
+		FigList[i] = NULL;
 	}
 	FigCount = 0;
-	DelFigCount = 0;
 	SelectedFig = NULL;
 	pOut->ResetColors();//Anas Magdy: Ask if this is the right Place or Not
 }
@@ -694,6 +674,7 @@ void ApplicationManager::SetUndoRecordState(bool x)
 //Draw all figures on the user interface
 void ApplicationManager::UpdateInterface() const
 {	
+	pOut->setBuffering(true);
 	pOut->ClearDrawArea();
 	for(int i=0; i<FigCount; i++)
 		if (FigList[i] != NULL && !(FigList[i]->GetHidden()))
@@ -719,6 +700,8 @@ void ApplicationManager::UpdateInterface() const
 
 
 	}	
+	pOut->updateBuffer();
+	pOut->setBuffering(false);
 }
 void ApplicationManager::SaveALL(ofstream& OutFile)
 {

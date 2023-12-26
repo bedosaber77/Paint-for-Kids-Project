@@ -12,9 +12,10 @@ void ClearAllAction::ReadActionParameters()
 void ClearAllAction::Execute()
 {
 	pManager->ClearFigures();
-	if (!pManager->IsRecording() && !pManager->IsPlayingRecord()) {
-		pManager->ClearRecord();
+	if (pManager->IsRecording()) {
+		pManager->ExecuteAction(STOP_REC);
 	}
+		pManager->ClearRecord();
 	
 	//pManager->SetUndoRecordState(false);
 	pOut->PrintMessage("All cleared, Back to initial state");

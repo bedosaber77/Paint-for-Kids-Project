@@ -20,5 +20,6 @@ public:
 
 	virtual void undo();
 	virtual void redo();
+	~AddTriAction();
 };
 

@@ -18,9 +18,7 @@ class ApplicationManager
 
 private:
 	int FigCount;		//Actual number of figures
-	int DelFigCount;
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
-	CFigure* RecycleBin[MaxFigCount]; //List of All deleted figures
 	CFigure* SelectedFig; //Pointer to the selected figure   // Needs Setter and Getter ANAS IBRAHEM
 	
 	CFigure* PickingFig; //Randomed Shape

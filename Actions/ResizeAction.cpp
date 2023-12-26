@@ -25,16 +25,16 @@ void ResizeAction::ReadActionParameters()
 
 void ResizeAction::Execute()
 {
-	ReadActionParameters();
 	if (pManager->IsPlayingRecord())
+	{
+		SelectedFig = pManager->GetSelectedFig(); // Get Selected Fig
 		redo();
+	}
 	else {
-		if (SelectedFig == NULL)
+
+		ReadActionParameters();
+		if (SelectedFig != NULL)
 		{
-			pOut->PrintMessage("Select A Figure First");
-			return;
-		}
-		else
 			do
 			{
 				while (pIn->GetButtonStateLeftButton(Cursor) == BUTTON_DOWN)
@@ -62,6 +62,7 @@ void ResizeAction::Execute()
 
 			newPoint = Cursor;
 			SelectedFig->PrintInfo(pOut);
+		}
 	}
 	pManager->CreateInUndo(this);
 }

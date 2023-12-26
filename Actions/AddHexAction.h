@@ -20,5 +20,6 @@ class AddHexAction :
 
 		virtual void undo();
 		virtual void redo();
+		~AddHexAction();
 };
 

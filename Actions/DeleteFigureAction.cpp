@@ -53,3 +53,12 @@ void DeleteFigureAction::redo()
 		pOut->PrintMessage("Deletion of the Fig has been successfully Undone");
 	}
 }
+
+DeleteFigureAction::~DeleteFigureAction()
+{
+	if (Backup != NULL)
+	{
+		delete Backup;
+		Backup = NULL;
+	}
+}

@@ -235,6 +235,14 @@ void Output::ResetColors()
 	UI.FillColor = GREEN;	//Filling color
 
 }
+void Output::setBuffering(bool x)
+{
+	pWind->SetBuffering(x);
+}
+void Output::updateBuffer()
+{
+	pWind->UpdateBuffer();
+}
 //////////////////////////////////////////////////////////////////////////////////////////
 
 void Output::PrintMessage(string msg, bool redraw)	//Prints a message on status bar

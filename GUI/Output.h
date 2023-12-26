@@ -22,7 +22,8 @@ public:
 	void ClearToolBar() const;      //Clears the Tool Bar
 	void ClearDrawArea() const;	//Clears the drawing area
 	void ResetColors(); //Reset the Colors to default values
-	
+	void setBuffering(bool);
+	void updateBuffer();
 	// -- Figures Drawing functions
 	void DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected=false) const;  //Draw a rectangle
 	void DrawSquare(Point P1, double L, GfxInfo SquGfxInfo, bool selected) const;	//Draw a Square

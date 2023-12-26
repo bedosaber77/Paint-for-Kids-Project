@@ -17,7 +17,7 @@ void MoveByDragging::ReadActionParameters()
 	pIn = pManager->GetInput();
 
 	SelectedFig = pManager->GetSelectedFig();
-	if (!pManager->IsPlayingRecord()) {
+
 		if (SelectedFig == NULL)
 		{
 			pOut->PrintMessage("Select A Figure First");
@@ -26,17 +26,24 @@ void MoveByDragging::ReadActionParameters()
 
 		pOut->PrintMessage("Click on Selected Figure To Start Moving By Dragging");
 		pIn->WaitMouseClick(Cursor);
-	}
+
 	pOut->ClearStatusBar();
 }
 
 void MoveByDragging::Execute()
 {
-		ReadActionParameters();
+
 	if (pManager->IsPlayingRecord())
+	{
+		SelectedFig = pManager->GetSelectedFig(); // Get Selected Fig
 		redo();
+	}
+
+
+
 	else {
 
+		ReadActionParameters();
 
 		// Check If Selected Figure Is NULL
 		if (SelectedFig != NULL)
@@ -63,12 +70,12 @@ void MoveByDragging::Execute()
 			} while (SelectedFig->IsInclude(Cursor) == 1);
 
 			SelectedFig->PrintInfo(pOut); // Update Info On status Bar
+			NewCenter = SelectedFig->GetCenter();
+			pManager->CreateInUndo(this);
 
 		}
 
-		NewCenter = SelectedFig->GetCenter();
 	}
-		pManager->CreateInUndo(this);
 }
 
 void MoveByDragging::undo()

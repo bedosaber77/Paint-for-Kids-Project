@@ -60,7 +60,9 @@ void AddSquAction::Execute()
 void AddSquAction::undo()
 {
 	if (S != NULL)
+		tmp = S;
 		pManager->RemoveFigure(S);
+		S = NULL;
 	pOut->PrintMessage("The Square has been successfully Undone");
 }
 
@@ -68,5 +70,14 @@ void AddSquAction::redo()
 {
 	S = tmp;
 	pManager->AddFigure(S);
+	tmp = NULL;
 	pOut->PrintMessage("The Square has been successfully Redone");
+}
+
+AddSquAction::~AddSquAction()
+{
+	if (tmp != NULL) {
+		delete tmp;
+		tmp = NULL;
+	}
 }

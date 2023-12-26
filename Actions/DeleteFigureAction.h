@@ -10,16 +10,11 @@ private:
     CFigure* Backup;
 
 public:
-
-
     DeleteFigureAction(ApplicationManager* pApp);
     virtual void ReadActionParameters();
     virtual void Execute();
-
-
-
     virtual void undo();
     virtual void redo();
-
+    ~DeleteFigureAction();
 };
 

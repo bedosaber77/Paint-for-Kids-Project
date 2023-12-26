@@ -21,6 +21,7 @@
 
 		virtual void undo();
 		virtual void redo();
+		~AddCircAction();
 	};
 
 

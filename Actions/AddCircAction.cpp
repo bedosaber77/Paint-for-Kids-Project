@@ -69,7 +69,9 @@ void AddCircAction::undo()
 {
 	//remove the circle from the list of figures
 	if (C != NULL) {
+		tmp = C;
 		pManager->RemoveFigure(C);
+		C = NULL;
 		pOut->PrintMessage("The Circle has been successfully Undone");
 	}
 }
@@ -79,6 +81,16 @@ void AddCircAction::redo()
 	//Add the circle to the list of figures
 	C = tmp;
 	pManager->AddFigure(C);
+	tmp = NULL;
 	pOut->PrintMessage("The Circle has been successfully Redone");
+}
+
+AddCircAction::~AddCircAction()
+{
+	if (tmp != NULL)
+	{
+		delete tmp;
+		tmp = NULL;
+	}
 }
 
