@@ -52,6 +52,8 @@ void PickByColoredShapesAction::Execute()
 					goto Restart;
 					break;
 
+				case TO_DRAW:
+					pManager->RestartGame();
 				case SHAPE_PLAY_PICK:
 				case COLOR_PLAY_PICK:
 				case COLORED_SHAPE_PLAY_PICK:

@@ -11,11 +11,6 @@ AddTriAction::AddTriAction(ApplicationManager* pApp) :Action(pApp)
 
 void AddTriAction::ReadActionParameters()
 {
-	//play Sound if on
-	if (pManager->GetSoundStatues()) {
-		PlaySound("Sounds\\triangle.wav", NULL, SND_ASYNC);
-	}
-
 	//Get a Pointer to the Input / Output Interfaces
 	pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
@@ -56,6 +51,11 @@ void AddTriAction::ReadActionParameters()
 //Execute the action
 void AddTriAction::Execute()
 {
+	//play Sound if on
+	if (pManager->GetSoundStatues()) {
+		PlaySound("Sounds\\triangle.wav", NULL, SND_ASYNC);
+	}
+
 	if (!pManager->IsPlayingRecord())
 	{
 		//This action needs to read some parameters first
