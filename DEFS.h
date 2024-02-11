@@ -13,17 +13,56 @@ enum ActionType //The actions supported (you can add more if needed)
 	EMPTY,			//A click on empty place in the toolbar
 	DRAWING_AREA,	//A click on the drawing area
 	STATUS,			//A click on the status bar
-	
-	///TODO: Add the other action types of the two modes
+
 	SHAPES_PICK,
 	DRAW_CIRC,      //DRAW Circle
 	DRAW_SQU,		//Draw Square
 	DRAW_TRI,		//Draw Triangle
 	DRAW_HEX,		//Draw Hexagaon
+
+	BORDER_COLOR_PICK,   //Color Pick Menu
+	FILL_COLOR_PICK,
+
+
+	/////////////////////////////
+
+
+	PICK_BLACK,		//Pick Black in Color Menu Items
+	PICK_BLUE,		//Pick Blue in Color Menu Items
+	PICK_GREEN,		//Pick Green in Color Menu Items
+	PICK_ORANGE,	//Pick Orange in Color Menu Items
+	PICK_YELLOW,	//Pick Yellow in Color Menu Items
+	PICK_RED,		//Pick Red in Color Menu Items
+
+	RESTART_PLAY,
+	SHAPE_PLAY_PICK,
+	COLORED_SHAPE_PLAY_PICK,
+	COLOR_PLAY_PICK,
+
+	SAVE_GRAPH,
+	LOAD,
+	RESIZE,
+	MOVE,
+	MOVEBYDRAGGING,
+	CLEARALL,
+	SELECT,
+	UNDO,
+	REDO,
+	START_REC,
+	STOP_REC,
+	PLAY_REC,
+	ERASE,
+
+	MUTE,
+	UNMUTE
+
+
 };
 
 struct Point	//To be used for figures points
-{ int x,y; };
+{
+	int x, y;
+};
 
 struct GfxInfo	//Graphical info of each figure (you may add more members)
 {
